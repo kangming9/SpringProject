@@ -130,7 +130,8 @@
 
 
 .project{
-    margin:20px 0;
+	width:800px;
+    margin:30px 0;
 }
 
 .card-wrapper{
@@ -146,3 +147,11 @@
 .more-btn{
 	text-align:center;
 }
+
+input.more-btn-main{
+	border:1px solid #E6E6E6;
+	border-radius:22px;
+	width:233px;
+	height:44px;
+	font-size:14px;
+	}

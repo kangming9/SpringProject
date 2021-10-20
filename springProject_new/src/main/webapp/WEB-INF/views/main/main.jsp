@@ -104,7 +104,7 @@
 		<!-- 더보기 버튼 시작 -->
 		<div class="align-center">
 			<div class="more-btn">
-				<input type="button" value="인기 프로젝트 더보기">
+				<input type="button" value="인기 프로젝트 더보기" class="more-btn-main" onclick="location.href='${pageContext.request.contextPath}/project/list.do?state=&order=2'">
 			</div>
 		</div>
 		
@@ -115,7 +115,7 @@
 	<!-- 인기 프로젝트 끝 -->
 	
 	<!-- 최신 프로젝트 시작 -->
-	<div class="project2">
+	<div class="project">
 		<h2>최신 프로젝트</h2>
 		<c:if test="${count == 0}">
 			<div class="result-display">
@@ -155,7 +155,7 @@
 		<!-- 더보기 버튼 시작 -->
 		<div class="align-center">
 			<div class="more-btn">
-				<input type="button" value="최신 프로젝트 더보기">
+				<input type="button" value="최신 프로젝트 더보기" class="more-btn-main" onclick="location.href='${pageContext.request.contextPath}/project/list.do?state=&order=1'">
 			</div>
 		</div>
 		<!-- 더보기 버튼 끝 -->
