@@ -14,6 +14,8 @@ public interface GiftMapper {
 	public int selectRowCount(int p_num);
 	@Select("select g.num, p_num, d.name gd_name, d.count gd_count from gift g join gift_detail d on g.num=d.g_num where p_num=#{num} order by d.num")
 	public List<GiftVO> selectComList(int num);
+	@Select("SELECT * FROM gift WHERE num=#{num}")
+	public GiftVO selectGift(int num);
 	
 	@Select("SELECT gift_seq.nextval FROM dual")
 	public int selectNum();

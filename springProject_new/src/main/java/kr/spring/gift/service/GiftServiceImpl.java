@@ -30,6 +30,11 @@ public class GiftServiceImpl implements GiftService{
 	public List<GiftVO> selectComList(int num) {
 		return giftMapper.selectComList(num);
 	}
+	
+	@Override
+	public GiftVO selectGift(int num) {
+		return giftMapper.selectGift(num);
+	}
 
 	@Override
 	public int selectNum() {
