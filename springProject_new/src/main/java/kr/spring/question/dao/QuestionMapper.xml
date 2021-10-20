@@ -12,8 +12,8 @@
   			FROM (SELECT
   					q.num,
   					<![CDATA[
-  					REPLACE(REPLACE(q.title,'<','&lt;'),'>','&gt;') title,
-  					]]>
+		              REPLACE(REPLACE(q.title,'<','&lt;'),'>','&gt;') title,
+		              ]]>
   					q.question_date,
   					q.m_num,
   					m.id
@@ -59,7 +59,37 @@
 			</if>
 		</where>
   	</select>
-  
+  	
+  <!-- 댓글 목록 -->
+	<select id="selectListAnswer" parameterType="map" resultType="answerVO">
+		SELECT
+		  *
+		FROM (SELECT 
+		        al.*,
+		        rownum rnum
+		      FROM (SELECT 
+		              a.num,
+		  			  a.content,
+		              TO_CHAR(a.answer_date,'YYYY-MM-DD HH24:MI:SS') answer_date,
+		              a.q_num,
+		              a.m_num,
+		              d.nickname
+		            FROM answer a JOIN member_detail d ON a.m_num=d.m_num
+		            WHERE a.q_num = #{q_num}
+		            ORDER BY a.num DESC)al)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 댓글 총개수 -->
+	<select id="selectRowCountAnswer" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM answer a JOIN member_detail d ON a.m_num=d.m_num
+		WHERE a.q_num=#{q_num}
+	
+	</select>
 </mapper>
 
 

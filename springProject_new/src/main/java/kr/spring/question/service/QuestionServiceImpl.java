@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.question.dao.QuestionMapper;
+import kr.spring.question.vo.AnswerVO;
 import kr.spring.question.vo.QuestionVO;
 
 @Service
@@ -45,8 +46,42 @@ public class QuestionServiceImpl implements QuestionService{
 
 	@Override
 	public void deleteQuestion(Integer num) {
+		questionMapper.deleteAnswerByQuestionNum(num);
 		questionMapper.deleteQuestion(num);
 		
+	}
+
+	@Override
+	public List<AnswerVO> selectListAnswer(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return questionMapper.selectListAnswer(map);
+	}
+
+	@Override
+	public int selectRowCountAnswer(Map<String, Object> map) {
+		return questionMapper.selectRowCountAnswer(map);
+	}
+
+	@Override
+	public void insertAnswer(AnswerVO answer) {
+		questionMapper.insertAnswer(answer);
+	}
+
+	@Override
+	public void updateAnswer(AnswerVO answer) {
+		questionMapper.updateAnswer(answer);
+	}
+
+	@Override
+	public void deleteAnswer(Integer num) {
+		questionMapper.deleteAnswer(num);
+		
+	}
+
+	@Override
+	public String selectProjectTitle(Integer p_num) {
+		// TODO Auto-generated method stub
+		return questionMapper.selectProjectTitle(p_num);
 	}
 
 }
