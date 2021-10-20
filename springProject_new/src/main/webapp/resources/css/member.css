@@ -124,3 +124,25 @@ ul li input{
 	color:rgb(158, 158, 158);
 }
 
+/* 아이디 찾기 */
+#select_id_form{
+	height:270px;
+}
+
+
+#select_id_form ul li{
+	display:flex;
+	margin-bottom:10px;
+}
+
+#select_id_form label{
+	width:70px;
+	margin:10px;
+}
+
+#select_id_form input{
+	border:1px solid #E6E6E6;
+	border-radius:4px;
+	width:230px;
+	height:44px;
+}

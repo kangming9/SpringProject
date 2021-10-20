@@ -3,6 +3,7 @@ package kr.spring.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -183,4 +185,92 @@ public class MemberController {
  		return "redirect:/main/main.do"; 
 		 		
 	 }
+	 
+	//아이디 찾기 (이름, 메일, 폰번호) - 폼 호출
+	 @GetMapping("/member/searchID.do")
+		public String searchId() {
+	
+			logger.debug("<<아이디 찾기 폼 호출>>");
+	
+			return "searchID";
+	}
+		 
+	 //아이디 찾기 - 데이터 처리
+	 @PostMapping("/member/searchID.do")
+	 public String userIdSearch(@Valid MemberVO memberVO, BindingResult result,
+			 HttpServletRequest request, Model model) {
+			
+		 
+		logger.debug("<<user_name>> : "  + memberVO.getName());
+		logger.debug("<<user_email>> : "  + memberVO.getEmail());
+		logger.debug("<<user_phone>> : "  + memberVO.getPhone());
+		
+		/*
+		 * if(result.hasErrors()) {
+		 * return "searchID"; }
+		 */
+		
+		String id = memberService.searchId(memberVO.getName(), memberVO.getEmail(), memberVO.getPhone());
+		logger.debug("===========" + id);
+		
+		if(id == null) {
+			model.addAttribute("check", "id");
+			model.addAttribute("message", "아직 회원이 아닙니다. 회원 가입을 해주세요.");
+			model.addAttribute("url", request.getContextPath()+"/member/selectRegister.do");
+			
+			return "common/resultView";
+		}else {
+
+			model.addAttribute("check", "id");
+			model.addAttribute("message", "귀하의 아이디는 " + id + " 입니다.");
+			model.addAttribute("url", request.getContextPath()+"/member/login.do");
+			
+			return "common/resultView";
+		}
+	}
+	 
+	 
+	//비밀번호 재설정 (아이디, 메일, 폰번호) - 폼 호출
+	 @GetMapping("/member/searchPass.do")
+		public String searchPass() {
+	
+			logger.debug("<<비밀번호 찾기 폼 호출>>");
+	
+			return "searchPass";
+	}
+		 
+	 //아이디 찾기 - 데이터 처리
+	 @PostMapping("/member/searchPass.do")
+	 public String userPassSearch(@Valid MemberVO memberVO, BindingResult result,
+			 HttpServletRequest request, Model model) {
+			
+		 
+		logger.debug("<<user_id>> : "  + memberVO.getId());
+		logger.debug("<<user_email>> : "  + memberVO.getEmail());
+		logger.debug("<<user_phone>> : "  + memberVO.getPhone());
+		
+		/*
+		 * if(result.hasErrors()) {
+		 * return "searchID"; }
+		 */
+		
+		MemberVO member = memberService.searchPass(memberVO.getName(), memberVO.getEmail(), memberVO.getPhone());
+		logger.debug("===========");
+		
+		if(member == null) {
+			model.addAttribute("check", "id");
+			model.addAttribute("message", "아직 회원이 아닙니다. 회원 가입을 해주세요.");
+			model.addAttribute("url", request.getContextPath()+"/member/selectRegister.do");
+			
+			return "common/resultView";
+		}else {
+
+			model.addAttribute("check", "id");
+			model.addAttribute("message", "비밀번호가 재설정 되었습니다.");
+			model.addAttribute("url", request.getContextPath()+"/member/login.do");
+			
+			return "common/resultView";
+		}
+	} 
+	 
 }

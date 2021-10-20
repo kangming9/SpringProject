@@ -1,5 +1,7 @@
 package kr.spring.member.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.spring.member.vo.MemberVO;
 
 public interface MemberService {
@@ -11,4 +13,9 @@ public interface MemberService {
 	public void registerByGoogle(MemberVO memberVO);
 	//구글로그인
 	public MemberVO loginByGoogle(MemberVO memberVO);
+	
+	public String searchId(@Param("name")String name,@Param("email")String email,@Param("phone")String phone);
+	
+	public MemberVO searchPass(String id,String email,String phone);
+	public void changePass(MemberVO memberVO);
 }

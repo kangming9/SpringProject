@@ -1,34 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 재설정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#select_id_form').submit(function(){
+			//유효성 검사
+			if($('#id').val().trim()==''){
+				$('#message_id').css('color','red').text('아이디를 입력하세요');
+				$('#id').val('').focus(); 
+				return;
+			}
+			
+			if($('#email').val().trim()==''){
+				$('#message_id').css('color','red').text('이메일을 입력하세요');
+				$('#email').val('').focus(); 
+				return;
+			}
+			
+			if($('#phone').val().trim()==''){
+				$('#message_id').css('color','red').text('아이디를 입력하세요');
+				$('#phone').val('').focus(); 
+				return;
+			}
+		}); //아이디 찾기
+		
+	});
+</script>
 </head>
 <body>
 <div class="container">
-	<form id="select_id_form" action="searchId.do" method="post">
+	<div class="box">
+	<h2>비밀번호 재설정</h2>
+		<form:form id="select_pass_form" action="searchPass.do" modelAttribute="memberVO" method="post">
 		<ul>
 			<li>
 				<label for="id">아이디</label>
-				<input name="id" id="id">
+				<form:input path="id" id="id"/>
+				<form:errors path="id" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="email">이메일</label>
-				<input name="email" id="email">
+				<form:input path="email" id="email"/>
+				<form:errors path="email" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="phone">전화번호</label>
-				<input name="phone" id="phone">
+				<form:input path="phone" id="phone"/>
+				<form:errors path="phone" cssClass="error-color"/>
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="비밀번호 재설정">
+			<form:button class="submit-btn">비밀번호 재설정</form:button>
 		</div>
-	</form>
-
+	</form:form>
+	</div>
+	
 </div>
 </body>
 </html>

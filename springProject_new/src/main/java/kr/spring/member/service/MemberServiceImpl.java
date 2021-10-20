@@ -38,16 +38,30 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO loginByGoogle(MemberVO memberVO) {
-		MemberVO returnVO = null;
-		//추가 수정
-		return returnVO;
-	}
-
-	@Override
 	public void updateNickname(Integer m_num) {
 		memberMapper.updateNickname(m_num);
 		
 	}
+
+	@Override
+	public String searchId(String name, String email, String phone) {
+		return memberMapper.searchId(name, email, phone);
+	}
+
+	@Override
+	public MemberVO searchPass(String id, String email, String phone) {
+		return memberMapper.searchPass(id, email, phone);
+	}
+
+	@Override
+	public void changePass(MemberVO memberVO) {
+		memberMapper.changePass(memberVO);
+		
+	}
+	@Override
+	public MemberVO loginByGoogle(MemberVO memberVO) {
+		return memberMapper.loginByGoogle(memberVO);
+	}
+
 
 }
