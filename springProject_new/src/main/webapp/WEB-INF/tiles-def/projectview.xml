@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 충돌없이 사용하기 위해 definition name은 앞에 member나 board 등 unique한 이름을 붙이면서 작명해주세요 -->
+<!-- xml 파일의 이름을 변경하실 경우, servlet-context.xml와 root-context.xml에서도 변경해주세요 -->
+
+<tiles-definitions>
+    <definition name="projectList" extends="main">
+    	<put-attribute name="title" value="펀딩하기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/project/projectList.jsp"/>
+    </definition>
+    <definition name="projectView" extends="main">
+       <put-attribute name="title" value="프로젝트"/>
+       <put-attribute name="body" value="/WEB-INF/views/project/projectView.jsp"/>
+    </definition>
+</tiles-definitions>
+
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.mypage.dao.MypageMapper"> 
+  <!-- 배송지 목록 개수 -->
+  <select id="getdelCount" parameterType="integer" resultType="integer">
+  	SELECT 
+  		count(*) 
+  	FROM delivery 
+  	WHERE m_num=#{m_num}
+  </select>
+  
+  <!-- 배송지 목록 리스트 -->
+  <select id="delSelectList" parameterType="map" resultType="deliveryVO">
+  	SELECT 
+  	* 
+  	FROM(SELECT a.*, 
+  		   		rownum rnum 
+  		 FROM(SELECT b.num,
+  		 			 b.m_num,
+  		 			 b.name,
+  		 			 b.zipcode,
+  		 			 b.address,
+  		 			 b.address_detail,
+  		 			 b.address_check,
+  		 			 b.phone 
+  		 	  FROM delivery b 
+  		 	  WHERE b.m_num=#{m_num} ORDER BY b.num DESC)a)
+  		 <![CDATA[
+  		 WHERE rnum >= #{start} and rnum <= #{end}
+  		 ]]>
+  </select>
+  
+  
+</mapper>
+
+
+
+
+
+

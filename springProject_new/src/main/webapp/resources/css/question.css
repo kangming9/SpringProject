@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.container{
+	margin:50px 100px;
+	width:800px;
+}
+	table.question-table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    margin:10px;
+  }
+  
+  .question-line{
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align:center;
+  }
+
+ul li{
+	list-style:none;
+	align-items:vertical;
+}
+

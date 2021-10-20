@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.container{
+	overflow:hidden;
+	height:auto;
+}
+
+.container-title{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	overflow:hidden;
+	height:auto;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.container-title span{
+	border: 2px solid #E6E6E6;
+	padding: 5px 20px 5px 20px;
+}

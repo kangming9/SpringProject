@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.project.dao.ProjectMapper">  
+	<update id="updateProject" parameterType="projectVO">
+		UPDATE project
+		SET 
+		  name = #{name},
+		  category = #{category},
+		  start_date = #{start_date},
+		  finish_date = #{finish_date},
+		  intro = #{intro},
+		  ship = #{ship},
+		  summary = #{summary},
+		  approval = #{approval}
+		WHERE num = #{num}
+	</update>
+	
+	<select id="selectList" parameterType="map" resultType="projectVO">
+	  	   SELECT
+			  b.num, 
+			  name, 
+			  category, 
+			  summary, 
+			  photo, 
+			  intro, 
+			  policy, 
+			  goal_amount, 
+			  deadline, 
+			  nickname, 
+			  rnum, 
+			  NVL(amount,0) amount,  
+			  NVL(ROUND(amount/goal_amount*100,1),0) progress 
+			FROM (SELECT 
+			        a.*,
+			        rownum rnum
+			      FROM (SELECT 
+	  	   				p.num, 
+	  	   				p.name, 
+	  	   				p.category, 
+	  	   				p.summary, 
+	  	   				p.photo, 
+	  	   				p.intro, 
+	  	   				p.policy,
+	  	   				p.start_date,
+	  	   				p.goal_amount,
+	  	   				TRUNC(p.finish_date)-TRUNC(sysdate) deadline, 
+	  	   				m.nickname 
+	  	   			  FROM project p JOIN member_detail m ON p.m_num = m.m_num 
+	  	   			  <where>
+	  	   			  	p.approval = 1
+	  	   			  	<if test="keyword != ''">
+                        AND p.name LIKE '%' || #{keyword} || '%'
+                     	</if>
+	  	   			  </where>
+	  	   			  ) a
+	  	   		 ) b 
+	  	   		 JOIN (SELECT 
+	  	   		 		 p.num, 
+	  	   		 		 sum(support_amount)+sum(donation) amount
+                  	   FROM project p LEFT OUTER JOIN support s ON p.num = s.p_num
+                  	   GROUP BY p.num) c
+        		ON b.num = c.num
+		  	   <where>
+	                 <![CDATA[
+	                 rnum >= #{start} AND rnum <= #{end} 
+	                 ]]>
+	            <if test="state == ''">
+	                    AND b.deadline <![CDATA[>=]]> 0
+	            </if>
+	            <if test="state != '' and state == 1">
+	                    AND b.deadline <![CDATA[>=]]> 0
+	            </if>
+	            <if test="state != '' and state == 2">
+	                  AND b.deadline <![CDATA[<]]> 0
+	            </if>
+	            <if test="state != '' and state == 3">
+	                  AND b.start_date <![CDATA[>]]> TRUNC(sysdate)
+	            </if>
+	            <if test="order != '' and order == 3">
+	            	  AND b.deadline <![CDATA[>=]]> 0
+	        	</if>
+	        	<if test="category != '' and category == 0">
+	            	  AND b.category=0
+	        	</if>
+	        	<if test="category != '' and category == 1">
+	            	  AND b.category=1
+	        	</if>
+	        	<if test="category != '' and category == 2">
+	            	  AND b.category=2
+	        	</if>
+	        	<if test="category != '' and category == 3">
+	            	  AND b.category=3
+	        	</if>
+	         </where>
+	  	  <trim prefix="ORDER BY"> 
+           	<if test="order == '' or order == 1">
+           		b.num DESC
+	        </if>
+	        <if test="order != '' and order == 2">
+	            amount DESC, b.num
+	        </if>
+	        <if test="order != '' and order == 3">
+	            b.deadline, b.num
+	        </if>
+	     </trim>
+	</select>
+	
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT 
+			COUNT(*)
+		FROM (SELECT 
+				num, 
+	  	   		name, 
+	  	   		approval,
+	  	   		category,
+	  	   		start_date,
+	  	   		TRUNC(finish_date)-TRUNC(sysdate) deadline 
+	  	   		FROM project
+	  	   	) p
+	  	<where>
+	  		p.approval = 1
+	  	   	<if test="keyword != ''">
+	  	   	AND p.name LIKE '%' || #{keyword} || '%'
+	  	   	</if>
+	  	   	<if test="state == ''">
+	        AND p.deadline <![CDATA[>=]]> 0
+	        </if>
+		    <if test="state != '' and state == 1">
+		    AND p.deadline <![CDATA[>=]]> 0
+		    </if>
+		   	<if test="state != '' and state == 2">
+		    AND p.deadline <![CDATA[<]]> 0
+		   	</if>
+		    <if test="state != '' and state == 3">
+		    AND p.start_date <![CDATA[>]]> TRUNC(sysdate)
+		    </if>
+		    <if test="category != '' and category == 0">
+		    AND p.category=0
+	        </if>
+	        <if test="category != '' and category == 1">
+	        AND p.category=1
+	       	</if>
+	        <if test="category != '' and category == 2">
+	        AND p.category=2
+	       	</if>
+	        <if test="category != '' and category == 3">
+	        AND p.category=3
+	        </if>
+	  	</where>
+	</select>   
+	
+	<select id="selectProject" parameterType="integer" resultType="projectVO">
+      SELECT
+           b.num, 
+           name, 
+           m_num, 
+           category, 
+           summary, 
+           intro, 
+           policy, 
+           photo, 
+           goal_amount, 
+           start_date, 
+           finish_date,
+           deadline, 
+           nickname, 
+           NVL(amount,0) amount,  
+			  NVL(ROUND(amount/goal_amount*100,1),0) progress 
+         FROM (SELECT 
+                 a.*
+               FROM (SELECT 
+                       p.num, 
+                       p.name,
+                       p.m_num, 
+                       p.category, 
+                       p.summary, 
+                       p.photo, 
+                       p.intro, 
+                       p.policy,
+                       p.goal_amount,
+                       p.start_date,
+                       p.finish_date,
+                       TRUNC(p.finish_date)-TRUNC(sysdate) deadline, 
+                       m.nickname 
+                      FROM project p JOIN member_detail m ON p.m_num = m.m_num 
+                      <where>
+                         p.approval = 1 
+                      </where>
+                      ) a
+                  ) b 
+                  JOIN (SELECT 
+                         p.num, 
+                         sum(support_amount)+sum(donation) amount
+                        FROM project p LEFT OUTER JOIN support s ON p.num = s.p_num
+                        GROUP BY p.num) c
+              ON b.num = c.num
+           <![CDATA[
+           WHERE b.num = #{num} 
+           ]]>
+           ORDER BY b.num DESC
+   </select>
+   
+   <select id="selectProjectSupporter" parameterType="integer" resultType="integer">
+      SELECT
+           count(distinct p.m_num) 
+      FROM project p JOIN support s ON p.num = s.p_num
+        <![CDATA[
+        WHERE p.num = #{num} 
+        ]]>
+   </select>
+   
+</mapper>

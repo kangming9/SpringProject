@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 충돌없이 사용하기 위해 definition name은 앞에 member나 board 등 unique한 이름을 붙이면서 작명해주세요 -->
+<!-- xml 파일의 이름을 변경하실 경우, servlet-context.xml와 root-context.xml에서도 변경해주세요 -->
+
+<tiles-definitions>
+    <definition name="mypageView" extends="main">
+    	<put-attribute name="title" value="마이페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myPageView.jsp"/>
+    </definition>
+    <definition name="mySupportView" extends="main">
+    	<put-attribute name="title" value="후원 프로젝트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/mySupportView.jsp"/>
+    </definition>
+    <definition name="myProjectView" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectView.jsp"/>
+    </definition>
+    <definition name="myQuestionView" extends="main">
+    	<put-attribute name="title" value="문의"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myQuestionView.jsp"/>
+    </definition>
+    <definition name="mySettingsView" extends="main">
+    	<put-attribute name="title" value="설정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/mySettingsView.jsp"/>
+    </definition>
+    <definition name="myInformationView" extends="main">
+    	<put-attribute name="title" value="설정 기본정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myInformationView.jsp"/>
+    </definition>
+    <definition name="mydeleteView" extends="main">
+    	<put-attribute name="title" value="회원 탈퇴"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/deleteFormView.jsp"/>
+    </definition>
+    <definition name="myDeliveryView" extends="main">
+    	<put-attribute name="title" value="설정 배송지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myDeliveryView.jsp"/>
+    </definition>
+    <definition name="myDeliveryUpdateForm" extends="main">
+    	<put-attribute name="title" value="설정 배송지 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myDeliveryUpdateForm.jsp"/>
+    </definition>
+    <definition name="myPaymentView" extends="main">
+    	<put-attribute name="title" value="설정 결제수단"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myPaymentView.jsp"/>
+    </definition>
+</tiles-definitions>
+
+
+

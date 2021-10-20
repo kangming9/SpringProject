@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 충돌없이 사용하기 위해 definition name은 앞에 member나 board 등 unique한 이름을 붙이면서 작명해주세요 -->
+<!-- xml 파일의 이름을 변경하실 경우, servlet-context.xml와 root-context.xml에서도 변경해주세요 -->
+
+<tiles-definitions>
+    <definition name="create" extends="main">
+    	<put-attribute name="title" value="프로젝트 창작"/>
+    	<put-attribute name="body" value="/WEB-INF/views/create/create.jsp"/>
+    </definition>
+    <definition name="createAdd" extends="main">
+    	<put-attribute name="title" value="프로젝트 창작-추가정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/create/createAdd.jsp"/>
+    </definition>
+    <definition name="createGift" extends="main">
+    	<put-attribute name="title" value="프로젝트 창작-선물"/>
+    	<put-attribute name="body" value="/WEB-INF/views/create/createGift.jsp"/>
+    </definition>
+    <definition name="createView" extends="main">
+    	<put-attribute name="title" value="프로젝트 창작-미리보기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/create/createView.jsp"/>
+    </definition>
+</tiles-definitions>
+
+
+

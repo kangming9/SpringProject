@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.gift.dao.GiftMapper">    
+ 	<select id="selectList" parameterType="integer" resultType="giftVO">
+ 		SELECT 
+ 			g.num, 
+ 			g.p_num, 
+ 			g.price, 
+ 			g.name, 
+ 			g.due_ship, 
+ 			NVL(g.num_component,0) num_component, 
+ 			NVL(cnt,0) com_cnt
+		FROM gift g LEFT OUTER JOIN
+		    (
+		    SELECT d.g_num, count(*) cnt
+		    FROM gift g LEFT OUTER JOIN gift_detail d ON g.num = d.g_num
+		    GROUP BY d.g_num
+		    ) a
+		ON g.num=a.g_num
+		ORDER BY g.num
+ 	</select>
+</mapper>
