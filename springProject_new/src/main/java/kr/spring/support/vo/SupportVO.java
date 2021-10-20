@@ -1,5 +1,7 @@
 package kr.spring.support.vo;
 
+import java.text.DecimalFormat;
+
 import javax.validation.constraints.NotEmpty;
 
 public class SupportVO {//후원 테이블
@@ -17,6 +19,9 @@ public class SupportVO {//후원 테이블
 	private int support_amount; //전체 후원금액
 	private String gift_option;//후원의 추가적인 옵션 사항
 	private int donation; //추가후원금액
+	private String donation_str; //추가후원금액 스트링
+	private String support_amount_str; //전체 후원금액 스트링 
+	
 	public int getNum() {
 		return num;
 	}
@@ -52,6 +57,9 @@ public class SupportVO {//후원 테이블
 	}
 	public void setSupport_amount(int support_amount) {
 		this.support_amount = support_amount;
+		DecimalFormat df = new DecimalFormat("###,###");
+		String money = df.format(support_amount);
+		this.setSupport_amount_str(money);
 	}
 	public String getGift_option() {
 		return gift_option;
@@ -64,6 +72,21 @@ public class SupportVO {//후원 테이블
 	}
 	public void setDonation(int donation) {
 		this.donation = donation;
+		DecimalFormat df = new DecimalFormat("###,###");
+		String money = df.format(donation);
+		this.setDonation_str(money);
+	}
+	public String getDonation_str() {
+		return donation_str;
+	}
+	public void setDonation_str(String donation_str) {
+		this.donation_str = donation_str;
+	}
+	public String getSupport_amount_str() {
+		return support_amount_str;
+	}
+	public void setSupport_amount_str(String support_amount_str) {
+		this.support_amount_str = support_amount_str;
 	}
 	@Override
 	public String toString() {
