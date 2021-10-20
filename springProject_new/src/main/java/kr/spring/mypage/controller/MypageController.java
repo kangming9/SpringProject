@@ -25,6 +25,7 @@ import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.dao.MypageMapper;
 import kr.spring.mypage.service.MypageService;
+import kr.spring.project.vo.ProjectVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
@@ -69,12 +70,41 @@ public class MypageController {
 	}
 	//나의프로젝트 호출
 	@RequestMapping("/mypage/myProject.do")
-	public String myProjectView() {
-			
-		logger.debug("<<나의프로젝트 호출>>");
-			
-		return "myProjectView";
+	public ModelAndView myProjectView(HttpSession session,
+									  @RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									  @RequestParam(value="keyword", defaultValue="") String keyword) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		
+		int count = mypageService.getProCount(user_num);
+		logger.debug("<<나의프로젝트 호출>> map : " + map.toString() + "user_num" + count);
+		
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myProjectView.do");
+		
+		List<ProjectVO> list = null;
+		if(count > 0) {
+			Map<String,Object> map2 = new HashMap<String,Object>();
+			map2.put("keyword", keyword);
+			map2.put("start", page.getStartCount());
+			map2.put("end", page.getEndCount());
+			map2.put("m_num", user_num);
+			list = mypageService.proSelectList(map2);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		//뷰 이름 설정
+		mav.setViewName("myProjectView");
+		//데이터 저장
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
 	}
+	
 	//내문의게시판 호출
 	@RequestMapping("/mypage/myQuestion.do")
 	public String myQuestionView() {

@@ -290,32 +290,34 @@ $(function(){
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
+<div class="container-title">
+	<span>기본 정보</span>
+</div>
 <div class="info_container">
-	<p class="setthing_title">기본 정보</p>
-<div class="info_item info_item_title">닉네임</div>
-<div class="info_item info_item_content">
-	${member.nickname}
-<div class="align-left">
-	<input type="button" value="수정" id="nickname_btn">
-</div>
-<div id="nickname_choice" style="display: none;">
-	<input type="text" id="nickname" placeholder="4자이상 20자이하 특수문자 사용불가">
-	<span id="message_nickname"></span>
-	<input type="button" value="전송" id="nickname_submit">
-	<input type="button" value="취소" id="nickname_reset">
-</div>
+	<div class="info_item info_item_title">닉네임</div>
+	<div class="info_item info_item_content">
+		<p>${member.nickname}<p>
+	<div class="align-left">
+		<input type="button" value="수정" id="nickname_btn">
+	</div>
+	<div id="nickname_choice" style="display: none;">
+		<input type="text" id="nickname" placeholder="4자이상 20자이하 특수문자 사용불가">
+		<span id="message_nickname"></span>
+		<input type="button" value="전송" id="nickname_submit">
+		<input type="button" value="취소" id="nickname_reset">
+	</div>
 </div>
 <div class="info_item info_item_title">
-	프로필
+	프로필<p>
 </div>
 <div class="info_item info_item_content">
 	<ul class="list_style">
 		<li>
 			<c:if test="${empty member.photo}">
-			<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="100" height="100" class="my-photo">
+			<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="100" height="100" class="my-photo"><p>
 			</c:if>
 			<c:if test="${!empty member.photo}"> <!-- 사진있는경우 -->
-			<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="100" height="100" class="my-photo">
+			<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="100" height="100" class="my-photo"><p>
 			</c:if>
 		</li>
 		<li>
@@ -323,7 +325,7 @@ $(function(){
 				<input type="button" value="수정" id="photo_btn">
 			</div>
 			<div id="photo_choice" style="display:none;">
-				<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
+				<input type="file" id="upload" class="fileUpload" accept="image/gif,image/png,image/jpeg">
 				<input type="button" value="전송" id="photo_submit">
 				<input type="button" value="취소" id="photo_reset">
 			</div>
@@ -334,7 +336,7 @@ $(function(){
 	연락처
 </div>
 <div class="info_item info_item_content">
-	${member.phone}
+	<p>${member.phone}</p>
 <div class="align-left">
 	<input type="button" value="수정" id="phone_btn">
 </div>
@@ -365,6 +367,6 @@ $(function(){
 </div>
 <div class="info_item info_item_title">회원 탈퇴</div>
 <div class="info_item info_item_content">
-	<input type="button" value="탈퇴" onclick="location.href='${pageContext.request.contextPath}/mypage/deleteform.do'">
+	<input type="button" id="deleteMem" value="탈퇴" onclick="location.href='${pageContext.request.contextPath}/mypage/deleteform.do'">
 </div>
 </div>

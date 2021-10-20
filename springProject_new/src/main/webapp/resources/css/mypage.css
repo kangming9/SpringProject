@@ -79,6 +79,24 @@
 	margin: 0;
 	padding: 0;	
 }
+#nickname, #phone, #origin_password, #new_password, #newcheck_password{
+	margin: 5px 0;
+	padding: 10px 0;
+	border: 0.5px solid #ededed;
+	border-radius: 3px;
+}
+.info_item_content{
+	padding-bottom: 10px;
+}
+.align-left > input, #nickname_choice > input[type=button],  #photo_choice > input[type=button], #phone_choice > input[type=button], #password_submit, #password_reset, #deleteMem{
+	border: 0.5px solid #ededed;
+	background-color: white;
+	padding: 5px 20px 5px 20px;
+}
+.fileUpload{
+	
+}
+
 /*========= 회원탈퇴 =========*/
 .delete_margin{
 	/* margin: 0 25px 0 25px; */

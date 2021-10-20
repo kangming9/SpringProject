@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.dao.MypageMapper;
+import kr.spring.project.vo.ProjectVO;
 
 @Service
 @Transactional
@@ -107,32 +108,15 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 
-	
+	@Override
+	public int getProCount(Integer m_num) {
+		int check = mypageMapper.getProCount(m_num);
+		return check;
+	}
 
-	/*
-	 * @Override public List<DeliveryVO> deliveryList(DeliveryVO deliveryVO) {
-	 * HttpSession session; return
-	 * session.mypageService.("DeliveryList",deliveryVO); }
-	 */
-
-
-	/*
-	 * @Override public void updateMember(MemberVO member) {
-	 * memberMapper.updateMember(member);
-	 * 
-	 * }
-	 * 
-	 * @Override public void updatePassword(MemberVO member) {
-	 * memberMapper.updatePassword(member);
-	 * 
-	 * }
-	 * 
-	 * @Override public void deleteMember(Integer m_num) {
-	 * memberMapper.deleteMember(m_num); memberMapper.deleteMember_detail(m_num); }
-	 * 
-	 * @Override public void updateProfile(MemberVO member) {
-	 * memberMapper.updateProfile(member);
-	 * 
-	 * }
-	 */
+	@Override
+	public List<ProjectVO> proSelectList(Map<String, Object> map) {
+		return mypageMapper.proSelectList(map);
+		
+	}
 }

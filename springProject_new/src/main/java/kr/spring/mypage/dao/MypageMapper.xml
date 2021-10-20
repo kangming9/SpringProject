@@ -32,6 +32,42 @@
   		 ]]>
   </select>
   
+   <!-- 나의 프로젝트 목록 개수 -->
+  <select id="getProCount" parameterType="integer" resultType="integer">
+  	SELECT 
+  		count(*) 
+  	FROM project 
+  	WHERE m_num=#{m_num}
+  </select>
+  
+  <!-- 나의 프로젝트 목록 -->
+  <select id="proSelectList" parameterType="map" resultType="projectVO">
+  	SELECT 
+  	  * 
+  	FROM(SELECT a.*, 
+  				rownum rnum 
+  		 FROM(SELECT b.num, 
+  		 			 b.name, 
+  		 			 b.category, 
+  		 			 b.start_date, 
+  		 			 b.finish_date, 
+  		 			 b.goal_amount, 
+  		 			 b.m_num, 
+  		 			 b.approval, 
+  		 			 b.photo, 
+  		 			 b.ship 
+  		 	 FROM project b 
+  		 	 WHERE b.m_num=#{m_num}
+  		 	 <where>
+  		 	 	<if test="keyword != ''">
+  		 	 	AND b.name LIKE '%' || #{keyword} || '%'
+  		 	 	</if>
+  		 	 </where>
+  		 	 ORDER BY b.num DESC)a)
+  		 <![CDATA[
+  		 WHERE rnum >= #{start} AND rnum <= #{end}
+  		 ]]>
+  </select>
   
 </mapper>
 

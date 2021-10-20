@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Delete;
 
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.project.vo.ProjectVO;
 
 public interface MypageService {
 	
@@ -21,6 +22,7 @@ public interface MypageService {
 	public void checkPass(String pass);
 	public void updatePass(MemberVO member);
 	public void deleteMember(MemberVO member);
+	
 	public void insertDelivery(DeliveryVO delivery);
 	public void updateDelCheck(DeliveryVO delivery);
 	public int getdelCount(Integer m_num);
@@ -28,4 +30,7 @@ public interface MypageService {
     public void deleteDelivery(Integer num);
     public DeliveryVO selectDelivery(Integer num);
     public void updateDelivery(DeliveryVO deliveryVO);
+    
+    public int getProCount(Integer m_num);
+	public List<ProjectVO> proSelectList(Map<String, Object> map);
 }

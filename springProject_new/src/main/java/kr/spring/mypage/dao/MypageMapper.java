@@ -10,22 +10,10 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.project.vo.ProjectVO;
 
 public interface MypageMapper {
 	
-	/*
-	 * @Update("UPDATE member_detail SET (name=#{name},phone=#{phone},email=#{email},zipcode=#{zipcode},address=#{address},address_detail=#{address_detail},modify_date=SYSDATE WHERE m_num=#{m_num})"
-	 * ) public void updateMember(MemberVO member);
-	 * 
-	 * @Update("SELECT member_detail SET pass=#{pass} WHERE m_num=#{m_num}") 
-	 * public void updatePassword(MemberVO member);
-	 * 
-	 * @Update("Update member SET grade=0 WHERE m_num=#{m_num}") 
-	 * public void deleteMember(Integer m_num);
-	 * 
-	 * @Delete("DELETE FROM member_detail WHERE m_num=#{m_num}") 
-	 * public void deleteMember_detail(Integer m_num);
-	 */
 	  @Select("SELECT member_seq.nextval FROM dual")
 	  public int select_num();
 	  @Select("select count(*) from member_detail where nickname=#{nickname}")
@@ -44,6 +32,7 @@ public interface MypageMapper {
 	  public void delteMember(MemberVO member);
 	  @Update("UPDATE member SET grade=1 WHERE num=#{num}")
 	  public void changeGrade(MemberVO member);
+	  
 	  @Select("SELECT delivery_seq.nextval FROM dual")
 	  public int select_deliverynum();
 	  @Insert("INSERT INTO delivery (num,m_num,name,zipcode,address,address_detail,address_check,phone) VALUES (delivery_seq.nextval,#{m_num},#{name},#{zipcode},#{address},#{address_detail},#{address_check},#{phone})")
@@ -58,6 +47,10 @@ public interface MypageMapper {
 	  public DeliveryVO selectDelivery(Integer num);
 	  @Update("UPDATE delivery SET name=#{name}, zipcode=#{zipcode}, address=#{address}, address_detail=#{address_detail}, address_check=#{address_check}, phone=#{phone} WHERE num=#{num}")
 	  public void updateDelivery(DeliveryVO deliveryVO);
+	  
+	  public int getProCount(Integer m_num);
+	  public List<ProjectVO> proSelectList(Map<String, Object> map);
+	  
 }
 
 
