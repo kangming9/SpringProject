@@ -12,21 +12,45 @@
 		  <div class="s" id="s3"></div>
 		  <div class="s" id="s4"></div>
 		  <div class="slider">
-		    <div class="slide-description">
+		  <div class="slide-full" 
+		  	style="background-image:url(${pageContext.request.contextPath}/resources/images/slide05.png);
+		  	width:500px;">
+		  	<div class="slide-description">
 				<h3 class="slide-description-title">소개</h3>
 	      		<span class="slide-description-content">펀딩 어드벤처의 위대한 여정</span>
+	      		<br>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
 			</div>
+		  </div>
+		  <div class="slide-full"
+		  style="background-image:url(${pageContext.request.contextPath}/resources/images/slide03.png);
+		  	width:500px;">  
 		    <div class="slide-description">
 				<h3 class="slide-description-title">창작자 가이드</h3>
 	      		<span class="slide-description-content">창작자라면 꼭 지켜주세요</span>
+	      		<br>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/creatorGuide.do'"></button>
 			</div>
+			</div>
+		 <div class="slide-full"
+		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide02.png);
+		  	width:500px;" onclick="location.href='#'"> 
 		    <div class="slide-description">
 				<h3 class="slide-description-title">후원자 가이드</h3>
 	      		<span class="slide-description-content">후원자라면 꼭 지켜주세요</span>
+	      		<br>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
 			</div>
+		</div>
+		 <div class="slide-full"
+		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide04.png);
+		  	width:500px;" onclick="location.href='#'">  
 			<div class="slide-description">
 				<h3 class="slide-description-title">펀딩 심사기준</h3>
 	      		<span class="slide-description-content">이것만 따르면 당신도 창작자!</span>
+	      		<br>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
+			</div>
 			</div>
 		  </div>
 		  
@@ -53,7 +77,16 @@
 		<c:forEach var="popular" items="${list2}">
 				<div class="card-shadow">
 					<div class="card-image">
-						<a href="${pageContext.request.contextPath}/project/detail.do?num=${popular.num}"><img src="${popular.photo}" style="width:200px;"></a>
+					<c:if test="${popular.photo == 'default_team.jpg'}">
+						<a href="${pageContext.request.contextPath}/project/detail.do?num=${popular.num}">
+							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;">
+						</a>
+					</c:if>
+					<c:if test="${popular.photo != 'default_team.jpg'}">
+						<a href="${pageContext.request.contextPath}/project/detail.do?num=${popular.num}">
+							<img class="photo" src="${pageContext.request.contextPath}/upload/${popular.photo}" style="width:200px;">
+						</a>
+					</c:if>
 					</div>
 					<div class="card-content">
 						<div class="card_meta">
@@ -95,7 +128,16 @@
 		<c:forEach var="latest" items="${list}">
 				<div class="card-shadow">
 					<div class="card-image">
-						<a href="${pageContext.request.contextPath}/project/detail.do?num=${latest.num}"><img src="${latest.photo}" style="width:200px;"></a>
+					<c:if test="${latest.photo == 'default_team.jpg'}">
+						<a href="${pageContext.request.contextPath}/project/detail.do?num=${latest.num}">
+							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;">
+						</a>
+					</c:if>
+					<c:if test="${latest.photo != 'default_team.jpg'}">
+						<a href="${pageContext.request.contextPath}/project/detail.do?num=${latest.num}">
+							<img class="photo" src="${pageContext.request.contextPath}/upload/${latest.photo}" style="width:200px;">
+						</a>
+					</c:if>
 					</div>
 					<div class="card-content">
 						<div class="card_meta">

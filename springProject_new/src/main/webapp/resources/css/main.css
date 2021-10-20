@@ -27,6 +27,12 @@
 	transition: 0.8s;
 }
 
+.slide-full{
+	background-repeat:no-repeat;
+	margin-right:300px;
+}
+
+
 /* SLIDES */
 
 .slide .slider > * {
@@ -69,6 +75,7 @@
 .slide .bullets > a:hover {
 	background: rgba(255, 255, 255, 0.7) !important;
 }
+
 
 /* NAVIGATION BUTTONS */
 /* ALL: */

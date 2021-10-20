@@ -76,6 +76,9 @@ public class MainController {
 			list2 = projectService.selectList(map2);
 		}
 		
+
+		logger.debug("======content =======: " + list2.toString());
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("count2", count2);
