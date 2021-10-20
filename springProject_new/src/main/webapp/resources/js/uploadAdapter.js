@@ -13,7 +13,7 @@ class UploadAdapter {
 
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8081/FundingAdventure/create/imageUploader.do', true);
+        xhr.open('POST', 'http://localhost:8081/FundingAdventure2/create/imageUploader.do', true);
         xhr.responseType = 'json';
     }
 

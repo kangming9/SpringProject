@@ -112,7 +112,7 @@
 	<h2>프로젝트 창작</h2>
 	<div class="box">
 		
-	<form:form id="create_project_form" action="createProject.do" modelAttribute="projectVO">
+	<form:form id="create_project_form" action="createProject.do" modelAttribute="projectVO" enctype="multipart/form-data">
 		<ul>
 			<li>
 				<label for="name">프로젝트명</label><br>
