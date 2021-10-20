@@ -79,12 +79,12 @@
 					<div class="card-image">
 					<c:if test="${popular.photo == 'default_team.jpg'}">
 						<a href="${pageContext.request.contextPath}/project/detail.do?num=${popular.num}">
-							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;">
+							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;height:200px;">
 						</a>
 					</c:if>
 					<c:if test="${popular.photo != 'default_team.jpg'}">
 						<a href="${pageContext.request.contextPath}/project/detail.do?num=${popular.num}">
-							<img class="photo" src="${pageContext.request.contextPath}/upload/${popular.photo}" style="width:200px;">
+							<img class="photo" src="${pageContext.request.contextPath}/upload/${popular.photo}" style="width:200px;height:200px;">
 						</a>
 					</c:if>
 					</div>
@@ -95,7 +95,7 @@
 							<span>${popular.nickname}</span>
 						</div>
 						<h3><a>${popular.name}</a></h3>
-						<h6>${popular.progress}</h6>
+						<h4 style="color:#FF7878;">${popular.progress}%</h4>
 					</div>
 				</div>
 		</c:forEach>
@@ -130,12 +130,12 @@
 					<div class="card-image">
 					<c:if test="${latest.photo == 'default_team.jpg'}">
 						<a href="${pageContext.request.contextPath}/project/detail.do?num=${latest.num}">
-							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;">
+							<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" style="width:200px;height:200px;">
 						</a>
 					</c:if>
 					<c:if test="${latest.photo != 'default_team.jpg'}">
 						<a href="${pageContext.request.contextPath}/project/detail.do?num=${latest.num}">
-							<img class="photo" src="${pageContext.request.contextPath}/upload/${latest.photo}" style="width:200px;">
+							<img class="photo" src="${pageContext.request.contextPath}/upload/${latest.photo}" style="width:200px;height:200px;">
 						</a>
 					</c:if>
 					</div>
@@ -146,7 +146,7 @@
 							<span>${latest.nickname}</span>
 						</div>
 						<h3><a>${latest.name}</a></h3>
-						<h6>${latest.progress}</h6>
+						<h4 style="color:#FF7878;">${latest.progress}%</h4>
 					</div>
 				</div>
 		</c:forEach>

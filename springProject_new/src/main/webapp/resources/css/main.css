@@ -142,9 +142,11 @@
 
 .card-shadow{
 	width:200px;
+	padding:5px 0;
 }
 
 .more-btn{
+	margin:30px;
 	text-align:center;
 }
 
