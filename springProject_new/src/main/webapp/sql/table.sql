@@ -234,4 +234,4 @@ ALTER TABLE gift DROP COLUMN intro;
 --21.10.18 문의하기에 프로젝트 넘버 fk 삭제
 ALTER TABLE question DROP CONSTRAINT FK_QUESTION_P_NUM_PROJECT_NUM;
 --21.10.21 support테이블에 결제날짜 추가
-ALTER TABLE support ADD patment_date DATE DEFAULT sysdate NOT NULL;
+ALTER TABLE support ADD payment_date DATE DEFAULT sysdate NOT NULL;
