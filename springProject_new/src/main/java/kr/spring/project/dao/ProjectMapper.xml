@@ -99,7 +99,7 @@
            		b.num DESC
 	        </if>
 	        <if test="order != '' and order == 2">
-	            amount DESC, b.num
+	            progress DESC, b.num
 	        </if>
 	        <if test="order != '' and order == 3">
 	            b.deadline, b.num
