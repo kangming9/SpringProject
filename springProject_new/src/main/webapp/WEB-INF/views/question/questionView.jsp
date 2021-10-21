@@ -15,7 +15,6 @@
 				currentPage = pageNum;
 				
 				if(pageNum == 1){
-					//처음 호출시는 해당 ID의 div의 내부 내용물을 제거
 					$('#output').empty();
 				}
 				
@@ -53,7 +52,6 @@
 							$('#output').append(output);						
 						});//end of each
 						
-						//paging button 처리
 						if(currentPage>=Math.ceil(count/rowCount)){
 							//다음 페이지가 없음
 							$('.paging-button').hide();
@@ -101,8 +99,6 @@
 						}else if(param.result == 'success'){
 							//폼초기화
 							initForm();
-							//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의
-							//게시글들을 다시 호출
 							selectData(1,$('#q_num').val());
 							alert('댓글이 등록되었습니다.');
 						}else{
@@ -132,7 +128,7 @@
 				
 				if(inputLength>300){//300자를 넘어선 경우
 					$(this).val($(this).val().substring(0,300));
-				}else{//300자 이하인 경우
+				}else{//300자 이하
 					var remain = 300 - inputLength;
 					remain += '/300';
 					if($(this).attr('id') == 'a_content'){
@@ -272,24 +268,21 @@
 </script>
 <!-- 중앙내용 시작 -->
 <div class="container">
-	<c:if test="${!empty question.password}">
-		
-	</c:if>
-	<h2>${quesiton.title}</h2>
+	<div class="box">
+	
+	<!-- 문의글 내용 시작 -->
+	<div class="question-content">
+	<span class="question-content-title-line">No. ${question.num}</span>
+	<h2>${question.title}   /   ${question.id}</h2>
 	<input type="hidden" value="${question.password}">
-	<ul>
-		<li>제목 : ${question.title}</li>
-		<li>번호 : ${question.num}</li>
-		<li>작성자 : ${question.id}</li>
-		<li>작성일 : ${question.question_date}</li>
-	</ul>
+	<span class="question-content-title-line">${question.question_date}</span><br>
+
 	<hr size="1" width="100%">
-	<p>${question.content}</p>
-	<hr size="1" width="100%">
+	<p class="question-content-view">${question.content}</p>
 	<div class="align-right">
 		<c:if test="${!empty user_num && user_num == question.m_num}">
-			<input type="button" value="수정" onclick="location.href='modify.do?num=${question.num}'">
-			<input type="button" value="삭제" id="delete_btn">
+			<input type="button" value="수정" onclick="location.href='modify.do?num=${question.num}'" class="btns">
+			<input type="button" value="삭제" id="delete_btn" class="btns">
 			<script type="text/javascript">
 				var delet_btn = document.getElementById('delete_btn');
 				delete_btn.onclick=function(){
@@ -300,17 +293,21 @@
 				};
 			</script>
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='list.do'">
+		<input type="button" value="목록" onclick="location.href='list.do'" class="btns"> 
 	</div>
 	<hr size="1" width="100%" noshade="noshade">
+	</div>
+	
+	<!-- 문의글 내용 끝 -->
 	
 	<!-- 댓글 폼 시작 -->
 	<div id="answer_div">
-		<span class="answer-title">댓글</span>
+		<h2 class="answer-title">댓글</h2>
 		<form id="answer_form">
 			<input type="hidden" name="q_num" value="${question.num}" id="q_num">
 			<input type="hidden" name="m_num" value="${user_num}" id="m_num">
 			<textarea rows="3" cols="50" name="content" id="a_content" class="a_content" 
+			placeholder="무분별한 비난 혹은 악플로 간주되는 댓글은 무통보 삭제 처리되오니 양해 바랍니다." 
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			><c:if test="${empty user_num}">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num }">
@@ -318,7 +315,7 @@
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="a_second" class="align-right">
-					<input type="submit" value="전송">
+					<input type="submit" value="전송" class="question-register-btn">
 				</div>
 			</c:if>
 		</form>
@@ -334,5 +331,5 @@
 		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
 	</div>
 </div>
-
+</div>
 <!-- 중앙내용 끝 -->
