@@ -36,6 +36,8 @@ body {
   width: 100%;
   z-index: 500;
 }
+
+
 .menu:after, .menu > ul:after {
   content: ".";
   display: block;
@@ -59,6 +61,34 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
+.menu > ul > di {
+  display: inline-block;
+  position: relative;
+  text-align:center;
+  margin: 0;
+  padding: 0;
+}
+.menu ul di a {
+  display: block;
+  font-family: Helvetica, sans-serif;
+  text-decoration: none;
+}
+.menu > ul > di > a {		//메뉴 글자
+  font-size: 14px;
+  font-weight: bold;
+  padding: 15px 20px;
+  color: #2b2f3a;
+  text-transform: uppercase;
+  -webkit-transition: color 0.25s ease-out;
+  -moz-transition: color 0.25s ease-out;
+  -ms-transition: color 0.25s ease-out;
+  -o-transition: color 0.25s ease-out;
+  transition: color 0.25s ease-out;
+}
+
+
 .menu > ul > #menu-button {
   display: none;
 }
@@ -242,7 +272,18 @@ body {
 				<li>
 					<a href="${pageContext.request.contextPath}/create/create.do" class="delete_line">프로젝트창작</a>
 				</li>
-				
+					
+					<c:if test="${!empty user_num}">
+						<li style="float: right" >
+							
+							<a href="${pageContext.request.contextPath}/member/logout.do" class="delete_line">Logout</a>
+							
+						</li>
+						<li style="float: right">
+						    <a>${user_nickname}</a>
+						</li>
+						
+					</c:if>
 					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
@@ -265,14 +306,7 @@ body {
 							<a href="${pageContext.request.contextPath}/member/login.do" class="delete_line">로그인</a>
 						</li>
 					</c:if>
-					<c:if test="${!empty user_num}">
-						<li style="float: right">
-						    <span><b>${user_nickname}</b></span>
-						</li>
-						<li style="float: right">
-							<a href="${pageContext.request.contextPath}/member/logout.do" class="delete_line">로그아웃</a>
-						</li>
-					</c:if>
+					
 
 
 			</ul>
