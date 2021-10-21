@@ -83,4 +83,26 @@ public class SupportController {
 		return mav;
 	}
 	
+	@RequestMapping("/support/result.do")
+	public ModelAndView submit(SupportVO supportVO, HttpSession session) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(user_num==null) {
+			logger.debug("<<후원완료>> : 로그인 필요");
+		}else {
+			supportVO.setM_num(user_num);
+			
+			if(supportVO.getGift_option() == null) {
+				supportVO.setGift_option("");
+			}
+			
+			logger.debug("<<후원완료>> :" + supportVO);
+			
+			supportService.insertSupport(supportVO);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("supportResult");
+		return mav;
+	}
 }

@@ -12,4 +12,8 @@
        <put-attribute name="title" value="후원하기"/>
        <put-attribute name="body" value="/WEB-INF/views/support/supportView.jsp"/>
     </definition>
+    <definition name="supportResult" extends="main">
+       <put-attribute name="title" value="후원완료"/>
+       <put-attribute name="body" value="/WEB-INF/views/support/supportResult.jsp"/>
+    </definition>
 </tiles-definitions>
