@@ -28,6 +28,10 @@
     	<put-attribute name="title" value="회원가입 방법 선택"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/selectRegister.jsp"/>
     </definition>
+    <definition name="memberList" extends="main">
+    	<put-attribute name="title" value="회원관리"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberList.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

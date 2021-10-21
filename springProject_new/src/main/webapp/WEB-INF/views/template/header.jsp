@@ -284,7 +284,7 @@ body {
 						</li>
 						
 					</c:if>
-					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
+					<c:if test="${!empty user_num && empty user_photo && user_grade <= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
 							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="35" height="35" class="my-photo">

@@ -30,7 +30,6 @@
 </head>
 <body>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/template/header.jsp"/>
 	<div class="page-container">
 	<span class="page-name">회원 목록</span>
 	<div class="list-container">
@@ -98,9 +97,7 @@
 		</c:if>
 	</div>
 	</div>
-	<!-- footer 시작 -->
-	<jsp:include page="/WEB-INF/views/template/footer.jsp"/>
-	<!-- footer 끝 -->
+
 </div>
 </body>
 </html>
