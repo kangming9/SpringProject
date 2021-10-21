@@ -6,6 +6,9 @@ import java.text.DecimalFormat;
 
 import javax.validation.constraints.NotEmpty;
 
+import kr.spring.gift.vo.GiftVO;
+import kr.spring.member.vo.MemberVO;
+
 public class SupportVO {//후원 테이블
 	@NotEmpty
 	private int num; //후원 번호
@@ -24,7 +27,7 @@ public class SupportVO {//후원 테이블
 	private String gift_option;//후원의 추가적인 옵션 사항
 	private int donation; //추가후원금액
 	private String donation_str; //추가후원금액 스트링
-	private String support_amount_str; //전체 후원금액 스트링 
+	private String support_amount_str; //전체 후원금액 스트링
 	
 	public int getNum() {
 		return num;
