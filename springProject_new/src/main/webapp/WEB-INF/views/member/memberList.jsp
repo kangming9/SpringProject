@@ -12,9 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_memList.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_footer.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -70,21 +68,23 @@
 			<c:forEach var="member" items="${list}">
 			<tr>
 				<td>
-					<c:if test="${member.member_grade > 0}">
-					<a href="detailUserForm.do?mem_num=${member.member_num}">${member.member_id}</a>
+					<c:if test="${member.grade > 0}">
+					<a href="detailUserForm.do?num=${member.num}">${member.id}</a>
 					</c:if>
 					<c:if test="${member.member_grade == 0}">
-					${member.member_id}
+					${member.id}
 					</c:if>
 				</td>
 				<td>${member.member_detail_name}</td>
 				<td>${member.member_detail_phone}</td>
 				<td>${member.member_detail_reg_date}</td>
 				<td>
-				<c:if test="${member.member_grade == 0}">탈퇴</c:if>
-				<c:if test="${member.member_grade == 1}">관리</c:if>
-				<c:if test="${member.member_grade == 2}">입양</c:if>
-				<c:if test="${member.member_grade == 3}">일반</c:if>
+				<c:if test="${member.grade == 0}">관리자</c:if>
+				<c:if test="${member.member_grade == 1}">탈퇴</c:if>
+				<c:if test="${member.member_grade == 2}">일반회원</c:if>
+				<c:if test="${member.member_grade == 3}">구글</c:if>
+				<c:if test="${member.member_grade == 4}">카카오</c:if>
+				<c:if test="${member.member_grade == 5}">네이버</c:if>
 				</td>
 			</tr>
 			</c:forEach>
