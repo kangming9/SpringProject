@@ -91,6 +91,10 @@
 			<exclude-mapping path="/project/detail.do"/>
 			<exclude-mapping path="/guide/guide.do"/>
 			<exclude-mapping path="/guide/creatorGuide.do"/>
+			<exclude-mapping path="/guide/supporterGuide.do"/>
+			<exclude-mapping path="/guide/projectStandard.do"/>
+			<exclude-mapping path="/guide/termsOfUse.do"/>
+			<exclude-mapping path="/guide/privacyPolicy.do"/>
 			<exclude-mapping path="/question/list.do"/>
 			<exclude-mapping path="/main/**"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>

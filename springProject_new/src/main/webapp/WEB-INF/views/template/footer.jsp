@@ -12,16 +12,16 @@
 		</tr>
 		<tr>
 			<td><a href="${pageContext.request.contextPath}/guide/creatorGuide.do" class="delete_line">창작자 가이드</a></td>
-			<td class="footer_margin"><a href="${pageContext.request.contextPath}/guide/guide.do" class="delete_line">이용약관</a></td>
+			<td class="footer_margin"><a href="${pageContext.request.contextPath}/guide/termsOfUse.do" class="delete_line">이용약관</a></td>
 			<td>평일 09:00 ~ 17:00(12:00~13:00 제외)</td>
 		</tr>
 		<tr>
-			<td><a href="${pageContext.request.contextPath}/" class="delete_line">후원자 가이드</a></td>
-			<td class="footer_margin"><a href="${pageContext.request.contextPath}/" class="delete_line">개인정보 처리방침</a></td>
+			<td><a href="${pageContext.request.contextPath}/guide/supporterGuide.do" class="delete_line">후원자 가이드</a></td>
+			<td class="footer_margin"><a href="${pageContext.request.contextPath}/guide/privacyPolicy.do" class="delete_line">개인정보 처리방침</a></td>
 			<td rowspan="2"><button onclick="location.href='${pageContext.request.contextPath}/question/list.do'" style="padding:10px;background:white;">펀딩어드벤처에 문의하기</button></td>
 		</tr>
 		<tr>
-			<td colspan="3"><a href="${pageContext.request.contextPath}/" class="delete_line">프로젝트 심사 기준</a></td>
+			<td colspan="3"><a href="${pageContext.request.contextPath}/guide/projectStandard.do" class="delete_line">프로젝트 심사 기준</a></td>
 		</tr>
 	</table>
 <p>

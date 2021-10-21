@@ -268,6 +268,8 @@ body {
 					<c:if test="${!empty user_num}">
 						<li style="float: right">
 						    <span><b>${user_nickname}</b></span>
+						</li>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/member/logout.do" class="delete_line">로그아웃</a>
 						</li>
 					</c:if>

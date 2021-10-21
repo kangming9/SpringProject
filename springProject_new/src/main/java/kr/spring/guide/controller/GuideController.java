@@ -19,4 +19,23 @@ public class GuideController {
 		return "creatorGuide";
 	}
 	
+@RequestMapping("/guide/supporterGuide.do")
+	public String supporterGuide() {
+		return "supporterGuide";
+	}
+
+@RequestMapping("/guide/projectStandard.do")
+	public String projectStandard() {
+		return "projectStandard";
+	}
+
+@RequestMapping("/guide/termsOfUse.do")
+	public String termsOfUse() {
+		return "termsOfUse";
+	}
+
+@RequestMapping("/guide/privacyPolicy.do")
+	public String privacyPolicy() {
+		return "privacyPolicy";
+	}
 }
