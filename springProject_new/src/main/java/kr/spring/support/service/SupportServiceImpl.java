@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.support.dao.SupportMapper;
+import kr.spring.support.vo.SupportVO;
 import kr.spring.support.vo.SupporterVO;
 
 @Service
@@ -24,6 +25,11 @@ public class SupportServiceImpl implements SupportService{
 	@Override
 	public List<SupporterVO> selectSupporterList(int pnum) {
 		return supportMapper.selectSupporterList(pnum);
+	}
+
+	@Override
+	public void insertSupport(SupportVO supportVO) {
+		supportMapper.insertSupport(supportVO);
 	}
 	
 	
