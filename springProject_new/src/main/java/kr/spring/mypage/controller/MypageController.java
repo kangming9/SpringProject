@@ -1,6 +1,8 @@
 package kr.spring.mypage.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,7 @@ import kr.spring.project.service.ProjectService;
 import kr.spring.project.vo.ProjectVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
+import kr.spring.support.vo.SupporterVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
@@ -168,15 +171,36 @@ public class MypageController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		mav.addObject("num", projectVO.getNum());
+		mav.addObject("name", projectVO.getName());
+		mav.addObject("category", projectVO.getCategory() + "");
+		mav.addObject("start_date", projectVO.getStart_date());
+		mav.addObject("finish_date", projectVO.getFinish_date());
+		mav.addObject("goal_amount", projectVO.getGoal_amount());
+		mav.addObject("approval", projectVO.getApproval());
+		mav.addObject("reason", projectVO.getReason());
+		mav.addObject("summary", projectVO.getSummary());
+		mav.addObject("photo", projectVO.getPhoto());
+		mav.addObject("ship", projectVO.getShip() + "");
+		mav.addObject("intro", projectVO.getIntro());
+		mav.addObject("policy", projectVO.getPolicy());
+		
 		mav.addObject("project", projectVO);
 		mav.addObject("giftCnt", giftCnt);
 		mav.addObject("giftList", giftList);
 		mav.addObject("comList", comList);
-		
+
 		if("project".equals(info)) {
 			mav.setViewName("myProjectDetailLock");
 		}else if("support".equals(info)) {
-			
+			List<SupporterVO> supporterList = null;
+			supporterList = supportService.selectSupporterList(projectVO.getNum());
+			for(SupporterVO i : supporterList) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				i.setPayment_date_str(sdf.format(i.getPayment_date()));
+			}
+			mav.addObject("supporterList", supporterList);
+			mav.setViewName("supportInfo");
 		}else if("state".equals(info)) {
 			List<Integer> supportList = new ArrayList<Integer>(); //선물별 후원자 리스트
 			
@@ -184,7 +208,7 @@ public class MypageController {
 				supportList.add(supportService.selectGiftSupport(i.getNum()));
 			}
 			mav.addObject("supportList", supportList);
-			mav.setViewName("supportInfo");
+			mav.setViewName("stateInfo");
 		}else if("money".equals(info)) {
 			
 		}

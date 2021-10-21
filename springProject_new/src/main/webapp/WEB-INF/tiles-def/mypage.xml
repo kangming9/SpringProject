@@ -34,7 +34,7 @@
     </definition>
     <definition name="stateInfo" extends="main">
     	<put-attribute name="title" value="나의 프로젝트 - 후원자 통계"/>
-    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/stateInfoView.jsp"/>
     </definition>
     <definition name="moneyInfo" extends="main">
     	<put-attribute name="title" value="나의 프로젝트 - 후원금 정보"/>
