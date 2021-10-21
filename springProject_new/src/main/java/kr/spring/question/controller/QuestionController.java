@@ -63,9 +63,10 @@ public class QuestionController {
 			return form();
 		}
 		
-		if(questionVO.getP_num() != -1) {
-			questionVO.setP_name(questionService.selectProjectTitle(questionVO.getP_num()));
+		if(questionVO.getP_num() == 0) {
+			questionVO.setP_num(-1);
 		}
+		
 		
 		//회원번호 세팅
 		questionVO.setM_num((Integer)session.getAttribute("user_num"));
@@ -225,8 +226,8 @@ public class QuestionController {
 				                              @RequestParam int m_num,
 				                              HttpSession session){
 			
-			logger.debug("<<re_num>> : " + a_num);
-			logger.debug("<<mem_num>> : " + m_num);
+			logger.debug("<<a_num>> : " + a_num);
+			logger.debug("<<m_num>> : " + m_num);
 			
 			Map<String,String> map = new HashMap<String,String>();
 			

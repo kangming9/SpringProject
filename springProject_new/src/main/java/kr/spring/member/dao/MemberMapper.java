@@ -30,11 +30,12 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member m JOIN member_detail d ON m.num=d.m_num WHERE d.name=#{name} AND d.email=#{email} AND d.phone=#{phone}")
 	public String searchId(@Param("name")String name,@Param("email")String email,@Param("phone")String phone);
 	
+	//비밀번호 확인 시 회원 정보 검색
 	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE m.id=#{id} AND d.email=#{email} AND d.phone=#{phone}")
-	public MemberVO searchPass(String id,String email,String phone);
-	
-	@Insert("INSERT INTO member_detail (pass) VALUES (#{pass}) WHERE d.m_num=#{m_num}")
-	public void changePass(MemberVO memberVO);
+	public MemberVO searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
+	//비밀번호 변경
+	@Update("UPDATE member_detail SET pass={#pass} WHERE email=#{email}")
+	public void changePass(@Param("pass")String pass,@Param("email")String email);
 	
 
 	//구글회원가입

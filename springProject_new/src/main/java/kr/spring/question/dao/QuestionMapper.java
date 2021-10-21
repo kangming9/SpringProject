@@ -34,11 +34,11 @@ public interface QuestionMapper {
 	//answer
 	public List<AnswerVO> selectListAnswer(Map<String,Object> map);
 	public int selectRowCountAnswer(Map<String,Object> map);
-	@Insert("INSERT INTO answer (num,content,q_num,m_num) VALUES (answer_seq.nextval,#{a_content},#{q_num},#{m_num})")
+	@Insert("INSERT INTO answer (num,content,q_num,m_num) VALUES (answer_seq.nextval,#{content},#{q_num},#{m_num})")
 	public void insertAnswer(AnswerVO answer);
-	@Update("UPDATE answer SET content=#{a_content} WHERE num=#{a_num}")
+	@Update("UPDATE answer SET content=#{content} WHERE num=#{num}")
 	public void updateAnswer(AnswerVO answer);
-	@Delete("DELETE FROM answer WHERE num=#{a_num}")
+	@Delete("DELETE FROM answer WHERE num=#{num}")
 	public void deleteAnswer(Integer a_num);
 	@Delete("DELETE FROM answer WHERE q_num=#{q_num}")
 	public void deleteAnswerByQuestionNum(Integer q_num);

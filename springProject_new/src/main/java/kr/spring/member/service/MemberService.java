@@ -16,6 +16,6 @@ public interface MemberService {
 	
 	public String searchId(@Param("name")String name,@Param("email")String email,@Param("phone")String phone);
 	
-	public MemberVO searchPass(String id,String email,String phone);
-	public void changePass(MemberVO memberVO);
+	public MemberVO searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
+	public void changePass(@Param("pass")String pass,@Param("email")String email);
 }

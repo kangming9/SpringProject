@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -238,39 +239,51 @@ public class MemberController {
 	
 			return "searchPass";
 	}
+	 
+	 //비밀번호 재설정 - 정보 확인
+	 @RequestMapping("/member/checkPass.do")
+	 @ResponseBody
+	public Map<String, String> searchPassProcess(@RequestParam String id, @RequestParam String email, @RequestParam String phone) {
+
+		logger.debug("<<id>> : " + id);
+
+		Map<String, String> map = new HashMap<String, String>();
+		MemberVO member = memberService.searchPass(id, email, phone);
+		
+		if(member != null){
+			// 아이디 중복
+			map.put("result", "alreadyUser");
+		}else{
+			// 아이디 미중복
+			map.put("result", "idNotFound");
+		}
+		
+		return map;
+	}
+	 
 		 
-	 //아이디 찾기 - 데이터 처리
+	 //비밀번호 재설정 - 데이터 처리
 	 @PostMapping("/member/searchPass.do")
-	 public String userPassSearch(@Valid MemberVO memberVO, BindingResult result,
+	 public String changePass(@Valid MemberVO memberVO, BindingResult result,
 			 HttpServletRequest request, Model model) {
 			
 		 
-		logger.debug("<<user_id>> : "  + memberVO.getId());
+		logger.debug("<<user_pass>> : "  + memberVO.getPass());
 		logger.debug("<<user_email>> : "  + memberVO.getEmail());
-		logger.debug("<<user_phone>> : "  + memberVO.getPhone());
 		
 		/*
 		 * if(result.hasErrors()) {
 		 * return "searchID"; }
 		 */
 		
-		MemberVO member = memberService.searchPass(memberVO.getName(), memberVO.getEmail(), memberVO.getPhone());
-		logger.debug("===========");
-		
-		if(member == null) {
-			model.addAttribute("check", "id");
-			model.addAttribute("message", "아직 회원이 아닙니다. 회원 가입을 해주세요.");
-			model.addAttribute("url", request.getContextPath()+"/member/selectRegister.do");
+		memberService.changePass(memberVO.getPass(),memberVO.getEmail());
+		logger.debug("=========== 비밀번호 변경 완료");
+	
+		model.addAttribute("check", "pass");
+		model.addAttribute("message", "비밀번호가 재설정 되었습니다.");
+		model.addAttribute("url", request.getContextPath()+"/member/login.do");
 			
-			return "common/resultView";
-		}else {
-
-			model.addAttribute("check", "id");
-			model.addAttribute("message", "비밀번호가 재설정 되었습니다.");
-			model.addAttribute("url", request.getContextPath()+"/member/login.do");
-			
-			return "common/resultView";
+		return "common/resultView";
 		}
 	} 
 	 
-}
