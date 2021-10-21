@@ -9,10 +9,10 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.gift.vo.GiftVO;
 
 public interface GiftMapper {
-	public List<GiftVO> selectList(Integer p_num);
+	public List<GiftVO> selectList(int p_num);
 	@Select("SELECT count(*) FROM gift WHERE p_num=#{p_num}")
 	public int selectRowCount(int p_num);
-	@Select("select g.num, p_num, d.name gd_name, d.count gd_count from gift g join gift_detail d on g.num=d.g_num where p_num=#{num} order by d.num")
+	@Select("select g.num, p_num, d.name gd_name, d.count gd_count from gift g join gift_detail d on g.num=d.g_num where g.p_num=#{num} order by d.num")
 	public List<GiftVO> selectComList(int num);
 	@Select("SELECT * FROM gift WHERE num=#{num}")
 	public GiftVO selectGift(int num);
