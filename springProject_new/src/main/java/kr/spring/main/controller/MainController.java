@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +29,7 @@ public class MainController {
 	private ProjectService projectService;
 	
 	@RequestMapping("/main/main.do")
-	public String main(HttpServletRequest request) {
+	public String main(Model model) {
 		
 		//최신순
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -76,10 +77,10 @@ public class MainController {
 			list2 = projectService.selectList(map2);
 		}
 		
-		request.setAttribute("count", count);
-		request.setAttribute("list", list);
-		request.setAttribute("count2", count2);
-		request.setAttribute("list2", list2);
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		model.addAttribute("count2", count2);
+		model.addAttribute("list2", list2);
 		
 		
 		return "main";

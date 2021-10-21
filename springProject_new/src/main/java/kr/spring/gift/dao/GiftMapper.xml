@@ -19,6 +19,7 @@
 		    GROUP BY d.g_num
 		    ) a
 		ON g.num=a.g_num
+		WHERE g.p_num=#{p_num}
 		ORDER BY g.num
  	</select>
 </mapper>

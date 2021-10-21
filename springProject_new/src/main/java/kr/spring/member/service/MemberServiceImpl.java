@@ -1,5 +1,6 @@
 package kr.spring.member.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,8 +55,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void changePass(MemberVO memberVO) {
-		memberMapper.changePass(memberVO);
+	public void changePass(String pass,String email) {
+		memberMapper.changePass(pass,email);
 		
 	}
 	@Override

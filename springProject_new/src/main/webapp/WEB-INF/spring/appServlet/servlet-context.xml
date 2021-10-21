@@ -54,6 +54,7 @@
 	  class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
+
 				<beans:value>/WEB-INF/tiles-def/guide.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/main.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/member.xml</beans:value>
@@ -85,6 +86,7 @@
 			<exclude-mapping path="/member/selectRegister.do"/>
 			<exclude-mapping path="/member/searchID.do"/>
 			<exclude-mapping path="/member/searchPass.do"/>
+			<exclude-mapping path="/member/memberList.do"/>
 			<exclude-mapping path="/common/resultView.do"/>
 			<exclude-mapping path="/mypage/mphotoView.do"/>
 			<exclude-mapping path="/project/list.do"/>

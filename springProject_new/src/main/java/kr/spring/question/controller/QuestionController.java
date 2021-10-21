@@ -63,9 +63,10 @@ public class QuestionController {
 			return form();
 		}
 		
-		if(questionVO.getP_num() != -1) {
-			questionVO.setP_name(questionService.selectProjectTitle(questionVO.getP_num()));
+		if(questionVO.getP_num() == 0) {
+			questionVO.setP_num(-1);
 		}
+		
 		
 		//회원번호 세팅
 		questionVO.setM_num((Integer)session.getAttribute("user_num"));
@@ -127,8 +128,23 @@ public class QuestionController {
 	
 	//글 수정 - 폼 호출
 	@GetMapping("/question/modify.do")
-	public String formUpdate(@RequestParam int num,Model model) {
+	public String formUpdate(@RequestParam int num,Model model, HttpServletRequest request) {
 		QuestionVO questionVO = questionService.selectQuestion(num);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("q_num", num);
+		
+		int count = questionService.selectRowCountAnswer(map);
+		
+		if(count > 0) {
+			
+			model.addAttribute("check", "question");
+			model.addAttribute("message", "이미 댓글이 달린 글은 수정할 수 없습니다.");
+			model.addAttribute("url", request.getContextPath()+"/question/list.do");
+			
+			return "common/resultView";
+		}
+		
 		
 		model.addAttribute("questionVO",questionVO);
 		
@@ -147,7 +163,7 @@ public class QuestionController {
 		
 		questionService.modifyQuestion(questionVO);
 		
-		return "questionList"; 
+		return "redirect:/question/list.do"; 
 	}
 	
 	//질문 삭제
@@ -225,8 +241,8 @@ public class QuestionController {
 				                              @RequestParam int m_num,
 				                              HttpSession session){
 			
-			logger.debug("<<re_num>> : " + a_num);
-			logger.debug("<<mem_num>> : " + m_num);
+			logger.debug("<<a_num>> : " + a_num);
+			logger.debug("<<m_num>> : " + m_num);
 			
 			Map<String,String> map = new HashMap<String,String>();
 			

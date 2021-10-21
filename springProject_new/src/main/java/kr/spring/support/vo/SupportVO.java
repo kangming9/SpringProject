@@ -1,8 +1,13 @@
 package kr.spring.support.vo;
 
+import java.sql.Date;
 import java.text.DecimalFormat;
 
+
 import javax.validation.constraints.NotEmpty;
+
+import kr.spring.gift.vo.GiftVO;
+import kr.spring.member.vo.MemberVO;
 
 public class SupportVO {//후원 테이블
 	@NotEmpty
@@ -12,6 +17,8 @@ public class SupportVO {//후원 테이블
 	@NotEmpty
 	private int p_num; //후원한 프로젝트번호
 	@NotEmpty
+	private Date payment_date; //후원 결제 신청 날짜(결제진행날짜x)
+	@NotEmpty
 	private int payment; //후원금 결제 여부
 	@NotEmpty
 	private int g_num; //선택한 선물 번호
@@ -20,7 +27,7 @@ public class SupportVO {//후원 테이블
 	private String gift_option;//후원의 추가적인 옵션 사항
 	private int donation; //추가후원금액
 	private String donation_str; //추가후원금액 스트링
-	private String support_amount_str; //전체 후원금액 스트링 
+	private String support_amount_str; //전체 후원금액 스트링
 	
 	public int getNum() {
 		return num;
@@ -39,6 +46,12 @@ public class SupportVO {//후원 테이블
 	}
 	public void setP_num(int p_num) {
 		this.p_num = p_num;
+	}
+	public Date getPayment_date() {
+		return payment_date;
+	}
+	public void setPayment_date(Date payment_date) {
+		this.payment_date = payment_date;
 	}
 	public int getPayment() {
 		return payment;
@@ -90,7 +103,7 @@ public class SupportVO {//후원 테이블
 	}
 	@Override
 	public String toString() {
-		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", payment=" + payment + ", g_num="
+		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", payment_date="+ payment_date +", payment=" + payment + ", g_num="
 				+ g_num + ", support_amount=" + support_amount + ", gift_option=" + gift_option + ", donation="
 				+ donation + "]";
 	}

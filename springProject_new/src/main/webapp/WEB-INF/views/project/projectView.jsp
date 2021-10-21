@@ -12,9 +12,19 @@
 		
 	    $(".support-btn").click(function(){
 	    	var offset = $('#gift').offset();
-        	$('html').animate({scrollTop : offset.top}, 400);
+        	$('html').animate({scrollTop : offset.top}, 1000);
+        	$(".gift-card:first").css('border','2px solid #FF7878');
 	    });
-	       
+	    
+	    $('.gift-card').mouseover(function(){
+	    	$(".gift-card:first").css('border','1px solid #E6E6E6');
+	    	$(this).css('border' ,'2px solid #FF7878');
+	    });
+	    
+	    $('.gift-card').mouseout(function(){
+	    	$(this).css('border' ,'1px solid #E6E6E6');
+	    });
+	    
 	    $(".share-btn").click(function() {
 	    	$(".popup_box").show();
 	    }); 
@@ -141,7 +151,7 @@
 			<div class="btn-wrapper">
 				<ul class="outline-btns">
 					<c:if test="${project.deadline >= 0}">
-						<li><button class="support-btn">후원하기</button></li>
+						<li><button class="support-btn">프로젝트 후원하기</button></li>
 						<li><button class="share-btn" data-name="open_tooltip"><i class="fas fa-share-alt"></i></button></li>
 					</c:if>
 					<c:if test="${project.deadline < 0}">
@@ -196,34 +206,45 @@
 					<c:forEach var="gift" items="${giftList}">
 						<c:if test="${project.deadline >= 0}">
 						<div class="gift-card">
-							<a href="${pageContext.request.contextPath}/support/support.do?num=${project.num}&g_num=${gift.num}">
-								<span class="price ginfo"><b>${gift.price_str}원</b></span>
-								<span class="name ginfo">${gift.name}</span>
+							<form id="gift-form" action="${pageContext.request.contextPath}/support/support.do" method="get">
+								<input type="hidden" value="${project.num}" name="p_num">
+								<input type="hidden" value="${gift.num}" name="g_num">
+								
+								<div class="price ginfo"><b>${gift.price_str}원</b></div>
+								<div class="name ginfo">${gift.name}</div>
 								<c:forEach var="component" items="${comList}">
 									<c:if test="${component.num == gift.num}">
-										<span class="component">- ${component.gd_name} x ${component.gd_count}</span>
+										<div class="component">- ${component.gd_name} x ${component.gd_count}</div>
 									</c:if>
 								</c:forEach>
 								<c:if test="${gift.due_ship == 1}">
-									<span class="ship">선물 배송 예정일<br>${project.finish_date}</span>
+									<div class="ship">선물 배송 예정일<br>${project.finish_date}</div>
 								</c:if>
-							</a>
+								<div class="donation-wrap">
+									<div>추가 후원금(선택)</div>
+									<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
+								</div>
+								<button type="submit" class="supportButton">후원하기</button>
+							</form>
 						</div>
 						</c:if>
 						<c:if test="${project.deadline < 0}">
 						<div class="gift-card deadline-card">
-							<a>
-								<span class="price ginfo"><b>${gift.price_str}원</b></span>
-								<span class="name ginfo">${gift.name}</span>
+							<form id="gift-form" action="${pageContext.request.contextPath}/support/support.do" method="get">
+								<input type="hidden" value="${project.num}" name="p_num">
+								<input type="hidden" value="${gift.num}" name="g_num">
+								
+								<div class="price ginfo"><b>${gift.price_str}원</b></div>
+								<div class="name ginfo">${gift.name}</div>
 								<c:forEach var="component" items="${comList}">
 									<c:if test="${component.num == gift.num}">
-										<span class="component">- ${component.gd_name} x ${component.gd_count}</span>
+										<div class="component">- ${component.gd_name} x ${component.gd_count}</div>
 									</c:if>
 								</c:forEach>
 								<c:if test="${gift.due_ship == 1}">
-									<span class="ship">선물 배송 예정일<br>${project.finish_date}</span>
+									<div class="ship">선물 배송 예정일<br>${project.finish_date}</div>
 								</c:if>
-							</a>
+							</form>
 						</div>
 						</c:if>
 					</c:forEach>

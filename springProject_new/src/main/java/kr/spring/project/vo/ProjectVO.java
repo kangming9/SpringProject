@@ -20,7 +20,7 @@ public class ProjectVO {
 	@NotNull
 	private Date finish_date; //프로젝트 후원종료 날짜
 	private int goal_amount; //프로젝트 목표 후원금액
-	private int approval; //프로젝트 승인상태
+	private int approval; //프로젝트 					==승인상태 -1 반려, 0 심사대기, 1 승인, 2 반려
 	private String reason; //프로젝트 반려 사유
 	@NotEmpty
 	private String summary; //프로젝트 요약설명
