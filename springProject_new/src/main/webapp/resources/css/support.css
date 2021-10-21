@@ -1,6 +1,11 @@
 @CHARSET "UTF-8";
 
+button:hover{
+   	cursor: pointer;
+}
+
 .container{
+	width: 100%;
 	overflow:hidden;
 	height:auto;
 }
@@ -18,4 +23,59 @@
 .container-title span{
 	border: 2px solid #E6E6E6;
 	padding: 5px 20px 5px 20px;
+}
+
+.support-info{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+  	align-items: center;
+  	margin-bottom: 30px;
+}
+
+.info-title{
+	width: 62%;
+	font-weight: bold;
+	font-size: 16px;
+	color: #3D3D3D;
+	margin-bottom: 10px;
+}
+
+.info-wrap{
+	width: 60%;
+	border: 1px solid #E6E6E6;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.info-con{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.info-name{
+	font-weight: bold;
+	color: #3D3D3D;
+}
+
+.support_amount{
+	color: #FF7878;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.btn-wrap{
+	text-align: center; 
+}
+
+.supportButton{
+	width: 30%;
+	padding: 10px;
+	background-color: #FF7878;
+	border:0;
+	border-radius: 5px;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
 }

@@ -8,16 +8,91 @@
 <script>
 
 	$(document).ready(function(){
-		
-
-
 	});
 
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<div class="container-title"><span>후원하기</span></div>
+	<div class="support-info">
+		<div class="info-title">선물 정보</div>
+		<div class="info-wrap">
+			<div class="info-con">
+				<span class="info-name">선물 이름</span>
+				<span class="info-item">${gift.name}</span>
+			</div>
+			<div class="info-con">
+				<span class="info-name">선물 금액</span>
+				<span class="info-item">${gift.price_str}원</span>
+			</div>
+			<div class="info-con">
+				<span class="info-name">추가 후원금</span>
+				<span class="info-item">${support.donation_str}원</span>
+			</div>
+			<div class="info-con">
+				<span class="info-name support_amount">최종 후원금</span>
+				<span class="info-item support_amount">${support.support_amount_str}원</span>
+			</div>
+		</div>
+	</div>
+	<div class="support-info">
+		<div class="info-title">후원자 정보</div>
+		<div class="info-wrap">
+			<div class="info-con">
+				<span class="info-name">이름</span>
+				<span class="info-item">${member.name}</span>
+			</div>
+			<div class="info-con">
+				<span class="info-name">연락처</span>
+				<span class="info-item">${member.phone}</span>
+			</div>
+			<div class="info-con">
+				<span class="info-name">이메일</span>
+				<span class="info-item">${member.email}</span>
+			</div>
+		</div>
+	</div>
+	<c:if test="${gift.due_ship == 1}">
+	<div class="support-info">
+		<div class="info-title">배송지</div>
+		<c:if test="${deliveryCnt > 0}">
+			<c:forEach var="delivery" items="${deliveryList}">
+				<c:if test="${delivery.address_check==1}">
+					<div class="info-wrap">
+						<div class="info-con">
+							<span class="info-name">받는사람</span>
+							<span class="info-item">${delivery.name}</span>
+						</div>
+						<div class="info-con">
+							<span class="info-name">주소</span>
+							<span class="info-item">[${delivery.zipcode}] ${delivery.address} ${delivery.address_detail}</span>
+						</div>
+						<div class="info-con">
+							<span class="info-name">연락처</span>
+							<span class="info-item">${delivery.phone}</span>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+		</c:if>
+		<c:if test="${deliveryCnt == 0}">
+			<div class="info-wrap">
+				배송지 정보가 없습니다.<br>
 	
+			</div>
+		</c:if>
+	</div>
+	</c:if>
+	<div class="support-info">
+		<div class="info-title">결제수단</div>
+		<div class="info-wrap">
+			<div class="info-con">
+				<span class="info-name"></span>
+				<span class="info-item"></span>
+			</div>
+		</div>
+	</div>
 	
+	<div class="btn-wrap"><button type="button" class="supportButton">결제하기</button></div>
 </div>
 <!-- 중앙 내용 끝 -->
