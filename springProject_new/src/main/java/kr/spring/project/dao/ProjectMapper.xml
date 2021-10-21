@@ -201,7 +201,7 @@
    
    <select id="selectProjectSupporter" parameterType="integer" resultType="integer">
       SELECT
-           count(distinct p.m_num) 
+           count(p.m_num) 
       FROM project p JOIN support s ON p.num = s.p_num
         <![CDATA[
         WHERE p.num = #{num} 
