@@ -1,9 +1,11 @@
 package kr.spring.mypage.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Delete;
@@ -21,11 +23,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.delivery.vo.DeliveryVO;
+import kr.spring.gift.service.GiftService;
+import kr.spring.gift.vo.GiftVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.dao.MypageMapper;
 import kr.spring.mypage.service.MypageService;
+import kr.spring.project.service.ProjectService;
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.support.service.SupportService;
+import kr.spring.support.vo.SupportVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
@@ -40,6 +47,12 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProjectService projectService;
+	@Autowired
+	private GiftService giftService;
+	@Autowired
+	private SupportService supportService;
 
 	//자바빈 초기화
 	@ModelAttribute
@@ -101,6 +114,80 @@ public class MypageController {
 		mav.addObject("count", count);
 		mav.addObject("list", list);
 		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
+	@RequestMapping("/mypage/myProjectDetail.do")
+	public ModelAndView myProjectDetail(HttpSession session, ProjectVO projectVO) {
+		
+		logger.debug("<<나의 프로젝트 - 상세 페이지 호출 : >> : " + projectVO.getName());
+		
+		projectVO = projectService.selectCheckProject(projectVO.getName());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("num", projectVO.getNum());
+		mav.addObject("name", projectVO.getName());
+		mav.addObject("category", projectVO.getCategory() + "");
+		mav.addObject("start_date", projectVO.getStart_date());
+		mav.addObject("finish_date", projectVO.getFinish_date());
+		mav.addObject("goal_amount", projectVO.getGoal_amount());
+		mav.addObject("approval", projectVO.getApproval());
+		mav.addObject("reason", projectVO.getReason());
+		mav.addObject("summary", projectVO.getSummary());
+		mav.addObject("photo", projectVO.getPhoto());
+		mav.addObject("ship", projectVO.getShip() + "");
+		mav.addObject("intro", projectVO.getIntro());
+		mav.addObject("policy", projectVO.getPolicy());
+		
+		if(projectVO.getApproval() == -1 || projectVO.getApproval() == 2) mav.setViewName("myProjectDetailView");
+		else mav.setViewName("myProjectDetailLock");
+		
+		int giftCnt = giftService.selectRowCount(projectVO.getNum());
+		List<GiftVO> giftList = giftService.selectList(projectVO.getNum());
+		List<GiftVO> comList = giftService.selectComList(projectVO.getNum());
+		
+		mav.addObject("giftCnt", giftCnt);
+		mav.addObject("giftList", giftList);
+		mav.addObject("comList", comList);
+		
+		return mav;
+	}
+	@RequestMapping("/mypage/projectInfo.do")
+	public ModelAndView projectInfo(HttpSession session, ProjectVO projectVO) {
+		
+		String info = projectVO.getGoal_amount_str();
+		
+		projectVO = projectService.selectCheckProject(projectVO.getName());
+		
+		logger.debug("<<projectInfo 호출>> : " + projectVO.getName());
+		
+		int giftCnt = giftService.selectRowCount(projectVO.getNum());
+		List<GiftVO> giftList = giftService.selectList(projectVO.getNum());
+		List<GiftVO> comList = giftService.selectComList(projectVO.getNum());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("project", projectVO);
+		mav.addObject("giftCnt", giftCnt);
+		mav.addObject("giftList", giftList);
+		mav.addObject("comList", comList);
+		
+		if("project".equals(info)) {
+			mav.setViewName("myProjectDetailLock");
+		}else if("support".equals(info)) {
+			
+		}else if("state".equals(info)) {
+			List<Integer> supportList = new ArrayList<Integer>(); //선물별 후원자 리스트
+			
+			for(GiftVO i : giftList) {
+				supportList.add(supportService.selectGiftSupport(i.getNum()));
+			}
+			mav.addObject("supportList", supportList);
+			mav.setViewName("supportInfo");
+		}else if("money".equals(info)) {
+			
+		}
 		
 		return mav;
 	}

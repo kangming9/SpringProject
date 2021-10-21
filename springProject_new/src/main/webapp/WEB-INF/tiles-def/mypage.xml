@@ -20,6 +20,26 @@
     	<put-attribute name="title" value="나의 프로젝트"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectView.jsp"/>
     </definition>
+    <definition name="myProjectDetailView" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetail.jsp"/>
+    </definition>
+    <definition name="myProjectDetailLock" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 프로젝트 정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
+    </definition>
+    <definition name="supportInfo" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 후원자 정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/supportInfoView.jsp"/>
+    </definition>
+    <definition name="stateInfo" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 후원자 통계"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
+    </definition>
+    <definition name="moneyInfo" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 후원금 정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
+    </definition>
     <definition name="myQuestionView" extends="main">
     	<put-attribute name="title" value="문의"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myQuestionView.jsp"/>

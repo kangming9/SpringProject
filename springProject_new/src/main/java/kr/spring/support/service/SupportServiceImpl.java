@@ -13,6 +13,11 @@ public class SupportServiceImpl implements SupportService{
 
 	@Autowired
 	private SupportMapper supportMapper;
+
+	@Override
+	public int selectGiftSupport(int gnum) {
+		return supportMapper.selectGiftSupport(gnum);
+	}
 	
 	
 
