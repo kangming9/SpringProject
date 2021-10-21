@@ -285,5 +285,11 @@ public class MemberController {
 			
 		return "common/resultView";
 		}
+	 
+	 @RequestMapping("/member/memberList.do")
+	 public String memberList() {
+		 return "memberList";
+	 
+	 }
 	} 
 	 
