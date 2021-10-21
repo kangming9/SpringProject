@@ -26,6 +26,24 @@ hr{
    border: thin;
 }
 
+input:focus {
+	outline:none;
+}
+
+input::placeholder{color:#E6E6E6;}
+input::-webkit-input-placeholder {color:#E6E6E6;}
+input:-ms-input-placeholder {color: #E6E6E6;}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button:hover{
+   	cursor: pointer;
+}
+
 .content img{
 	max-width: 100%;
 	width: auto;
@@ -154,12 +172,14 @@ hr{
 
 .support-btn{
 	padding: 10px;
-	width: 100px;
+	display: inline-block;
 	background-color: #1DA1F2;
 	border: 0;
 	border-radius: 5px;
 	text-align: center;
 	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .share-btn{
@@ -202,10 +222,6 @@ hr{
    	float: right;
 }
 
-button:hover{
-   	cursor: pointer;
-}
-
 .deadline-btn{
 	padding: 10px;
 	background-color: #1DA1F2;
@@ -216,10 +232,6 @@ button:hover{
 	display: inline-block;
 	color: #ffffff;
 	margin: 0;
-}
-
-.deadline-btn:hover{
-   	cursor: default;
 }
 
 .nav_wrap{
@@ -294,8 +306,8 @@ button:hover{
 	margin-bottom: 20px;
 }
 
-.gift-card>a>span{
-	display:block;
+#gift-form{
+	width: 100%;
 }
 
 .gift-card .ginfo{
@@ -303,7 +315,7 @@ button:hover{
 }
 
 .gift-card .price{
-   	font-size: 16px;
+   	font-size: 18px;
 }
 
 .gift-card .component{
@@ -314,6 +326,33 @@ button:hover{
 	margin-top: 10px;
 	color: #7E7575;
    	font-size: 12px;
+   	margin-bottom: 10px;
+}
+
+.donation-wrap{
+	margin-bottom: 10px;
+}
+
+.donation-wrap>div{
+	margin-bottom: 5px;
+}
+
+.donation{
+	width: 100%;
+	padding: 3px;
+ 	border: 1px solid #E6E6E6;
+ 	box-sizing : border-box;
+}
+
+.supportButton{
+	width: 100%;
+	padding: 3px;
+	background-color: #FF7878;
+	border:0;
+	border-radius: 5px;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .deadline-card{
