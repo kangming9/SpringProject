@@ -66,9 +66,6 @@
 	                 <![CDATA[
 	                 rnum >= #{start} AND rnum <= #{end} 
 	                 ]]>
-	            <if test="state == ''">
-	                    AND b.deadline <![CDATA[>=]]> 0
-	            </if>
 	            <if test="state != '' and state == 1">
 	                    AND b.deadline <![CDATA[>=]]> 0
 	            </if>
