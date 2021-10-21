@@ -48,7 +48,7 @@
 		<ul>
 			<li>
 				<label for="grade"><i class="fas fa-paw"></i> 등급</label>
-				<input type="radio" name="grade" value="1" id="grade1" <c:if test="${member.grade == 1}">checked</c:if>/>관리자
+				<input type="radio" name="grade" value="0" id="grade0" <c:if test="${member.grade == 0}">checked</c:if>/>관리자
 				<input type="radio" name="grade" value="2" id="grade2" <c:if test="${member.grade == 2}">checked</c:if>/>일반회원
 				<input type="radio" name="grade" value="3" id="grade3" <c:if test="${member.grade == 3}">checked</c:if>>구글
 				<input type="radio" name="grade" value="4" id="grade3" <c:if test="${member.grade == 4}">checked</c:if>>카카오
