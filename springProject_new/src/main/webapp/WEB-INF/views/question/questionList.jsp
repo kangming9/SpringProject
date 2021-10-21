@@ -19,8 +19,9 @@
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<div>
-		<h2>문의 목록</h2>
+	<div class="box">
+	<div class="list-title">
+		<h2>문의게시판</h2>
 		<span>무엇이든 물어보세요!</span>
 		<form id="search_form" action="list.do" method="get">
 			<ul class="search">
@@ -31,22 +32,18 @@
 						<option value="3">내용</option>
 						<option value="4">제목 + 내용</option>
 					</select>
-				
-				</li>
-				<li>
 					<input type="search" name="keyword" id="keyword">
+					<input type="submit" value="찾기" class="btns">
 				</li>
-				<li>
-					<input type="submit" value="찾기">
-				</li>
+				
 			</ul>
 		</form>
 	</div>
 	
 	
 	<c:if test="${!empty user_num}">
-		<div class="align-right">
-			<input type="button" value="문의 등록" onclick="location.href='register.do'">
+		<div class="question-btn">
+			<input type="button" value="문의 등록" onclick="location.href='register.do'" class="question-register-btn">
 		</div>
 	</c:if>
 	<c:if test="${count==0}">
@@ -55,10 +52,10 @@
 		</div>
 	</c:if>
 	<c:if test="${count > 0}">
-		<table class="question-table">
+		<table id="question-table" class="align-center">
 			<tr>
 				<th class="question-line">번호</th>
-				<th width="400" class="question-line">제목</th>
+				<th width="250" class="question-line">제목</th>
 				<th class="question-line">작성자</th>
 				<th class="question-line">작성일</th>
 			</tr>
@@ -72,8 +69,8 @@
 			</c:forEach>
 			
 		</table>
-		<div class="align-center">${pagingHtml}</div>
+		<div class="align-center" style="font-size:16px;">${pagingHtml}</div>
 	</c:if>
+	</div>
 </div>
-
 <!-- 중앙 내용 시작 -->

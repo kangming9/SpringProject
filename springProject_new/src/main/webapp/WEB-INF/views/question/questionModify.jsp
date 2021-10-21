@@ -3,8 +3,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/question.css">
-<div class="page-main">
-	<h2>글수정</h2>
+<div class="container">
+	<div class="box">
+	<div class="question-register-form">
+	<div class="question-form-title">
+	<h2>문의 수정</h2>
+	<span>무엇이든 물어보세요!</span>
+	</div>
 	<form:form id="modify_form" action="modify.do" modelAttribute="questionVO">
 	<form:hidden path="num"/>
 	<form:errors element="div" cssClass="error-color"/>
@@ -21,9 +26,10 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>전송</form:button>
-			<input type="button" value="목록" onclick="location.href='list.do'">
+			<form:button class="btns-q-register">수정</form:button>
+			<input type="button" value="목록" onclick="location.href='list.do'" class="btns">
 		</div>
 	</form:form>
-	
+		</div>
+	</div>
 </div>
