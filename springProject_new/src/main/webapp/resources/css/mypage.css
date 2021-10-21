@@ -230,3 +230,30 @@
 	background-color: #fc7b03;
 	cursor: pointer;
 }
+/*========= 나의 프로젝트 =========*/
+.myPro_Container{
+	display: grid;
+ 	grid-template-columns: 1fr 1fr 1fr;
+ 	gap: 50px 20px;
+ 	margin-bottom: 30px;
+}
+.myPro__item{
+	/* margin: 0 0 10px 25px;	 */
+}
+.align-center{
+	text-align: center;	
+}
+.photo{
+	border-radius: 5px;
+	width: 100%;
+	height: 150px;
+}
+.myPro__item_content li, .myPro__item_content > ul{
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+
+
+

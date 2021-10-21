@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css" type="text/css">
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content">후원프로젝트</b>
+	<b class="miniTitle_content">나의 프로젝트</b>
 	</div>
 	<div class="miniTitle_right">
 		<br>
@@ -14,13 +14,46 @@
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
-
-<c:forEach var="project" items="${list}">
-	<ul>
-		<li>${project.name}</li>
-		<li>${project.finish_date}</li>
-		<li>${project.goal_amount}</li>
-		<li>${project.approval}</li>
-		<li>${project.category}</li>
-	</ul>
-</c:forEach>
+<div class="myPro_Container">
+	<c:if test="${count == 0}">
+		<div>
+			창작한 프로젝트가 존재하지 않습니다.
+		</div>
+	</c:if>
+	<c:if test="${count > 0}">
+		<c:forEach var="project" items="${list}">
+			<div class="myPro__item">
+				<c:if test="${project.photo == 'default_team.jpg'}">
+				<a href="${pageContext.request.contextPath}/project/detail.do?num=${project.num}">
+					<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" >
+				</a>
+				</c:if>
+				<c:if test="${project.photo != 'default_team.jpg'}">
+				<a href="${pageContext.request.contextPath}/project/detail.do?num=${project.num}">
+					<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
+				</a>
+				</c:if>
+				<div class="myPro__item_content">
+					<ul>
+						<li>
+						<b><a href="${pageContext.request.contextPath}/mypage/myProjectDetail.do?name=${project.name}">${project.name}</a></b>
+						<c:if test="${project.category==0}">온라인</c:if>
+						<c:if test="${project.category==1}">모바일</c:if>
+						<c:if test="${project.category==2}">보드</c:if>
+						<c:if test="${project.category==3}">카드</c:if>
+						</li>
+						<p>
+						<li>프로젝트 번호 : ${project.num}</li>
+						<li>목표 금액 : ${project.goal_amount}</li>
+						<li>종료일 : ${project.finish_date}</li>
+						<c:if test="${project.approval==-1}"><li>임시저장</li></c:if>
+						<c:if test="${project.approval==0}"><li>심사대기</li></c:if>
+						<c:if test="${project.approval==1}"><li>승인</li></c:if>
+						<c:if test="${project.approval==2}"><li>반려</li></c:if>
+					</ul>
+				</div>
+			</div>
+		</c:forEach>
+	</c:if>
+</div>
+<div class="align-center">${pagingHtml}</div>
