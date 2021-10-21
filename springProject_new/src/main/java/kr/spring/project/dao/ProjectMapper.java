@@ -14,7 +14,7 @@ public interface ProjectMapper {
 	public ProjectVO selectCheckProject(String name);
 	@Select("SELECT project_seq.nextval FROM dual")
 	public int selectNum();
-	@Insert("INSERT INTO project (num, name, category, start_date, finish_date, goal_amount, m_num, intro, ship, summary, policy) VALUES (#{num}, #{name}, #{category}, #{start_date}, #{finish_date}, #{goal_amount}, #{m_num}, #{intro}, #{ship}, #{summary}, #{policy})")
+	@Insert("INSERT INTO project (num, name, category, start_date, finish_date, goal_amount, m_num, intro, ship, summary, policy, approval) VALUES (#{num}, #{name}, #{category}, #{start_date}, #{finish_date}, #{goal_amount}, #{m_num}, #{intro}, #{ship}, #{summary}, #{policy}, -1)")
 	public void insertProject(ProjectVO project);
 	public ProjectVO updateProject(ProjectVO project);
 	

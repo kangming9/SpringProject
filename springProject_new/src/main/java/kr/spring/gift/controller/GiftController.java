@@ -27,8 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.spring.gift.service.GiftService;
 import kr.spring.gift.vo.GiftVO;
 import kr.spring.project.vo.ProjectVO;
-//import net.sf.json.JSONArray;
-//import net.sf.json.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class GiftController {
@@ -54,18 +54,18 @@ public class GiftController {
 		List<Map<String, Object>> giftMap = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> detailMap = new ArrayList<Map<String, Object>>();
 		
-		//JSONArray jgift = JSONArray.fromObject(request.getParameter("gift"));
-		//JSONArray jdetail = JSONArray.fromObject(request.getParameter("detail"));
+		JSONArray jgift = JSONArray.fromObject(request.getParameter("gift"));
+		JSONArray jdetail = JSONArray.fromObject(request.getParameter("detail"));
 
 		giftVO.setP_num(Integer.parseInt(request.getParameter("p_num")));
-		/*
+		
 		for(int i = 0; i < jgift.size(); i++) {
 			giftMap.add(new ObjectMapper().readValue(jgift.get(i).toString(), Map.class));
 		}
 		for(int i = 0; i < jdetail.size(); i++) {
 			detailMap.add(new ObjectMapper().readValue(jdetail.get(i).toString(), Map.class));
 		}
-		*/	
+		
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		if(user_num==null) {//로그인이 되지 않은 상태
 			map.put("result", "logout");
