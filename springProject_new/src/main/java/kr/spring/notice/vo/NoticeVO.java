@@ -11,6 +11,8 @@ public class NoticeVO {
 	@NotEmpty
 	private int p_num; //프로젝트 번호(0:전체공지)
 	@NotEmpty
+	private int m_num; //작성자 번호
+	@NotEmpty
 	private String title; //공지사항 제목
 	@NotEmpty
 	private Clob content; //공지사항 내용
@@ -29,6 +31,12 @@ public class NoticeVO {
 	}
 	public void setP_num(int p_num) {
 		this.p_num = p_num;
+	}
+	public int getM_num() {
+		return m_num;
+	}
+	public void setM_num(int m_num) {
+		this.m_num = m_num;
 	}
 	public String getTitle() {
 		return title;
@@ -56,7 +64,7 @@ public class NoticeVO {
 	}
 	@Override
 	public String toString() {
-		return "NoticeVO [num=" + num + ", p_num=" + p_num + ", title=" + title + ", content=" + content + ", not_date="
+		return "NoticeVO [num=" + num + ", p_num=" + p_num + ", m_num=" + m_num + ", title=" + title + ", content=" + content + ", not_date="
 				+ not_date + ", mod_date=" + mod_date + "]";
 	}
 	
