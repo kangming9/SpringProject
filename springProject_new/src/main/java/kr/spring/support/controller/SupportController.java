@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.delivery.vo.DeliveryVO;
@@ -78,6 +79,7 @@ public class SupportController {
 		GiftVO giftVO = giftService.selectGift(supportVO.getG_num());
 		int p_num = giftVO.getP_num();
 		
+		supportVO.setNum(supportService.selectNum());
 		supportVO.setP_num(p_num);
 		supportVO.setSupport_amount(giftVO.getPrice()+supportVO.getDonation());
 		
@@ -100,6 +102,33 @@ public class SupportController {
 		return mav;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/support/insertSupport.do")
+	public Map<String, String> insertSupport(SupportVO supportVO, HttpSession session){
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if(user_num==null) {
+			logger.debug("<<후원 insert>> : 로그인 필요");
+			
+			map.put("result", "logout");
+		}else {
+			supportVO.setM_num(user_num);
+			
+			if(supportVO.getGift_option() == null) {
+				supportVO.setGift_option("");
+			}
+			
+			supportService.insertSupport(supportVO);
+			map.put("result", "success");
+			
+			logger.debug("<<후원완료>> :" + supportVO);
+		}
+		
+		return map;
+	}
+	
 	@RequestMapping("/support/result.do")
 	public ModelAndView submit(SupportVO supportVO, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -108,17 +137,6 @@ public class SupportController {
 		if(user_num==null) {
 			logger.debug("<<후원완료>> : 로그인 필요");
 		}else {
-			supportVO.setM_num(user_num);
-			
-			if(supportVO.getGift_option() == null) {
-				supportVO.setGift_option("");
-			}
-			
-			supportVO.setNum(supportService.selectNum());
-			supportService.insertSupport(supportVO);
-			
-			logger.debug("<<후원완료>> :" + supportVO);
-			
 			project = projectService.selectProject(supportVO.getP_num());
 			supporter = projectService.selectProjectSupporter(supportVO.getP_num());
 		}
