@@ -1,6 +1,9 @@
 package kr.spring.member.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import kr.spring.member.vo.MemberVO;
 
@@ -18,4 +21,14 @@ public interface MemberService {
 	
 	public String searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
 	public void changePass(@Param("pass")String pass,@Param("email")String email);
+	
+	
+	public int countMember();
+	public int countMemberDetail();
+		
+	public List<MemberVO> getListMember();
+	public List<MemberVO> getListMemberDetail();
+		
+	public int getMaxMemNum();
+	public int getMaxMemDetailNum();
 }

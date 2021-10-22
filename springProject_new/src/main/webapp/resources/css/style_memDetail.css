@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+/*font-face*/
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'WONTitle';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/WONTitle.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+input{
+	font-family: 'WONTitle';
+}
+
+.page-main{
+	font-family : 'NEXON Lv1 Gothic OTF Bold';
+	background-color: #f4f7f7;
+}
+
+.page-container{
+	font-family: 'WONTitle';
+	margin: 20px;
+	padding: 100px 50px;
+	overflow:hidden;
+	height:auto;
+}
+
+.page-name{
+	font-family: 'NEXON Lv1 Gothic OTF Bold';
+  	margin : 20px 0px;
+  	padding: 5px 20px;
+  	background-color:#A2DBFA;
+  	text-align: center;
+  	font-size: 20px;
+  	color: white;
+}
+
+ul{
+	margin: 0;
+    padding: 0;
+}
+
+ul li{
+	margin: 0 auto;
+}
+
+.modify-container{
+	border: 1px solid #D7E2EB;
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align:center;
+	background-color: #ffffff;
+	margin-bottom: 100px;
+}
+
+.modify-form{
+	border: 0;
+	padding: 0;
+	margin: 0 auto;
+	display:inline-block;
+}
+
+.modify-container .info-content{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.modify-container label{
+	text-align: left;
+	font-size: 14px;
+	width: 30%;
+}
+
+.modify-container .info-content ul input {
+	border: 0;
+	border-radius: 10px;
+	padding: 5px;
+	background-color: #F4EEED;
+}
+
+.modify-container input:focus {
+	outline:none;
+}
+
+.modify-container ul{
+}
+
+.modify-container ul li{
+	margin-bottom: 20px;
+	width: 70%;
+}
+
+.cpass{
+	height: 20px;
+}
+
+#message_cpasswd, #message_id{
+	font-size: 10px;	
+}
+
+.btns{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.update_btn{
+	border: 0px;
+	border-radius: 10px;
+	background-color: #A2DBFA;
+	width: 80px;
+	padding: 3px;
+	color: #FFFFFF;
+}
+
+.cancel_btn{
+	border: 0;
+	border-radius: 10px;
+	background-color: #F0F0F0;
+	color: #C9C9C9;
+	width: 50px;
+	padding: 3px;
+}

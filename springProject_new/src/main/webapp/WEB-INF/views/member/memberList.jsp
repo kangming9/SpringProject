@@ -7,13 +7,18 @@
 		history.go(-1);
 	</script>
 </c:if>
+
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>회원 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_memList.css" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style_memList.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#search_form').submit(function(){
@@ -33,7 +38,7 @@
 	<div class="list-container">
 		<div class="top">
 			<form id="search_form" action="memberList.do" method="get">
-			<div class="search">
+			<div class="search" style="float: middle">
 				<select name="keyfield">
 						<option value="1">아이디</option>
 						<option value="2">이름</option>
@@ -47,12 +52,12 @@
 				<input type="button" value="마이페이지" class="home btns" onclick="location.href='myPage.do'">
 			</div>
 		</div>
-		<c:if test="${count == 0}">
+		<c:if test="${mem_count == 0}">
 		<div class="result-display">
 			등록된 회원이 없습니다.
 		</div>
 		</c:if>
-		<c:if test="${count > 0}">
+		<c:if test="${mem_count > 0}">
 		<div class="tb-container">
 		<table>
 			<thead class="tb-header">
@@ -68,23 +73,23 @@
 			<c:forEach var="member" items="${list}">
 			<tr>
 				<td>
-					<c:if test="${member.grade > 0}">
-					<a href="detailUserForm.do?num=${member.num}">${member.id}</a>
+					<c:if test="${!(member.grade == 1)}">
+					<a href="detailUserForm.do?mem_num=${member.num}">${member.id}</a>
 					</c:if>
-					<c:if test="${member.member_grade == 0}">
+					<c:if test="${member.grade == 1}">
 					${member.id}
 					</c:if>
 				</td>
-				<td>${member.member_detail_name}</td>
-				<td>${member.member_detail_phone}</td>
-				<td>${member.member_detail_reg_date}</td>
+				<td>${member.name}</td>
+				<td>${member.phone}</td>
+				<td>${member.reg_date}</td>
 				<td>
 				<c:if test="${member.grade == 0}">관리자</c:if>
-				<c:if test="${member.member_grade == 1}">탈퇴</c:if>
-				<c:if test="${member.member_grade == 2}">일반회원</c:if>
-				<c:if test="${member.member_grade == 3}">구글</c:if>
-				<c:if test="${member.member_grade == 4}">카카오</c:if>
-				<c:if test="${member.member_grade == 5}">네이버</c:if>
+				<c:if test="${member.grade == 1}">탈퇴</c:if>
+				<c:if test="${member.grade == 2}">일반회원</c:if>
+				<c:if test="${member.grade == 3}">구글</c:if>
+				<c:if test="${member.grade == 4}">카카오</c:if>
+				<c:if test="${member.grade == 5}">네이버</c:if>
 				</td>
 			</tr>
 			</c:forEach>

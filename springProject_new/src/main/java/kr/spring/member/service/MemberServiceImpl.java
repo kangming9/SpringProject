@@ -1,6 +1,9 @@
 package kr.spring.member.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +65,31 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO loginBySocial(String email) {
 		return memberMapper.loginBySocial(email);
+	}
+	
+	@Override
+	public int countMember() {
+		return memberMapper.countMember();
+	}
+	@Override
+	public int countMemberDetail() {
+		return memberMapper.countMemberDetail();
+	}
+	@Override
+	public List<MemberVO> getListMember() {
+		return memberMapper.getListMember();
+	}
+	@Override
+	public List<MemberVO> getListMemberDetail() {
+		return memberMapper.getListMemberDetail();
+	}
+	@Override
+	public int getMaxMemNum() {
+		return memberMapper.getMaxMemNum();
+	}
+	@Override
+	public int getMaxMemDetailNum() {
+		return memberMapper.getMaxMemDetailNum();
 	}
 
 

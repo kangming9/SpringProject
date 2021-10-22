@@ -1,5 +1,7 @@
 package kr.spring.member.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -43,4 +45,29 @@ public interface MemberMapper {
 	//구글로그인
 	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE d.email=#{email}")
 	public MemberVO loginBySocial(@Param("email")String email);
+	
+	
+	//탈퇴 회원 포함 멤버 수 카운트
+	@Select("SELECT count(*) from member")
+	public int countMember();
+		
+	//활동 중인 멤버 수 카운트
+	@Select("SELECT count(*) from member_detail")
+	public int countMemberDetail();
+		
+	//회원 기본정보 리스트 받아오기
+	@Select("SELECT * from member")
+	public List<MemberVO> getListMember();
+		
+	//회원 디테일정보 리스트 받아오기
+	@Select("SELECT * from member_detail")
+	public List<MemberVO> getListMemberDetail();
+		
+	//member테이블에서 가장 큰 num값 가져오기
+	@Select("SELECT MAX(num) AS alias FROM member")
+	public int getMaxMemNum();
+		
+	//member_detail테이블에서 가장 큰 m_num값 가져오기
+	@Select("SELECT MAX(m_num) AS alias FROM member_detail")
+	public int getMaxMemDetailNum();
 }

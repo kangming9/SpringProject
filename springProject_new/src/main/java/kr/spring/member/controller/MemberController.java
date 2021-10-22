@@ -1,7 +1,9 @@
 package kr.spring.member.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -361,15 +363,33 @@ public class MemberController {
 		return "common/resultView";
 		}
 	
-	 @RequestMapping("/member/memberList.do")
-	 public String memberList() {
-		 return "memberList";
-	 
-	 }
-	 
-	    
-    
-	 
-	 
+	//회원관리 페이지
+		 @RequestMapping("/member/memberList.do")
+		 public String memberList(HttpSession session, Model model) {
+			 
+			//Integer user_num = (Integer)session.getAttribute("user_num");
+			//MemberVO member = memberService.selectMember(user_num);
+			
+			List<MemberVO> list = new ArrayList<MemberVO>();
+			if(memberService.countMember() > 0) {
+				int roop;
+				for(roop = 1; roop<=memberService.getMaxMemNum(); roop++) {
+				MemberVO member = memberService.selectMember(roop);
+				logger.debug(String.valueOf(roop));
+				if(member==null)
+					continue;
+				list.add(member);
+				}
+				
+				
+				
+			}
+			
+			session.setAttribute("mem_count", memberService.countMember());
+			session.setAttribute("list", list);
+			//session.setAttribute("member", member);
+			return "memberList";
+		 
+		 }
 	} 
 	 

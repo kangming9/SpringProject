@@ -13,9 +13,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_memDetail.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_footer.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style_memDetail.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style_footer.css" type="text/css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

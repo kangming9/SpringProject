@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 	private int num; //회원번호
+	private int m_num; //창작자번호
 	@NotEmpty
 	private String id; //아이디
 	private int grade; //회원레벨
@@ -62,6 +63,15 @@ public class MemberVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	
+	public int getM_num() {
+		return m_num;
+	}
+
+	public void setM_num(int m_num) {
+		this.m_num = m_num;
+	}
+
 
 	public String getId() {
 		return id;
