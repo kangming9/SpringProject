@@ -150,7 +150,7 @@
 					
 					var op = document.createElement("option");
 					op.value = details - 1; //현재 선물이 저장된 인덱스를 value로
-					op.text = detail[details - 1].name; //텍스트에 현재 선물의 이름을 보여줄 수 있게 첫번째 값을 저장
+					op.text = detail[details - 1].name + " x " + dobj.count; //텍스트에 현재 선물의 이름을 보여줄 수 있게 첫번째 값을 저장
 					document.getElementById("detail").add(op);
 					
 					alert("구성품 [" + detail[details - 1].name + "] 추가 완료.");

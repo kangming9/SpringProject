@@ -98,7 +98,7 @@ public class GiftController {
 					
 					//VO에 detail 내용 추가
 					giftVO.setGd_name((String)m.get("name"));
-					if(map.get("count") != null)
+					if(m.get("count") != null)
 						giftVO.setGd_count(Integer.parseInt(m.get("count").toString()));
 					else
 						giftVO.setGd_count(0);
