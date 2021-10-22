@@ -255,13 +255,12 @@
 	margin-bottom: 4px;
 }
 /*========= 후원 프로젝트 =========*/
-#supTitle_left{
+.supTitle_left{
 	float: left;
 }
 .supTitle_right{
 	float: right;
 	padding: 0;
-	background-color: green;
 }
 #pro-summary{
 	font-size: 9px;
