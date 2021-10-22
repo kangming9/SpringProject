@@ -144,7 +144,7 @@ public class MypageController {
 		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
 		
 		SupportVO support = mypageService.selectmySupport(map);
-		
+		support.setP_num(p_num);
 		logger.debug("<<supportVO>> : " + support);
 		
 		ModelAndView mav = new ModelAndView();

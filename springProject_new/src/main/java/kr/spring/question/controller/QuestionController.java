@@ -45,8 +45,9 @@ public class QuestionController {
 	
 	//질문 폼 호출
 	@GetMapping("/question/register.do")
-	public String form() {
+	public String form(@RequestParam(value="p_num",defaultValue="-1") int p_num,HttpServletRequest request) {
 		
+		request.setAttribute("p_num", p_num);
 		
 		return "questionRegister";//타일스 식별자
 	}
@@ -60,7 +61,7 @@ public class QuestionController {
 		logger.debug("<< 제목 >> : " + questionVO.getTitle());
 		
 		if(result.hasErrors()) {
-			return form();
+			return form(questionVO.getP_num(),request);
 		}
 		
 		if(questionVO.getP_num() == 0) {

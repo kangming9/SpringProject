@@ -255,11 +255,12 @@
 	margin-bottom: 4px;
 }
 /*========= 후원 프로젝트 =========*/
-#supTitle_left{
+.supTitle_left{
 	float: left;
 }
-#supTitle_right{
+.supTitle_right{
 	float: right;
+	padding: 0;
 }
 #pro-summary{
 	font-size: 9px;
@@ -270,4 +271,61 @@
 .myPro__item_content{
 	cursor: pointer;
 }
-
+.supDetail-container{
+	/* margin: 0 250px; */
+}
+#supDetail-projectContent{
+	border: 0.5px solid;
+	/* width: 50%;	 */
+}
+.content_line{
+	clear: both;
+	border-width: 1px 0 0 0;
+	border-style: solid;
+	border-color: gray;
+	height: 0.1px;
+}
+.detailPhoto{
+	border-radius: 5px;
+	width: auto;
+	height: 100px;
+	background-color: black;
+	padding: 0;
+	margin: 0;
+}
+#supDetailtable{
+	width: 100%;
+	height: 100px;
+}
+.mysupPro_item_content  > ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.plex_container{
+	display: flex;
+	flex-direction: row;
+}
+.plex_items > p{
+	margin: 0 0 0 15px;
+}
+.align-left{
+	text-align: left;
+}
+.align-center{
+	text-align: center;
+}
+.top_title{
+	height: auto;
+	border-bottom: 0.5px solid;
+}
+#supPro_content > p{
+	padding: 3px;
+	
+}
+#top_supNum{
+	font-size: 14px;
+}
+.subpro_detailContet{
+	font-size: 9px;
+}

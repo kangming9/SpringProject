@@ -118,6 +118,7 @@
   <select id="selectmySupport" parameterType="map" resultType="supportVO">
   	SELECT 
   		p.name, 
+  		p.summary,
   		p.category, 
   		p.finish_date, 
   		p.goal_amount, 

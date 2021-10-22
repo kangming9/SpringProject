@@ -60,8 +60,8 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	@Override
-	public MemberVO loginByGoogle(MemberVO memberVO) {
-		return memberMapper.loginByGoogle(memberVO);
+	public MemberVO loginBySocial(String email) {
+		return memberMapper.loginBySocial(email);
 	}
 
 

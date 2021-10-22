@@ -13,6 +13,7 @@ public interface SupportService {
 	public SupportVO selectSupportSum(int pnum);
 	
 	public void insertSupport(SupportVO supportVO);
+	public int selectNum();
 	
 	
 }

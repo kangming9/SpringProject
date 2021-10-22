@@ -87,6 +87,7 @@
 			<exclude-mapping path="/member/searchID.do"/>
 			<exclude-mapping path="/member/searchPass.do"/>
 			<exclude-mapping path="/member/memberList.do"/>
+			<exclude-mapping path="/member/snsLogin.do"/>
 			<exclude-mapping path="/common/resultView.do"/>
 			<exclude-mapping path="/mypage/mphotoView.do"/>
 			<exclude-mapping path="/project/list.do"/>

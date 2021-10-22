@@ -1,5 +1,6 @@
 package kr.spring.member.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +34,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@Autowired
-    private KakaoAPI kakao;
 	
+	 @Autowired 
+	 private KakaoAPI kakaoAPI;
+	 
 
 	// 자바빈(VO)초기화
 	@ModelAttribute
@@ -153,6 +155,9 @@ public class MemberController {
 	// 로그아웃
 	@RequestMapping("/member/logout.do")
 	public String processLogout(HttpSession session) {
+		
+		logger.debug("<<로그 찍히는지 확읹>>");
+		
 		// 로그아웃
 		session.invalidate();
 
@@ -164,45 +169,92 @@ public class MemberController {
 	
 	//sns 로그인
 	//구글아이디로 로그인
-	 @ResponseBody 
-	 @PostMapping("/member/googleLogin") 
-	 public String googleLogin(MemberVO memberVO, HttpSession session, MemberVO vo) throws Exception{ 
-		 MemberVO returnVO = memberService.loginByGoogle(memberVO);
-		 
-		 System.out.println("구글아이디 포스트 db에서 가져온 vo "+ memberVO); 
-		 
-		 String vo_ajaxid = vo.getId();
-		 if(returnVO == null) { //아이디가 DB에 존재하지 않는 경우 //구글 회원가입
-		 memberService.registerByGoogle(memberVO);
+	/*
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/member/googleLogin") public String googleLogin(MemberVO
+	 * memberVO, HttpSession session, MemberVO vo) throws Exception{ MemberVO
+	 * returnVO = memberService.loginByGoogle(memberVO);
+	 * 
+	 * System.out.println("구글아이디 포스트 db에서 가져온 vo "+ memberVO);
+	 * 
+	 * String vo_ajaxid = vo.getId(); if(returnVO == null) { //아이디가 DB에 존재하지 않는 경우
+	 * //구글 회원가입 memberService.registerByGoogle(memberVO);
+	 * 
+	 * //구글 로그인 returnVO = memberService.loginByGoogle(memberVO);
+	 * session.setAttribute("id", returnVO.getId());
+	 * session.setAttribute("pass",returnVO); }
+	 * 
+	 * if(vo_ajaxid.equals(returnVO.getId())){ //아이디가 DB에 존재하는 경우 //구글 로그인
+	 * memberService.loginByGoogle(memberVO); session.setAttribute("id",
+	 * returnVO.getId()); }else {//아이디가 DB에 존재하지 않는 경우 //구글 회원가입
+	 * memberService.registerByGoogle(memberVO); //구글 로그인 returnVO =
+	 * memberService.loginByGoogle(memberVO); session.setAttribute("id",
+	 * returnVO.getId()); }
+	 * 
+	 * return "redirect:/main/main.do";
+	 * 
+	 * }
+	 */
 	 
-		 //구글 로그인 
-		 returnVO = memberService.loginByGoogle(memberVO);
-		 session.setAttribute("id", returnVO.getId()); session.setAttribute("pass",returnVO); }
-	  
-		 if(vo_ajaxid.equals(returnVO.getId())){ //아이디가 DB에 존재하는 경우 
-			 //구글 로그인
-			 memberService.loginByGoogle(memberVO); 
-			 session.setAttribute("id", returnVO.getId()); 
-		 }else {//아이디가 DB에 존재하지 않는 경우 
-			 //구글 회원가입
-			 memberService.registerByGoogle(memberVO);
-			 //구글 로그인 
-			 returnVO = memberService.loginByGoogle(memberVO);
-			 session.setAttribute("id", returnVO.getId()); 
+	//카카오 로그인
+	 @GetMapping("/member/snsLogin.do")
+		public String snsLoginforKakao(@RequestParam("code") String code,HttpSession session,Model model) {
+	
+			logger.debug("----------카카오 로그인 진입 --------");
+			
+			String access_Token = kakaoAPI.getAccessToken(code);
+		    HashMap<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
+		    System.out.println("login Controller : " + userInfo);
+		    
+		    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+		    if (userInfo.get("email") != null) {
+		        session.setAttribute("access_Token", access_Token);
+		        String email = (String) userInfo.get("email");
+
+		        MemberVO member = memberService.loginBySocial(email);
+		        
+    			if (member != null) {
+    				session.setAttribute("user_num", member.getNum());
+    				session.setAttribute("user_id", member.getId());
+    				session.setAttribute("user_grade", member.getGrade());
+    				session.setAttribute("user_photo", member.getPhoto());
+    				session.setAttribute("user_nickname", member.getNickname());
+    				
+					if(member.getNickname()==null) { //닉네임 널값이면 닉네임 익명으로 업데이트
+						memberService.updateNickname(member.getNum());
+						session.setAttribute("user_nickname", member.getNickname());
+					}
+				
+    			}else if(member == null) {
+    				int idx = email.indexOf("@"); 
+    		        String mailPass = email.substring(0, idx);
+
+    				model.addAttribute("s_email", email);
+    				model.addAttribute("s_emailPass", mailPass);
+    				
+    		        
+    		        return "snsRegister";
+    			}
+		    }
+			
+			return "redirect:/main/main.do";
+	}
+	 
+	// 회원가입 - 회원가입 처리
+	@PostMapping("/member/snsRegister.do")
+	public String submitSNSRegister(@Valid MemberVO memberVO, BindingResult result) {
+
+		logger.debug("<<회원 정보>> : " + memberVO);
+
+		if (result.hasErrors()) {
+			return "snsRegister";
 		}
-		 
- 		return "redirect:/main/main.do"; 
-		 		
-	 }
-	 
-	 //카카오 로그인
-	 @RequestMapping("/member/login")
-	    public String kakaoLogin(@RequestParam("code") String code) {
-		 	String access_Token = kakao.getAccessToken(code);
-	        System.out.println("controller access_token : " + access_Token);
-	        return "redirect:/main/main.do";
-	    }
-	 
+
+		memberService.insertMember(memberVO);
+
+		return "redirect:/main/main.do";
+	}
 	 
 	 
 	 

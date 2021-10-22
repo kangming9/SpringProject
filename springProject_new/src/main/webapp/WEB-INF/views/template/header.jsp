@@ -300,7 +300,7 @@ body {
 					</c:if>
 					<c:if test="${empty user_num}">
 						<li style="float: right">
-							<a href="${pageContext.request.contextPath}/member/register.do" class="delete_line">회원가입</a>
+							<a href="${pageContext.request.contextPath}/member/selectRegister.do" class="delete_line">회원가입</a>
 						</li>
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/member/login.do" class="delete_line">로그인</a>

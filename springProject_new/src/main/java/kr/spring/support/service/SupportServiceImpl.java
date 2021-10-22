@@ -41,6 +41,11 @@ public class SupportServiceImpl implements SupportService{
 	public List<SupporterVO> selectGiftMoney() {
 		return supportMapper.selectGiftMoney();
 	}
+
+	@Override
+	public int selectNum() {
+		return supportMapper.selectNum();
+	}
 	
 	
 
