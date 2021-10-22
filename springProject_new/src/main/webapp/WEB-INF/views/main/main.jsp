@@ -90,11 +90,22 @@
 					</div>
 					<div class="card-content">
 						<div class="card_meta">
-							<span>${popular.category}</span>
+						<c:if test="${popular.category == 0 }">
+							<span>온라인 </span>
+						</c:if>
+						<c:if test="${popular.category == 1 }">
+							<span>모바일 </span>
+						</c:if>
+						<c:if test="${popular.category == 2 }">
+							<span>보드 </span>
+						</c:if>
+						<c:if test="${popular.category == 3 }">
+							<span>카드 </span>
+						</c:if>
 							<span> | </span>
 							<span>${popular.nickname}</span>
 						</div>
-						<h3><a>${popular.name}</a></h3>
+						<h3 style="margin-top:5px;"><a>${popular.name}</a></h3>
 						<h4 style="color:#FF7878;">${popular.progress}%</h4>
 					</div>
 				</div>
@@ -141,11 +152,22 @@
 					</div>
 					<div class="card-content">
 						<div class="card_meta">
-							<span>${latest.category}</span>
+							<c:if test="${latest.category == 0 }">
+							<span>온라인 </span>
+						</c:if>
+						<c:if test="${latest.category == 1 }">
+							<span>모바일 </span>
+						</c:if>
+						<c:if test="${latest.category == 2 }">
+							<span>보드 </span>
+						</c:if>
+						<c:if test="${latest.category == 3 }">
+							<span>카드 </span>
+						</c:if>
 							<span> | </span>
 							<span>${latest.nickname}</span>
 						</div>
-						<h3><a>${latest.name}</a></h3>
+						<h3 style="margin-top:5px;"><a>${latest.name}</a></h3>
 						<h4 style="color:#FF7878;">${latest.progress}%</h4>
 					</div>
 				</div>

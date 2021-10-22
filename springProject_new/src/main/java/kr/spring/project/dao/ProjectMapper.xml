@@ -66,9 +66,6 @@
 	                 <![CDATA[
 	                 rnum >= #{start} AND rnum <= #{end} 
 	                 ]]>
-	            <if test="state == ''">
-	                    AND b.deadline <![CDATA[>=]]> 0
-	            </if>
 	            <if test="state != '' and state == 1">
 	                    AND b.deadline <![CDATA[>=]]> 0
 	            </if>
@@ -99,7 +96,7 @@
            		b.num DESC
 	        </if>
 	        <if test="order != '' and order == 2">
-	            amount DESC, b.num
+	            progress DESC, b.num
 	        </if>
 	        <if test="order != '' and order == 3">
 	            b.deadline, b.num
@@ -204,7 +201,7 @@
    
    <select id="selectProjectSupporter" parameterType="integer" resultType="integer">
       SELECT
-           count(distinct p.m_num) 
+           count(p.m_num) 
       FROM project p JOIN support s ON p.num = s.p_num
         <![CDATA[
         WHERE p.num = #{num} 
