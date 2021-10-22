@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css" type="text/css">
 <div>
@@ -76,8 +77,15 @@
 					</div>
 				</div>
 			</td>
-			<td class="align-center">${support.name_1}</td>
-			<td class="align-center">${support.support_amount}</td>
+			<td class="align-center">
+					<p class="gd_content">${support.name_1}</p>
+					<c:forEach var="gift" items="${gift}">
+						<p style="margin: 0; padding: 0; font-size: 10px;">${gift.name} x ${gift.gd_count}</p>
+					</c:forEach>
+			</td>
+			<td class="align-center">
+			<fmt:formatNumber value="${support.support_amount}" pattern="#,###,###"/>
+			</td>
 			<td class="align-center">
 				<c:if test="${support.due_ship==0}">배송없는 제품</c:if>
 				<c:if test="${support.due_ship==1}">배송 예정</c:if>

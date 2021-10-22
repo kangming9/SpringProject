@@ -1,6 +1,7 @@
 package kr.spring.gift.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -34,4 +35,7 @@ public interface GiftMapper {
 	public int selectGNum(@Param("name") String gname, @Param("p_num") int pnum); //parameter가 2개 이상이라 @param 추가
 	@Insert("INSERT INTO gift_detail (num, g_num, name, count) VALUES (#{gd_num}, #{num}, #{gd_name}, #{gd_count})")
 	public void addDetail(GiftVO gift);
+	
+	@Select("SELECT num, g_num as gd_num, name, count as gd_count FROM gift_detail WHERE g_num=#{gd_num}")
+	public List<GiftVO> selectGiftDetail(Map<String, Object> map);
 }
