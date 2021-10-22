@@ -119,7 +119,7 @@
 
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<h2>프로젝트 창작</h2>
+	<h2>프로젝트 수정</h2>
 	<div class="box">
 	<c:if test="${approval == 2}">
 		<div id ="approvalmessage">
@@ -209,6 +209,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
+			<form:input type="hidden" path="num" value="${num}"/>
 			<form:button>다음</form:button>
 			<input type="button" id="home" value="홈으로" >
 		</div>

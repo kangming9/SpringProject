@@ -13,6 +13,7 @@ public interface ProjectService {
 	public int selectNum();
 	
 	public void updateProject(ProjectVO project);
+	public void updateAllProject(ProjectVO project);
 	
 	public List<ProjectVO> selectList(Map<String,Object>map);
 	public int selectRowCount(Map<String,Object> map);

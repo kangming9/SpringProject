@@ -2,6 +2,7 @@ package kr.spring.gift.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,8 +15,14 @@ public interface GiftMapper {
 	public int selectRowCount(int p_num);
 	@Select("select g.num, p_num, d.name gd_name, d.count gd_count from gift g join gift_detail d on g.num=d.g_num where g.p_num=#{num} order by d.num")
 	public List<GiftVO> selectComList(int num);
+	@Select("SELECT d.num, g.name, d.name as gd_name, d.count as gd_count FROM gift_detail d JOIN gift g ON g.num=d.g_num WHERE g.num = #{num}")
+	public List<GiftVO> selectGcomList(int num);
 	@Select("SELECT * FROM gift WHERE num=#{num}")
 	public GiftVO selectGift(int num);
+	@Delete("DELETE FROM gift_detail WHERE gift_detail.g_num = (SELECT num FROM gift WHERE p_num = #{pnum} AND name = #{name})")
+	public void deleteDetail(@Param("pnum") int pnum, @Param("name") String name);
+	@Delete("DELETE FROM gift WHERE p_num = #{pnum}")
+	public void deleteGift(int pnum);
 	
 	@Select("SELECT gift_seq.nextval FROM dual")
 	public int selectNum();

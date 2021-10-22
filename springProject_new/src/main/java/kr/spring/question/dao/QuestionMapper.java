@@ -18,7 +18,7 @@ public interface QuestionMapper {
 	@Insert("INSERT INTO question (num,m_num,p_num,title,content,password,question_date) VALUES (question_seq.nextval,#{m_num},#{p_num},#{title},#{content},#{password, jdbcType=VARCHAR},SYSDATE)")
 	public void insertQuestion(QuestionVO question);
 	
-	@Select("SELECT * FROM question q JOIN member m ON q.m_num=m.num WHERE q.num=#{num}")
+	@Select("SELECT * FROM question q JOIN member_detail d ON q.m_num=d.m_num WHERE q.num=#{num}")
 	public QuestionVO selectQuestion(Integer num);
 	
 	@Update("UPDATE question q SET title=#{title},content=#{content} WHERE q.num=#{num} ")

@@ -16,14 +16,14 @@
 		              ]]>
   					q.question_date,
   					q.m_num,
-  					m.id
-  				FROM question q JOIN member m ON q.m_num = m.num
+  					d.nickname
+  				FROM question q JOIN member_detail d ON q.m_num = d.m_num
   				<where>
   					<if test="keyword != '' and keyfield == 1">
   						q.title LIKE '%' || #{keyword} || '%'
   					</if>
   					<if test="keyword != '' and keyfield == 2">
-  						m.id LIKE '%' || #{keyword} || '%'
+  						d.nickname LIKE '%' || #{keyword} || '%'
   					</if>
   					<if test="keyword != '' and keyfield == 3">
   						q.content LIKE '%' || #{keyword} || '%'
@@ -42,13 +42,13 @@
   	<select id="selectRowCount" parameterType="map" resultType="integer">
   		SELECT
   			COUNT(*)
-  		FROM question q JOIN member m ON q.m_num = m.num
+  		FROM question q JOIN member_detail d ON q.m_num = d.m_num
   		<where>
 			<if test="keyword != '' and keyfield == 1">
 				q.title LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 2">
-				m.id LIKE '%' || #{keyword} || '%'
+				d.nickname LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 3">
 				q.content LIKE '%' || #{keyword} || '%'
@@ -73,6 +73,7 @@
 		              TO_CHAR(a.answer_date,'YYYY-MM-DD HH24:MI:SS') answer_date,
 		              a.q_num,
 		              a.m_num,
+		              d.photo_name,
 		              d.nickname
 		            FROM answer a JOIN member_detail d ON a.m_num=d.m_num
 		            WHERE a.q_num = #{q_num}

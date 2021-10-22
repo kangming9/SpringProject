@@ -56,14 +56,14 @@
 			<tr>
 				<th class="question-line">번호</th>
 				<th width="250" class="question-line">제목</th>
-				<th class="question-line">작성자</th>
+				<th class="question-line">닉네임</th>
 				<th class="question-line">작성일</th>
 			</tr>
 			<c:forEach var="question" items="${list}">
 			<tr>
 				<td class="question-line">${question.num}</td>
 				<td class="question-line"><a href="detail.do?num=${question.num}">${question.title}</a></td>
-				<td class="question-line">${question.id}</td>
+				<td class="question-line">${question.nickname}</td>
 				<td class="question-line">${question.question_date}</td>
 			</tr>
 			</c:forEach>

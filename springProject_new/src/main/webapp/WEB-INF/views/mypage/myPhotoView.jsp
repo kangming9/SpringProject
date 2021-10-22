@@ -43,7 +43,7 @@
 			$.ajax({
 				data: formData,
 				type: "post",
-				url:'updateTeamPhoto.do',
+				url:'updatePhoto.do',
 				dataType:'json',
 				cache:false,
 				contentType:false,
@@ -80,7 +80,7 @@
 			$.ajax({
 				data: {'num': num },
 				type: "post",
-				url:'deleteTeamPhoto.do',
+				url:'deletePhoto.do',
 				dataType:'json',
 				cache:false,
 				success:function(param){
@@ -101,7 +101,7 @@
 			});
 		});
 
-		$("#create_Add_form").submit(function(){
+		$("#update_Add_form").submit(function(){
 			if(uploadphoto == 0) {
 				var answer = confirm("대표 이미지가 등록되지 않았습니다.\n그래도 다음 페이지로 이동하시겠습니까?");
 			}
@@ -118,15 +118,19 @@
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<h2>프로젝트 창작 - 추가 정보</h2>
+	<h2>프로젝트 수정 - 추가 정보</h2>
 	<h3 id="projectname">${name}</h3>
 	<div class="box">
 		<ul>
 			<li>
 				<div>
 				<label>프로젝트 대표 이미지</label>
-				<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" id="team-photo">
-
+				<c:if test="${project.photo == 'default_team.jpg'}">
+					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" id="team-photo">
+				</c:if>
+				<c:if test="${project.photo != 'default_team.jpg'}">
+					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/upload/${project.photo}" id="team-photo">
+				</c:if>
 				</div>
 				<br>
 				<div>
@@ -137,10 +141,10 @@
 			</li>
 		</ul>
 		
-		<form:form id="create_Add_form" action="createProjectAdd.do" modelAttribute="projectVO">
+		<form:form id="update_Add_form" action="updateProjectAdd.do" modelAttribute="projectVO">
 		
-			<form:input type="hidden" value="${num}" path="num" id="num"/>
-			<form:input type="hidden" value="${name}" path="name" id="name"/>
+			<form:input type="hidden" value="${project.num}" path="num" id="num"/>
+			<form:input type="hidden" value="${project.name}" path="name" id="name"/>
 			
 			<div class="align-center">
 				<form:button>다음</form:button>
