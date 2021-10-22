@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
 	$(document).ready(function(){
@@ -91,6 +92,71 @@
 				$(".backon").hide();
 		    }
 		});
+		
+		$(".supportButton").on("click", function () {
+			var title = '펀딩어드벤처:'+$(".support_name").text();
+			var amount = $("#support_amount").val();
+			var email = $(".semail").text();
+			var name = $(".sname").text();
+			var tel = $(".sphone").text();
+			var addr = $(".daddress").text() + $(".daddress_detail").text();
+			var postcode = $(".dzipcode").text();
+			
+			IMP.init('imp82739707');
+		
+			IMP.request_pay({
+				pg: 'html5_inicis', 
+				pay_method: 'card',
+				merchant_uid: 'merchant_' + new Date().getTime(),
+				name: title,
+				amount: 100, //amount
+				buyer_email: email,
+				buyer_name: name,
+				buyer_tel: tel,
+				buyer_addr: addr,
+				buyer_postcode: postcode,
+			}, function (rsp) {
+				if (rsp.success) {
+					var num = $('#num').val();
+					var g_num = $('#g_num').val();
+					var p_num = $('#p_num').val();
+					var d_num = $('#d_num').val();
+					var support_amount = $('#support_amount').val();
+					var donation = $('#donation').val();
+					
+					$.ajax({
+						url:"insertSupport.do",
+						type:"post",
+						data: {
+							"num" : num,
+							"g_num" : g_num,
+							"p_num" : p_num,
+							"d_num" : d_num,
+							"support_amount" : support_amount,
+							"donation" : donation
+						},
+						dataType:"json",
+						cache:false,
+						timeout:30000,
+						success:function(param){
+							if(param.result == "logout"){
+								alert("로그인이 필요한 서비스입니다.");
+							}else if(param.result == "success"){
+								$("#payment_form").submit();
+							}else{
+								alert("후원하기 오류:"+param.result);
+							}
+						},
+						error:function(){
+							alert('네트워크 오류 발생');
+						}
+					});
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+				}
+			});
+		});
 		 
 	});
 
@@ -98,10 +164,11 @@
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<div class="container-title"><span>후원하기</span></div>
-	<form:form id="register_form" action="result.do" modelAttribute="supportVO">
+	<form:form id="payment_form" action="result.do" modelAttribute="supportVO">
+	<input type="hidden" id="num" value="${support.num}" name="num">
 	<input type="hidden" id="g_num" value="${gift.num}" name="g_num">
-	<input type="hidden" value="${gift.p_num}" name="p_num">
-	<%-- <input type="hidden" value="${support.gift_option}" name="gift_option"> --%>
+	<input type="hidden" id="p_num" value="${gift.p_num}" name="p_num">
+	<%-- <input type="hidden" id="gift_option" value="${support.gift_option}" name="gift_option"> --%>
 	<input type="hidden" id="support_amount" value="${support.support_amount}" name="support_amount">
 	<input type="hidden" id="donation" value="${support.donation}" name="donation">
 	<div class="support-info">
@@ -110,27 +177,34 @@
 		</div>
 		<div id="giftList">
 			<div>
+				<div class="info-title">선물 리스트</div>
+				<hr>
 				<c:forEach var="gift" items="${giftList}">
 					<div class="gift-card">
 						<label>
 							<input type="radio" name="g_num" value="${gift.num}"/>
 							<span class="name-${gift.num}">${gift.name}</span>
+							<span class="card-wrap">
+								<span class="price-${gift.num}">${gift.price_str}원</span>
+								<c:forEach var="component" items="${comList}">
+									<c:if test="${component.num == gift.num}">
+										<span class="component">- ${component.gd_name} x ${component.gd_count}</span>
+									</c:if>
+								</c:forEach>
+							</span>
 						</label>
-						<div class="price-${gift.num} ginfo">${gift.price_str}원</div>
-						<c:forEach var="component" items="${comList}">
-							<c:if test="${component.num == gift.num}">
-								<div class="component">- ${component.gd_name} x ${component.gd_count}</div>
-							</c:if>
-						</c:forEach>
 					</div>
+					<hr>
 				</c:forEach>
 				<div class="donation-wrap">
-					<div>추가 후원금(선택)</div>
+					<div class="info-title">추가 후원금(선택)</div>
 					<input type="number" class="change-donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
 				</div>
 			</div>
-			<div class="giftChangeBtn">변경</div>
-			<div class="close">닫기</div>
+			<div class="popup-btn">
+				<div class="giftChangeBtn">변경</div>
+				<div class="close">닫기</div>
+			</div>
 		</div>
 		<div class="info-wrap">
 			<div class="info-con">
@@ -156,7 +230,7 @@
 		<div class="info-wrap">
 			<div class="info-con">
 				<span class="info-name">이름</span>
-				<span class="info-item">${member.name}</span>
+				<span class="info-item sname">${member.name}</span>
 			</div>
 			<div class="info-con">
 				<span class="info-name">연락처</span>
@@ -164,7 +238,7 @@
 			</div>
 			<div class="info-con">
 				<span class="info-name">이메일</span>
-				<span class="info-item">${member.email}</span>
+				<span class="info-item semail">${member.email}</span>
 			</div>
 		</div>
 	</div>
@@ -176,19 +250,34 @@
 		</div>
 		<div id="deliveryList">
 			<div>
+				<div class="info-title">배송지 리스트</div>
+				<hr>
 				<c:forEach var="del" items="${deliveryList}">
-					<div class="del_item">
+					<div class="del_card">
 						<label>
 							<input type="radio" name="del_num" value="${del.num}"/>
-							<span class="dname-${del.num}">${del.name}</span><c:if test="${del.address_check==1}">&nbsp;&nbsp;<span id="mainDel">기본</span></c:if>
+							<span class="dname-${del.num}">${del.name}</span><c:if test="${del.address_check==1}">&nbsp;&nbsp;<span class="del-default">기본</span></c:if>
+							<span class="card-wrap">
+								<span>
+									<span><b>주소</b></span><br>
+									[<span class="dzipcode-${del.num}">${del.zipcode}</span>] 
+									<span class="daddress-${del.num}">${del.address}</span> 
+									<span class="daddress_detail-${del.num}">${del.address_detail}</span>
+								</span>
+								<span>
+									<span><b>연락처</b></span><br>
+									<span class="dphone-${del.num}">${del.phone}</span>
+								</span>
+							</span>
 						</label>
-						<div>[<span class="dzipcode-${del.num}">${del.zipcode}</span>] <span class="daddress-${del.num}">${del.address}</span> <span class="daddress_detail-${del.num}">${del.address_detail}</span></div>
-						<div class="dphone-${del.num}">${del.phone}</div>
 					</div>
+					<hr>
 				</c:forEach>
 			</div>
-			<div class="delChangeBtn">변경</div>
-			<div class="close">닫기</div>
+			<div class="popup-btn">
+				<div class="delChangeBtn">변경</div>
+				<div class="close">닫기</div>
+			</div>
 		</div>
 		<c:if test="${deliveryCnt > 0}">
 			<c:forEach var="delivery" items="${deliveryList}">
@@ -227,7 +316,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="btn-wrap"><button type="submit" class="supportButton">결제 예약하기</button></div>
+	<div class="btn-wrap"><div class="supportButton">결제 예약하기</div></div>
 	</form:form>
 </div>
 <!-- 중앙 내용 끝 -->
