@@ -24,6 +24,10 @@
     	<put-attribute name="title" value="비밀번호 재설정"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/searchPass.jsp"/>
     </definition>
+    <definition name="changePass" extends="main">
+    	<put-attribute name="title" value="비밀번호 변경"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/changePass.jsp"/>
+    </definition>
     <definition name="selectRegister" extends="main">
     	<put-attribute name="title" value="회원가입 방법 선택"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/selectRegister.jsp"/>

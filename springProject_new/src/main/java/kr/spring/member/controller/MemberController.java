@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.member.service.KakaoAPI;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
@@ -32,6 +32,10 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+    private KakaoAPI kakao;
+	
 
 	// 자바빈(VO)초기화
 	@ModelAttribute
@@ -155,6 +159,10 @@ public class MemberController {
 		return "redirect:/main/main.do";
 	}
 
+	
+	
+	
+	//sns 로그인
 	//구글아이디로 로그인
 	 @ResponseBody 
 	 @PostMapping("/member/googleLogin") 
@@ -187,6 +195,17 @@ public class MemberController {
 		 		
 	 }
 	 
+	 //카카오 로그인
+	 @RequestMapping("/member/login")
+	    public String kakaoLogin(@RequestParam("code") String code) {
+		 	String access_Token = kakao.getAccessToken(code);
+	        System.out.println("controller access_token : " + access_Token);
+	        return "redirect:/main/main.do";
+	    }
+	 
+	 
+	 
+	 
 	//아이디 찾기 (이름, 메일, 폰번호) - 폼 호출
 	 @GetMapping("/member/searchID.do")
 		public String searchId() {
@@ -216,7 +235,7 @@ public class MemberController {
 		
 		if(id == null) {
 			model.addAttribute("check", "id");
-			model.addAttribute("message", "아직 회원이 아닙니다. 회원 가입을 해주세요.");
+			model.addAttribute("message", "회원님의 정보를 찾을 수 없습니다. 회원 가입을 해주세요.");
 			model.addAttribute("url", request.getContextPath()+"/member/selectRegister.do");
 			
 			return "common/resultView";
@@ -241,42 +260,46 @@ public class MemberController {
 	}
 	 
 	 //비밀번호 재설정 - 정보 확인
-	 @RequestMapping("/member/checkPass.do")
-	 @ResponseBody
-	public Map<String, String> searchPassProcess(@RequestParam String id, @RequestParam String email, @RequestParam String phone) {
+	 @PostMapping("/member/searchPass.do")
+	public String searchPassProcess(@RequestParam String id, 
+			@RequestParam String email, @RequestParam String phone,
+			HttpServletRequest request,Model model) {
 
 		logger.debug("<<id>> : " + id);
 
 		Map<String, String> map = new HashMap<String, String>();
-		MemberVO member = memberService.searchPass(id, email, phone);
+		String pass = memberService.searchPass(id, email, phone);
 		
-		if(member != null){
-			// 아이디 중복
-			map.put("result", "alreadyUser");
-		}else{
-			// 아이디 미중복
-			map.put("result", "idNotFound");
+		logger.debug("비밀번호 일치하는지 확인중");
+		
+		if(pass == null) {
+			model.addAttribute("check", "notUser");
+			model.addAttribute("message", "회원님의 정보를 찾을 수 없습니다. 회원 가입을 해주세요.");
+			model.addAttribute("url", request.getContextPath()+"/member/selectRegister.do");
+		}else {
+			model.addAttribute("email",email);
+			return "changePass";
 		}
 		
-		return map;
+		return "common/result";
 	}
 	 
-		 
-	 //비밀번호 재설정 - 데이터 처리
-	 @PostMapping("/member/searchPass.do")
-	 public String changePass(@Valid MemberVO memberVO, BindingResult result,
+	 
+	 //비밀번호 재설정 - 비밀번호 변경
+	 @PostMapping("/member/changePass.do")
+	 public String changePassProcess(@RequestParam String pass, @RequestParam String email,
 			 HttpServletRequest request, Model model) {
 			
 		 
-		logger.debug("<<user_pass>> : "  + memberVO.getPass());
-		logger.debug("<<user_email>> : "  + memberVO.getEmail());
+		logger.debug("<<user_pass>> : "  + pass);
+		logger.debug("<<user_email>> : "  + email);
 		
 		/*
 		 * if(result.hasErrors()) {
 		 * return "searchID"; }
 		 */
 		
-		memberService.changePass(memberVO.getPass(),memberVO.getEmail());
+		memberService.changePass(pass,email);
 		logger.debug("=========== 비밀번호 변경 완료");
 	
 		model.addAttribute("check", "pass");
@@ -285,11 +308,16 @@ public class MemberController {
 			
 		return "common/resultView";
 		}
-	 
+	
 	 @RequestMapping("/member/memberList.do")
 	 public String memberList() {
 		 return "memberList";
 	 
 	 }
+	 
+	    
+    
+	 
+	 
 	} 
 	 

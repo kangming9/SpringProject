@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO searchPass(String id, String email, String phone) {
+	public String searchPass(String id, String email, String phone) {
 		return memberMapper.searchPass(id, email, phone);
 	}
 

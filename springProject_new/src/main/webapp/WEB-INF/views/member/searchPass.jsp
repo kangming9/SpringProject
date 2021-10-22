@@ -10,14 +10,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var checkUser = 0;
 		
-		if(checkUser == 0){
-			$('.submit-btn').hide();
-			$('#changePass').hide();
-		}
-		
-		$('#check-info').click(function(){
+		$('.submit-btn').on('click',function(){
 			//유효성 검사
 			if($('#id').val().trim()==''){
 				$('#message_id').css('color','red').text('아이디를 입력하세요');
@@ -35,43 +29,6 @@
 				$('#message_id').css('color','red').text('전화번호를 입력하세요');
 				$('#phone').val('').focus(); 
 				return;
-			}
-			
-			//비밀번호 재설정
-			$.ajax({
-				type:'post',
-				data:{id:$('#id').val(),email:$('#email').val(),phone:$('#phone').val()},
-				url:'checkPass.do',
-				dataType:'json',
-				cache:false,
-				timeout:30000,
-				success:function(param){
-					if(param.result == 'alreadyUser'){
-						$('#message_id').css('color','black').text('기존 유저');
-						checkUser = 1;
-						$('#changePass').show();
-						$('.submit-btn').show();
-					}else if(param.result == 'idNotFound'){
-						checkUser = 0;
-						$('#message_id').css('color','red').text('회원 정보가 없습니다');
-					}else{
-						checkUser = 0;
-						alert('비밀번호 체크 오류');
-						return;
-					}
-				},
-				error:function(){
-					alert('비밀번호 체크 중 네트워크 오류 발생');
-				}
-			});//ajax 끝
-		});//click 이벤트 끝 
-		
-		
-		$('.submit-btn').submit(function(){
-			if($('#id').val().trim()==''){
-				$('#message_pass').css('color','red').text('비밀번호를 입력하세요');
-				$('#id').val('').focus(); 
-				return false;
 			}
 		});
 		
@@ -102,19 +59,9 @@
 			<li>
 				<span id="message_id"></span>
 			</li>
-			<li>
-			<div id="check-info">
-				<input type="button" value="회원정보 확인">
-			</div>
-			</li>
-			<li id="changePass">
-				<label for="pass">새로운 비밀번호</label>
-				<form:input path="pass" id="pass"/>
-				<span id="message_pass"></span>
-			</li>
 		</ul>
 		<div class="align-center">
-			<form:button class="submit-btn">비밀번호 재설정</form:button>
+			<form:button class="submit-btn">회원정보 확인</form:button>
 		</div>
 	</form:form>
 	</div>
