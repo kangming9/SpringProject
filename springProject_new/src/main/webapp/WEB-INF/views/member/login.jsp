@@ -34,7 +34,8 @@
 				<form:button class="submit-btn">로그인</form:button>
 			</div>
 		</form:form>
-		<div class="sub-function">
+		<div class="sub-function" >
+			<div class="align-center">
 			<p>
 				<span>아직 계정이 없으신가요?	</span>
 				<a href="${pageContext.request.contextPath}/member/selectRegister.do">회원가입</a>
@@ -44,6 +45,7 @@
 				<span>	|	</span>
 				<input type="button" value="비밀번호 재설정" onclick="location.href='${pageContext.request.contextPath}/member/searchPass.do'">
 			</p>
+			</div>
 		</div>
 	
 	</div>
