@@ -28,6 +28,18 @@
     	<put-attribute name="title" value="나의 프로젝트 - 수정"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetail.jsp"/>
     </definition>
+    <definition name="updateGift" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myGiftView.jsp"/>
+    </definition>
+    <definition name="updatePhoto" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트 - 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/myPhotoView.jsp"/>
+    </definition>
+    <definition name="updateView" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/updateView.jsp"/>
+    </definition>
     <definition name="myProjectDetailLock" extends="main">
     	<put-attribute name="title" value="나의 프로젝트 - 프로젝트 정보"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
