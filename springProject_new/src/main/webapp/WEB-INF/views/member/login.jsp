@@ -8,108 +8,15 @@
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="84497321586-98m97vpame2mb38rtfr3hntdovs1erqk.apps.googleusercontent.com">
- 
- <body>
-<script>
-//구글 로그인
-/* $(function(){
-    function onSuccess(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log(profile);
-    }
-        
-    $(".g-signin2").on("click", function(){
-        gapi.client.load('plus', 'v1', function () {
-            gapi.client.plus.people.get({
-                'userId': 'me'
-            }).execute(function (res) {
-                console.log(JSON.stringify(res));
-                
-                res.id += "@g";
-                      
-                $.ajax({
-                    url : "/user/json/checkDuplication/"+res.id,
-                    headers : {
-                          "Accept" : "application/json",
-                          "Content-Type" : "application/json"
-                      },
-                      success : function(idChk){
-                            if(idChk==true){ //DB에 아이디가 없을 경우 => 회원가입
-                                console.log("회원가입중...");
-                                $.ajax({
-                                    url : "/user/json/addUser",
-                                    method : "POST",
-                                    headers : {
-                                      "Accept" : "application/json",
-                                      "Content-Type" : "application/json"
-                                    },
-                                    data : JSON.stringify({
-                                      userId : res.id,
-                                      userName : res.displayName,
-                                      password : "google123",
-                                    }),
-                                    success : function(JSONData){
-                                       alert("회원가입이 정상적으로 되었습니다.");
-                                       $("form").attr("method","POST").attr("action","/user/snsLogin/"+res.id).attr("target","_parent").submit();
-                                    }
-                                })
-                            }
-                            if(idChk==false){ //DB에 아이디가 존재할 경우 => 로그인
-                                console.log("로그인중...");
-                                $("form").attr("method","POST").attr("action","/user/snsLogin/"+res.id).attr("target","_parent").submit();
-                            }
-                        }
-                  })
-                })
-           })
-    })//e.o.google.loginLogic
-    
-    function onFailure(error) {
-        console("error : "+error);
-    }
-    
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            self.location="/user/logout";
-        });
-    }
-    
-})//e.o.google
-
- */
-
-</script>
-
-<!-- 로그인 시작 -->
-
-
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/member/snsLogin.do&response_type=code">
+            <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png">
+            
+        </a>
 <div class="container">
-<c:if test="${user_id eq null}">
-		<div class="align-center">
-	<div class="box">
-		<h2>로그인</h2>
-		
-		<div class="sns">
-			<!-- 구글 로그인 추가 -->
-<div id="googleLogin" align="center">                                                    
-    <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark"></div>
-</div>
-			<div class="item">
-				<div class="form-group socialimage" id="kakaoBtn">
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/member/login.do&response_type=code">
-						<img id="socialimage" src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="320px" height="100%" class="loginImage"/>
-					</a>
-				</div>
-			</div>
-			<div id="userinfo"></div>
-			<div class="item">
-				네이버
-			</div>
-		</div>
+		<div id="kakao-btn"></div>
+		<div id="user_info" style="width:300px;"></div>
 		<hr size="1" style="margin:10px 20px;width:90%;" >
 		<form:form id="login_form" action="login.do" modelAttribute="memberVO">
 		<form:errors element="div" cssClass="error-color"/>
@@ -139,14 +46,8 @@
 			</p>
 		</div>
 	</div>
-</div>
 
 <!-- 로그인 끝 -->
-</c:if>
-<c:if test="${user_id ne null}">
-	<h1>로그인 성공!</h1>
-</c:if>
 
-</div>
 </body>
 </html>

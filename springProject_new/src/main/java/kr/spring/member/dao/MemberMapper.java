@@ -38,8 +38,9 @@ public interface MemberMapper {
 	
 
 	//구글회원가입
-	public void registerByGoogle(MemberVO memberVO);
+	public void registerBySocial(String id, String email);
 	
 	//구글로그인
-	public MemberVO loginByGoogle(MemberVO memberVO);
+	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE d.email=#{email}")
+	public MemberVO loginBySocial(@Param("email")String email);
 }
