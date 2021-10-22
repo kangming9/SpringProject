@@ -268,7 +268,17 @@ public class MypageController {
 			mav.addObject("supportList", supportList);
 			mav.setViewName("stateInfo");
 		}else if("money".equals(info)) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			Date finish_date = projectService.selectFinish(projectVO.getNum());
+			SupportVO supportSum = supportService.selectSupportSum(projectVO.getNum());
+			MemberVO member = memberService.selectMember((Integer)session.getAttribute("user_num"));
 			
+			mav.addObject("nickname", member.getNickname());
+			
+			mav.addObject("finish", sdf.format(finish_date));
+			mav.addObject("supportSum", supportSum);
+			
+			mav.setViewName("moneyInfo");
 		}
 		
 		return mav;

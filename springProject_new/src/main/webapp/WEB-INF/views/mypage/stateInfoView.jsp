@@ -22,11 +22,11 @@
 		});
 		
 		$("#support_info_form").submit(function(){
-			return false;
+			return true;
 		});
 		
 		$("#state_info_form").submit(function(){
-			return true;
+			return false;
 		});
 		
 		$("#money_info_form").submit(function(){

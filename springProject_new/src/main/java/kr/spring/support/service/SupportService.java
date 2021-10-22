@@ -8,5 +8,9 @@ import kr.spring.support.vo.SupporterVO;
 public interface SupportService {
 	public int selectGiftSupport(int gnum);
 	public List<SupporterVO> selectSupporterList(int pnum);
+	
+	public SupportVO selectSupportSum(int pnum);
+	
 	public void insertSupport(SupportVO supportVO);
+	
 }

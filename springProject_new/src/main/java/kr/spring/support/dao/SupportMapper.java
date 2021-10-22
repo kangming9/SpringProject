@@ -15,4 +15,6 @@ public interface SupportMapper {
 	public List<SupporterVO> selectSupporterList(int pnum);
 	@Insert("INSERT INTO support (num,m_num,p_num,g_num,support_amount,gift_option,donation) VALUES (support_seq.nextval,#{m_num},#{p_num},#{g_num},#{support_amount},#{gift_option},#{donation})")
 	public void insertSupport(SupportVO supportVO);
+	@Select("SELECT count(m_num) as m_num, sum(support_amount) as support_amount, sum(donation) as donation FROM support WHERE p_num = #{pnum}")
+	public SupportVO selectSupportSum(int pnum);
 }

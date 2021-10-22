@@ -1,5 +1,6 @@
 package kr.spring.project.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,9 @@ public interface ProjectMapper {
 	public void updatePhoto(ProjectVO project);
 	@Update("UPDATE project SET photo=default WHERE num=#{num}")
 	public void deletePhoto(ProjectVO project);
+	
+	@Select("SELECT finish_date FROM project WHERE num = #{pnum}")
+	public Date selectFinish(int pnum);
 	
 	public List<ProjectVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);

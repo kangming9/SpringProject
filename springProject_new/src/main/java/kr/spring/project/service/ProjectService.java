@@ -1,9 +1,11 @@
 package kr.spring.project.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.support.vo.SupportVO;
 
 public interface ProjectService {
 	public void insertProject(ProjectVO project);
@@ -20,5 +22,6 @@ public interface ProjectService {
 	
 	public ProjectVO selectProject(Integer num);
 	public int selectProjectSupporter(Integer num);
+	public Date selectFinish(int pnum);
 
 }

@@ -1,5 +1,6 @@
 package kr.spring.project.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,11 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public int selectProjectSupporter(Integer num) {
 		return projectMapper.selectProjectSupporter(num);
+	}
+
+	@Override
+	public Date selectFinish(int pnum) {
+		return projectMapper.selectFinish(pnum);
 	}
 
 }
