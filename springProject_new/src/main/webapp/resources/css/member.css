@@ -146,3 +146,26 @@ ul li input{
 	width:230px;
 	height:44px;
 }
+
+/* 비밀번호 찾기 */
+#select_pass_form, #change_pass_form{
+	height:270px;
+}
+
+
+#select_pass_form ul li, #change_pass_form ul li{
+	display:flex;
+	margin-bottom:10px;
+}
+
+#select_pass_form label, #change_pass_form label{
+	width:70px;
+	margin:10px;
+}
+
+#select_pass_form input, #change_pass_form input[type="password"]{
+	border:1px solid #E6E6E6;
+	border-radius:4px;
+	width:230px;
+	height:44px;
+}

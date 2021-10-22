@@ -15,15 +15,7 @@
 		ON m.num=d.m_num 
 		WHERE m.id=#{id}
 	</select>
-	
-	<select id="loginByGoogle" parameterType="String" resultType="MemberVO">
-		SELECT
-		 * 
-		 FROM member m JOIN member_detail d 
-		 ON m.num = d.m_num
-		 WHERE m.id=#{id} AND d.email=#{email} AND d.name=#{name}
-	</select>
-  	
+
 </mapper>
 
 

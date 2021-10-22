@@ -81,6 +81,10 @@
 					gobj.name = $("#giftname").val();
 					gobj.price = $("#giftprice").val();
 					gobj.ship = $('#checkship').text();
+					if(document.getElementsByName("giftoption")[0].checked == true)
+						gobj.optional = 0;
+					else if (document.getElementsByName("giftoption")[1].checked == true)
+						gobj.optional = 1;
 					
 					if($('#checklimit').text() == "limited"){
 						gobj.count = $("#giftcount").val();
@@ -150,7 +154,7 @@
 					
 					var op = document.createElement("option");
 					op.value = details - 1; //현재 선물이 저장된 인덱스를 value로
-					op.text = detail[details - 1].name; //텍스트에 현재 선물의 이름을 보여줄 수 있게 첫번째 값을 저장
+					op.text = detail[details - 1].name + " x " + dobj.count; //텍스트에 현재 선물의 이름을 보여줄 수 있게 첫번째 값을 저장
 					document.getElementById("detail").add(op);
 					
 					alert("구성품 [" + detail[details - 1].name + "] 추가 완료.");
@@ -281,6 +285,11 @@
 			<p id="checkship" style="display:none">unshipped</p>
 			<input type="radio" name="giftship" id="unshipped" value="0" checked="checked" onclick='getShip(event);'/>배송 없음
 			<input type="radio" name="giftship" id="shipped" value="1" onclick='getShip(event);'/>배송 있음
+			<br>
+			<label for="giftoption">한정 여부</label><br>
+			<p>옵션은 색상, 각인 등 서포터가 추가적으로 작성해야 하는 사항을 의미합니다.</p><br>
+			<input type="radio" name="giftoption" id="none" value="0" checked="checked"/>옵션 없음
+			<input type="radio" name="giftoption" id="option" value="1" />옵션 있음
 			<br>
 			<label for="giftlimit">한정 여부</label><br>
 			<p id="checklimit" style="display:none">unlimited</p>

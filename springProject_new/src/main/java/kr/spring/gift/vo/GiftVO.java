@@ -10,6 +10,7 @@ public class GiftVO {
 	private String name;	//선물이름
 	private int due_ship;	//배송여부
 	private int num_component; //한정수량
+	private int optional;
 	//선물 구성품 테이블
 	private int gd_num; //구성품 번호
 	private String gd_name; //구성품 이름
@@ -55,6 +56,12 @@ public class GiftVO {
 	}
 	public void setNum_component(int num_component) {
 		this.num_component = num_component;
+	}
+	public int getOptional() {
+		return optional;
+	}
+	public void setOptional(int optional) {
+		this.optional = optional;
 	}
 	public int getGd_num() {
 		return gd_num;

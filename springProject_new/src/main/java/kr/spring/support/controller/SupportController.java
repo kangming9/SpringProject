@@ -4,14 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.delivery.vo.DeliveryVO;
@@ -20,9 +27,10 @@ import kr.spring.gift.vo.GiftVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.service.MypageService;
+import kr.spring.project.service.ProjectService;
+import kr.spring.project.vo.ProjectVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
-import kr.spring.util.PagingUtil;
 
 @Controller
 public class SupportController {
@@ -36,6 +44,8 @@ public class SupportController {
 	private MemberService memberService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private ProjectService projectService;
 	
 	//자바빈(VO) 초기화
 	@ModelAttribute
@@ -66,8 +76,13 @@ public class SupportController {
 		}
 		
 		GiftVO giftVO = giftService.selectGift(supportVO.getG_num());
-		supportVO.setP_num(giftVO.getP_num());
+		int p_num = giftVO.getP_num();
+		
+		supportVO.setP_num(p_num);
 		supportVO.setSupport_amount(giftVO.getPrice()+supportVO.getDonation());
+		
+		List<GiftVO> giftList = giftService.selectList(p_num);
+		List<GiftVO> comList = giftService.selectComList(p_num);
 		
 		logger.debug("<<후원하기-선택선물>> : " + giftVO);
 		logger.debug("<<후원하기-후원정보>> : " + supportVO);
@@ -77,6 +92,8 @@ public class SupportController {
 		mav.addObject("deliveryCnt", deliveryCnt);
 		mav.addObject("deliveryList", deliveryList);
 		mav.addObject("gift", giftVO);
+		mav.addObject("giftList", giftList);
+		mav.addObject("comList", comList);
 		mav.addObject("support", supportVO);
 		mav.setViewName("supportView");
 		
@@ -86,7 +103,8 @@ public class SupportController {
 	@RequestMapping("/support/result.do")
 	public ModelAndView submit(SupportVO supportVO, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		ProjectVO project = null; 
+		int supporter = 0;
 		if(user_num==null) {
 			logger.debug("<<후원완료>> : 로그인 필요");
 		}else {
@@ -96,13 +114,20 @@ public class SupportController {
 				supportVO.setGift_option("");
 			}
 			
+			supportVO.setNum(supportService.selectNum());
+			supportService.insertSupport(supportVO);
+			
 			logger.debug("<<후원완료>> :" + supportVO);
 			
-			supportService.insertSupport(supportVO);
+			project = projectService.selectProject(supportVO.getP_num());
+			supporter = projectService.selectProjectSupporter(supportVO.getP_num());
 		}
-		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("project", project);
+		mav.addObject("supporter", supporter);
 		mav.setViewName("supportResult");
+		
 		return mav;
 	}
+
 }

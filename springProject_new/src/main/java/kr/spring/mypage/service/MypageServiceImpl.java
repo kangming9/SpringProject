@@ -13,6 +13,7 @@ import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.dao.MypageMapper;
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.support.vo.SupportVO;
 
 @Service
 @Transactional
@@ -118,5 +119,21 @@ public class MypageServiceImpl implements MypageService{
 	public List<ProjectVO> proSelectList(Map<String, Object> map) {
 		return mypageMapper.proSelectList(map);
 		
+	}
+
+	@Override
+	public int getSupportCount(Integer m_num) {
+		int check = mypageMapper.getSupportCount(m_num);
+		return check;
+	}
+
+	@Override
+	public List<SupportVO> supportSelectList(Map<String, Object> map) {
+		return mypageMapper.supportSelectList(map);
+	}
+
+	@Override
+	public SupportVO selectmySupport(Map<String, Object> map) {
+		return mypageMapper.selectmySupport(map);
 	}
 }

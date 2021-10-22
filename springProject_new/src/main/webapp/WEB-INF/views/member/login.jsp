@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -7,40 +8,15 @@
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="84497321586-98m97vpame2mb38rtfr3hntdovs1erqk.apps.googleusercontent.com">
- 
- <body>
-<script>
-	/* 구글 */
-	function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	  
-	}
-
-</script>
-<!-- 로그인 시작 -->
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/member/snsLogin.do&response_type=code">
+            <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png">
+            
+        </a>
 <div class="container">
-
-<div class="align-center">
-	<div class="box">
-		<h2>로그인</h2>
-		<div class="sns">
-			<div class="item">
-				<div class="g-signin2" data-onsuccess="onSignIn" style="width:320px;height:44px;"></div>
-			</div>
-			<div class="item">
-				카카오(구글도 아직 안돼요!)
-			</div>
-			<div class="item">
-				네이버
-			</div>
-		</div>
+		<div id="kakao-btn"></div>
+		<div id="user_info" style="width:300px;"></div>
 		<hr size="1" style="margin:10px 20px;width:90%;" >
 		<form:form id="login_form" action="login.do" modelAttribute="memberVO">
 		<form:errors element="div" cssClass="error-color"/>
@@ -70,9 +46,8 @@
 			</p>
 		</div>
 	</div>
-</div>
-</div>
 
 <!-- 로그인 끝 -->
+
 </body>
 </html>

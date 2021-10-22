@@ -11,11 +11,11 @@ public interface MemberService {
 	public MemberVO selectMember(Integer mem_num);
 	//구글회원가입
 	public void registerByGoogle(MemberVO memberVO);
-	//구글로그인
-	public MemberVO loginByGoogle(MemberVO memberVO);
+	//소셜로그인
+	public MemberVO loginBySocial(String email);
 	
 	public String searchId(@Param("name")String name,@Param("email")String email,@Param("phone")String phone);
 	
-	public MemberVO searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
+	public String searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
 	public void changePass(@Param("pass")String pass,@Param("email")String email);
 }

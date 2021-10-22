@@ -21,26 +21,26 @@ public interface MemberMapper {
 	@Update("UPDATE member_detail SET nickname='익명'||m_num WHERE m_num=#{num}")
 	public void updateNickname(Integer m_num);
 	
-	//@Select("SELECT m.num,m.id,m.grade,d.pass,d.photo,d.nickname FROM member m LEFT OUTER JOIN member_detail d ON m.num=d.m_num WHERE m.id=#{id}")
 	public MemberVO selectCheckMember(String id);
 	
 	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE m.num=#{num}")
 	public MemberVO selectMember(Integer m_num);
 	
-	@Select("SELECT * FROM member m JOIN member_detail d ON m.num=d.m_num WHERE d.name=#{name} AND d.email=#{email} AND d.phone=#{phone}")
+	@Select("SELECT m.id FROM member m JOIN member_detail d ON m.num=d.m_num WHERE d.name=#{name} AND d.email=#{email} AND d.phone=#{phone}")
 	public String searchId(@Param("name")String name,@Param("email")String email,@Param("phone")String phone);
 	
 	//비밀번호 확인 시 회원 정보 검색
-	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE m.id=#{id} AND d.email=#{email} AND d.phone=#{phone}")
-	public MemberVO searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
+	@Select("SELECT d.pass FROM member m JOIN member_detail d ON m.num = d.m_num WHERE m.id=#{id} AND d.email=#{email} AND d.phone=#{phone}")
+	public String searchPass(@Param("id")String id,@Param("email")String email,@Param("phone")String phone);
 	//비밀번호 변경
-	@Update("UPDATE member_detail SET pass={#pass} WHERE email=#{email}")
+	@Update("UPDATE member_detail SET pass=#{pass} WHERE email=#{email}")
 	public void changePass(@Param("pass")String pass,@Param("email")String email);
 	
 
 	//구글회원가입
-	public void registerByGoogle(MemberVO memberVO);
+	public void registerBySocial(String id, String email);
 	
 	//구글로그인
-	public MemberVO loginByGoogle(MemberVO memberVO);
+	@Select("SELECT * FROM member m JOIN member_detail d ON m.num = d.m_num WHERE d.email=#{email}")
+	public MemberVO loginBySocial(@Param("email")String email);
 }

@@ -16,6 +16,10 @@
     	<put-attribute name="title" value="후원 프로젝트"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/mySupportView.jsp"/>
     </definition>
+    <definition name="mySupportDetailView" extends="main">
+    	<put-attribute name="title" value="후원 프로젝트 상세페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/mySupportDetailView.jsp"/>
+    </definition>
     <definition name="myProjectView" extends="main">
     	<put-attribute name="title" value="나의 프로젝트"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectView.jsp"/>
@@ -38,7 +42,7 @@
     </definition>
     <definition name="moneyInfo" extends="main">
     	<put-attribute name="title" value="나의 프로젝트 - 후원금 정보"/>
-    	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/moneyInfoView.jsp"/>
     </definition>
     <definition name="myQuestionView" extends="main">
     	<put-attribute name="title" value="문의"/>

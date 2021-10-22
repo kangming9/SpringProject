@@ -84,6 +84,7 @@ public class GiftController {
 					else if("upshipped".equals((String)m.get("ship")))
 						giftVO.setDue_ship(0);
 					giftVO.setCom_cnt(Integer.parseInt(m.get("count").toString()));
+					giftVO.setOptional(Integer.parseInt(m.get("optional").toString()));
 					
 					giftService.addGift(giftVO);
 					
@@ -98,7 +99,7 @@ public class GiftController {
 					
 					//VO에 detail 내용 추가
 					giftVO.setGd_name((String)m.get("name"));
-					if(map.get("count") != null)
+					if(m.get("count") != null)
 						giftVO.setGd_count(Integer.parseInt(m.get("count").toString()));
 					else
 						giftVO.setGd_count(0);

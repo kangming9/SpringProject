@@ -252,8 +252,38 @@
 	list-style: none;
 	margin-left: 0;
 	padding-left: 0;
+	margin-bottom: 4px;
 }
-
-
-
-
+/*========= 후원 프로젝트 =========*/
+#supTitle_left{
+	float: left;
+}
+.supTitle_right{
+	float: right;
+}
+#pro-summary{
+	font-size: 9px;
+}
+#pro-detail-content{
+	font-size: 12px;
+}
+.myPro__item_content{
+	cursor: pointer;
+}
+.supDetail-container{
+	/* margin: 0 250px; */
+}
+#supDetail-projectContent{
+	border: 0.5px solid;
+	/* width: 50%;	 */
+}
+.content_line{
+	clear: both;
+	border-width: 1px 0 0 0;
+	border-style: solid;
+	border-color: gray;
+	height: 0.1px;
+}
+.detailPhoto{
+	width:50%;
+}

@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO searchPass(String id, String email, String phone) {
+	public String searchPass(String id, String email, String phone) {
 		return memberMapper.searchPass(id, email, phone);
 	}
 
@@ -60,8 +60,8 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	@Override
-	public MemberVO loginByGoogle(MemberVO memberVO) {
-		return memberMapper.loginByGoogle(memberVO);
+	public MemberVO loginBySocial(String email) {
+		return memberMapper.loginBySocial(email);
 	}
 
 
