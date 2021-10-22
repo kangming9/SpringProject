@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -13,6 +13,27 @@
 		var gift = new Array(); //선물 객체를 저장할 배열
 		
 		var detail = new Array(); //구성품 객체를 저장할 배열
+		
+		<c:forEach var="gift" items="${giftList}">
+			var objg = new Object();
+			objg.name = "${gift.name}";
+			objg.price = ${gift.price};
+			if(${gift.due_ship} == 0) objg.ship = "unshipped";
+			else obj.ship = "shipped";
+			objg.optional =${gift.optional};
+			objg.count = ${gift.gd_count};
+			gifts = gift.push(objg);
+		</c:forEach>
+		
+		<c:forEach var="coml" items="${comList}">
+			<c:forEach var="com" items="${coml}">
+				var objd = new Object();
+				objd.name = "${com.gd_name}";
+				objd.gname = "${com.name}";
+				objd.count = ${com.gd_count};
+				details = detail.push(objd);
+			</c:forEach>
+		</c:forEach>
 		
 		//관련된 이벤트가 있으면 경고 메시지 리셋
 		$("#giftname").on("propertychange change keyup paste input", function(){ 
@@ -179,7 +200,7 @@
 			}
 		});
 		
-		$("#create_gift_form").submit(function(){
+		$("#update_gift_form").submit(function(){
 			var giftsize = 0;
 			var detailsize = 0;
 			
@@ -206,7 +227,7 @@
 			
 			if(answer){
 				$.ajax({
-					url:"addGift.do",
+					url:"updateGiftDetail.do",
 					type:"post",
 					data:{gift: JSON.stringify(gift), detail: JSON.stringify(detail), p_num: $('#p_num').val()}, //선물과 구성품의 배열을 JSON문자열로 바꾸고, 프로젝트 번호와 함께 data로 전달
 					dataType:"json",
@@ -270,7 +291,9 @@
 		<div>
 			<label for="gift">선물 목록</label><br>
 			<select id="gift" size="10">
-			
+				<c:forEach var="gift" items="${giftList}">
+					<option>${gift.name}</option>
+				</c:forEach>
 			</select><br>
 			
 			<label for="giftname">선물 이름</label><br>
@@ -314,7 +337,7 @@
 			구성품 추가를 누르면 해당 선물에 구성품이 추가됩니다.
 			</p>
 			<select id="detail" size="10">
-			
+
 			</select>
 			<br>
 			<label for="detailname">구성품 이름</label><br>
@@ -329,7 +352,7 @@
 			<input type="button" value="구성품 삭제" id="delete_detail">
 		</div>
 		
-		<form:form id="create_gift_form" action="createGift.do" modelAttribute="giftVO">
+		<form:form id="update_gift_form" action="updateGift.do" modelAttribute="giftVO">
 		<input type="hidden" value="${num}" id="p_num">
 		<input type="hidden" value="${name}" id="p_name">
 			
@@ -341,6 +364,3 @@
 	</div>
 </div>
 <!-- 중앙 내용 끝 -->
-
-
-

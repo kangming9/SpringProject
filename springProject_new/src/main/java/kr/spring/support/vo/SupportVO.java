@@ -21,6 +21,8 @@ public class SupportVO {//후원 테이블
 	@NotEmpty
 	private int g_num; //선택한 선물 번호
 	@NotEmpty
+	private int d_num; //선물 배송지 번호
+	@NotEmpty
 	private int support_amount; //전체 후원금액
 	private String gift_option;//후원의 추가적인 옵션 사항
 	private int donation; //추가후원금액
@@ -178,6 +180,12 @@ public class SupportVO {//후원 테이블
 	public void setP_num(int p_num) {
 		this.p_num = p_num;
 	}
+	public int getD_num() {
+		return d_num;
+	}
+	public void setD_num(int d_num) {
+		this.d_num = d_num;
+	}
 	public Date getPayment_date() {
 		return payment_date;
 	}
@@ -235,7 +243,7 @@ public class SupportVO {//후원 테이블
 
 	@Override
 	public String toString() {
-		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", payment_date=" + payment_date
+		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", d_num=" + d_num +", payment_date=" + payment_date
 				+ ", payment=" + payment + ", g_num=" + g_num + ", support_amount=" + support_amount + ", gift_option="
 				+ gift_option + ", donation=" + donation + ", donation_str=" + donation_str + ", support_amount_str="
 				+ support_amount_str + ", name=" + name + ", category=" + category + ", finish_date=" + finish_date

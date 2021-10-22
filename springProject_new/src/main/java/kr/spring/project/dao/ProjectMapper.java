@@ -18,6 +18,8 @@ public interface ProjectMapper {
 	@Insert("INSERT INTO project (num, name, category, start_date, finish_date, goal_amount, m_num, intro, ship, summary, policy, approval) VALUES (#{num}, #{name}, #{category}, #{start_date}, #{finish_date}, #{goal_amount}, #{m_num}, #{intro}, #{ship}, #{summary}, #{policy}, -1)")
 	public void insertProject(ProjectVO project);
 	public ProjectVO updateProject(ProjectVO project);
+	@Update("UPDATE project SET name=#{name}, category=#{category}, start_date=#{start_date}, finish_date=#{finish_date}, goal_amount=#{goal_amount}, summary=#{summary}, ship=#{ship}, intro=#{intro}, policy=#{policy} WHERE num=#{num}")
+	public void updateAllProject(ProjectVO project);
 	
 	@Update("UPDATE project SET photo=#{photo} WHERE num=#{num}")
 	public void updatePhoto(ProjectVO project);

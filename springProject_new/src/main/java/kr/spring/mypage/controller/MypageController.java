@@ -1,5 +1,8 @@
 package kr.spring.mypage.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
@@ -16,13 +21,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.gift.service.GiftService;
@@ -37,6 +47,7 @@ import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
 import kr.spring.support.vo.SupporterVO;
 import kr.spring.util.PagingUtil;
+import net.sf.json.JSONArray;
 
 @Controller
 public class MypageController {
@@ -114,34 +125,44 @@ public class MypageController {
 		return mav;
 	}
 	//후원프로젝트 디테일
-	@RequestMapping("/mypage/mysupportdetail.do")
-	public ModelAndView mySupportView(HttpSession session,
-									 @RequestParam(value="p_num") int p_num,
-									 @RequestParam(value="g_num") int g_num,
-									 @RequestParam(value="num") int num) {
-		
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		@RequestMapping("/mypage/mysupportdetail.do")
+		public ModelAndView mySupportView(HttpSession session,
+										 @RequestParam(value="p_num") int p_num,
+										 @RequestParam(value="g_num") int g_num,
+										 @RequestParam(value="num") int num) {
+			
+			Integer user_num = (Integer)session.getAttribute("user_num");
+			
 
-		logger.debug("<<후원프로젝트 상세페이지 호출>>");
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("m_num", user_num);
-		map.put("p_num", p_num);
-		map.put("g_num", g_num);
-		map.put("num", num);
-		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
-		
-		SupportVO support = mypageService.selectmySupport(map);
-		
-		logger.debug("<<supportVO>> : " + support);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mySupportDetailView");
-		mav.addObject("support", support);
-		
-		return mav;
-	}
+			logger.debug("<<후원프로젝트 상세페이지 호출>>");
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("m_num", user_num);
+			map.put("p_num", p_num);
+			map.put("g_num", g_num);
+			map.put("num", num);
+			logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
+			
+			SupportVO support = mypageService.selectmySupport(map);
+			support.setP_num(p_num);
+			logger.debug("<<supportVO>> : " + support);
+			
+			Map<String,Object> map2 = new HashMap<String,Object>();
+			map2.put("gd_name", support.getname_1());
+			map2.put("gd_num", g_num);
+			
+			List<GiftVO> gift = null;
+			
+			gift = giftService.selectGiftDetail(map2);
+			logger.debug("<<GiftVO>> : " + gift);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("mySupportDetailView");
+			mav.addObject("support", support);
+			mav.addObject("gift", gift);
+			
+			return mav;
+		}
 	//나의프로젝트 호출
 	@RequestMapping("/mypage/myProject.do")
 	public ModelAndView myProjectView(HttpSession session,
@@ -601,6 +622,250 @@ public class MypageController {
 		return "myPaymentView";
 	}
 	
+	//프로젝트 수정
+	@RequestMapping("mypage/updateProject.do")
+	public ModelAndView myProjectUpdate(ProjectVO projectVO, BindingResult result, HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ModelAndView mav = new ModelAndView();
+
+		logger.debug("<<프로젝트 업데이트 폼 전송>>");
+		Integer user_num = (Integer) session.getAttribute("user_num");
+		if (user_num == null) {// 로그인이 되지 않은 상태
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인을 한 후에 가능합니다.');</script>");
+
+			logger.debug("<<에러>> : 로그인되지 않은 상태");
+			mav.setViewName("myProjectView");
+		} else {
+			// 유효성 검사 결과 오류가 있으면 폼 호출
+			if (result.hasErrors()) {
+				List<ObjectError> list = result.getAllErrors();
+
+				for (ObjectError error : list) {
+					logger.debug("<<에러>> : " + error.getDefaultMessage());
+				}
+				mav.setViewName("create");
+				return mav;
+			}
+
+			logger.debug("<<프로젝트 정보>> : " + projectVO);
+
+			// 프로젝트 전송
+			projectService.updateAllProject(projectVO);
+
+			mav.addObject("project", projectVO);
+			mav.setViewName("updatePhoto");
+
+			logger.debug("<<이동 경로>> : " + mav.getViewName());
+		}
+		return mav;
+	}
+	
+	@RequestMapping("mypage/updatePhoto.do")
+	public Map<String, String> uploadTeamImage(MultipartFile upload, HttpSession session, ProjectVO projectVO) throws Exception{
+
+		logger.debug("<<updatePhoto 호출>>");
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		Integer user_num = (Integer) session.getAttribute("user_num");
+		if (user_num == null) {// 로그인이 되지 않은 상태
+			map.put("result", "logout");
+		} else {
+
+			// 업로드할 폴더의 절대경로
+			String realFolder = session.getServletContext().getRealPath("/upload");
+			// 업로드한 파일 이름
+			String org_filename = upload.getOriginalFilename();
+			String str_filename = System.currentTimeMillis() + org_filename;
+			String filepath = realFolder + "\\" + str_filename;
+			logger.debug("<<파일 경로>> : " + filepath);
+			File f = new File(filepath);
+			if (!f.exists()) // 폴더가 존재하지 않으면
+				f.mkdirs(); // 폴더 생성
+
+			upload.transferTo(f); // 파일을 경로로 전송
+
+			projectVO.setPhoto(str_filename);
+			projectService.updatePhoto(projectVO);
+
+			logger.debug("<<대표 이미지 업데이트 완료>>");
+
+			map.put("result", "success");
+		}
+		return map;
+		
+	}
+	@RequestMapping("mypage/deletePhoto.do")
+	@ResponseBody
+	public Map<String, String> deleteImage(HttpSession session, ProjectVO projectVO) throws Exception {
+
+		logger.debug("<<deleteTeamPhoto 호출>>");
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		Integer user_num = (Integer) session.getAttribute("user_num");
+		if (user_num == null) {// 로그인이 되지 않은 상태
+			map.put("result", "logout");
+		} else {
+			projectService.deletePhoto(projectVO);
+
+			logger.debug("<<대표 이미지 삭제 완료>>");
+
+			map.put("result", "success");
+		}
+		return map;
+	}
+	
+	@RequestMapping("mypage/updateProjectAdd.do")
+	public ModelAndView submitCreateAdd(@ModelAttribute GiftVO giftVO, ProjectVO projectVO,
+		HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+			
+			ModelAndView mav = new ModelAndView();
+
+			logger.debug("<<프로젝트 수정 폼 - updateProjectAdd>>");
+
+			Integer user_num = (Integer) session.getAttribute("user_num");
+
+			if (user_num == null) {// 로그인이 되지 않은 상태
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인을 한 후에 가능합니다.');</script>");
+
+				logger.debug("<<에러>> : 로그인되지 않은 상태");
+				mav.setViewName("myPage");
+			} else {
+
+				logger.debug("<<프로젝트 정보>> : " + projectVO);
+
+				mav.addObject("num", projectVO.getNum());
+				mav.addObject("name", projectVO.getName());
+				
+				List<GiftVO> giftList = giftService.selectList(projectVO.getNum());
+				List<List<GiftVO>> comList = new ArrayList<List<GiftVO>>();
+				for(GiftVO i : giftList) {
+					comList.add(giftService.selectGcomList(i.getNum()));
+				}
+				
+				mav.addObject("giftList", giftList);
+				mav.addObject("comList", comList);
+				mav.setViewName("updateGift"); // 선물 구성 작성 폼으로 이동
+
+				logger.debug("<<이동 경로>> : " + mav.getViewName());
+			}
+			return mav;
+		}
+	
+	@RequestMapping("/mypage/updateGiftDetail.do")
+	@ResponseBody
+	public Map<String, String> updateGiftArr(HttpSession session, GiftVO giftVO, HttpServletRequest request) throws Exception{
+		
+		logger.debug("<<updateGift 호출>> : " + giftVO.getP_num());
+		
+		int pnum = giftVO.getP_num();
+		Map<String,String> map = new HashMap<String,String>();
+		
+		List<Map<String, Object>> giftMap = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> detailMap = new ArrayList<Map<String, Object>>();
+		
+		JSONArray jgift = JSONArray.fromObject(request.getParameter("gift"));
+		JSONArray jdetail = JSONArray.fromObject(request.getParameter("detail"));
+		
+		for(int i = 0; i < jgift.size(); i++) {
+			giftMap.add(new ObjectMapper().readValue(jgift.get(i).toString(), Map.class));
+			System.out.println(giftMap.toString());
+		}
+		for(int i = 0; i < jdetail.size(); i++) {
+			detailMap.add(new ObjectMapper().readValue(jdetail.get(i).toString(), Map.class));
+		}
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num==null) {//로그인이 되지 않은 상태
+			map.put("result", "logout");
+		}else {
+			for(Map<String, Object> g : giftMap) {
+				logger.debug("삭제 시작");
+				giftService.deleteDetail(pnum, g.get("name").toString());
+				logger.debug("삭제 중");
+			}
+			logger.debug("삭제 완료");
+			giftService.deleteGift(giftVO.getP_num());
+			
+			 logger.debug("<<이전 데이터 삭제 완료>>");
+			
+			for(Map<String, Object> m : giftMap) {
+				System.out.println("현재 선물 : " + m.toString() + "\n\n");
+				if(m != null) {
+					giftVO.setNum(giftService.selectNum());
+					
+					//VO에 gift 내용 추가
+					giftVO.setName((String)m.get("name"));
+					giftVO.setPrice(Integer.parseInt(m.get("price").toString()));
+					if("shipped".equals((String)m.get("ship")))
+						giftVO.setDue_ship(1);
+					else if("upshipped".equals((String)m.get("ship")))
+						giftVO.setDue_ship(0);
+					giftVO.setCom_cnt(Integer.parseInt(m.get("count").toString()));
+					giftVO.setOptional(Integer.parseInt(m.get("optional").toString()));
+					
+					giftService.addGift(giftVO);
+					
+			       logger.debug("<<Gift 업데이트>>\n" + m);
+				}
+			}
+			
+			for(Map<String, Object> m : detailMap) {
+				
+				if(m != null) {
+					giftVO.setGd_num(giftService.selectDNum());
+					
+					//VO에 detail 내용 추가
+					giftVO.setGd_name((String)m.get("name"));
+					if(m.get("count") != null)
+						giftVO.setGd_count(Integer.parseInt(m.get("count").toString()));
+					else
+						giftVO.setGd_count(0);
+					
+					int gnum = giftService.selectGNum((String)m.get("gname"), giftVO.getP_num());
+					giftVO.setNum(gnum);
+					giftService.addDetail(giftVO);
+				
+			       logger.debug("<<Gift_Detail 업데이트>>\n" + m);
+				}
+			}
+			
+			map.put("result", "success");
+		}
+		return map;
+	}
+	
+	@RequestMapping("/mypage/updateGift.do")
+	public ModelAndView submitUpdateGift(GiftVO giftVO,
+		HttpSession session, HttpServletRequest request, HttpServletResponse response, String p_name) throws IOException {
+				
+		ModelAndView mav = new ModelAndView();
+				
+		logger.debug("<<프로젝트 수정 폼 - GIFT 전송>>");
+			
+		Integer user_num = (Integer)session.getAttribute("user_num");
+			
+		if(user_num==null) {//로그인이 되지 않은 상태
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인을 한 후에 가능합니다.');</script>");
+
+			logger.debug("<<에러>> : 로그인되지 않은 상태");
+			mav.setViewName("createGift");
+		}else {
+					
+			logger.debug("<<프로젝트 정보>> : " + giftVO);
+				
+			mav.addObject("num", giftVO.getP_num());
+			mav.addObject("name", p_name);
+			mav.setViewName("updateView"); //작성된 프로젝트 보기
+					
+			logger.debug("<<이동 경로>> : " + mav.getViewName());
+		}
+		return mav;
+	}
 }
 
 

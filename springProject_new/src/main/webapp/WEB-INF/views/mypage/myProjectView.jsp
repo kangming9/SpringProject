@@ -48,8 +48,8 @@
 						<div id="pro-detail-content">
 							<li>프로젝트 번호 : ${project.num}</li>
 							<li>목표 금액 : ${project.goal_amount}</li>
-							<li id="supTitle_left">프로젝트 마감일 : ${project.finish_date}</li>
-							<li id="supTitle_right">
+							<li class="supTitle_left">프로젝트 마감일 : ${project.finish_date}</li>
+							<li class="supTitle_right">
 								<c:if test="${project.approval==-1}"><span id="mainDel">임시저장</span></c:if>
 								<c:if test="${project.approval==0}"><span id="mainDel">심사대기</span></c:if>
 								<c:if test="${project.approval==1}"><span id="mainDel">승인</span></c:if>

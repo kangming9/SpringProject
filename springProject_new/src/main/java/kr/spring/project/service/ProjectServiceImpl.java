@@ -32,9 +32,13 @@ public class ProjectServiceImpl implements ProjectService{
 	public int selectNum() {
 		return projectMapper.selectNum();
 	}
-	
+	@Override
 	public void updateProject(ProjectVO project) {
 		projectMapper.updateProject(project);
+	}
+	@Override
+	public void updateAllProject(ProjectVO project) {
+		projectMapper.updateAllProject(project);
 	}
 
 	@Override

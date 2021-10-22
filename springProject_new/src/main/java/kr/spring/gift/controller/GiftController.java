@@ -57,7 +57,7 @@ public class GiftController {
 		JSONArray jgift = JSONArray.fromObject(request.getParameter("gift"));
 		JSONArray jdetail = JSONArray.fromObject(request.getParameter("detail"));
 
-		giftVO.setP_num(Integer.parseInt(request.getParameter("p_num")));
+		giftVO.setP_num(giftVO.getP_num());
 		
 		for(int i = 0; i < jgift.size(); i++) {
 			giftMap.add(new ObjectMapper().readValue(jgift.get(i).toString(), Map.class));

@@ -18,19 +18,14 @@
 	<div class="box">
 		<h2>회원가입</h2>
 		<div class="sns">
-			<div class="item">
-			</div>
-			<div class="item">
-				카카오(구글도 아직 안돼요!)
-			</div>
-			<div class="item">
-				네이버
-			</div>
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/member/snsLogin.do&response_type=code">
+	            <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png">
+	        </a>
 		</div>
 		<hr size="1" style="margin:10px 20px;width:90%;" >
-		<div class="email_register">
-			<button value="일반회원 가입하기" onclick="location.href='${pageContext.request.contextPath}/member/register.do'">일반 회원가입하기</button>
-		</div>
+		
+			<button style="margin-top:15px;" class="submit-btn" value="일반회원 가입하기" onclick="location.href='${pageContext.request.contextPath}/member/register.do'">일반 회원가입하기</button>
+
 		<div class="sub-function">
 		<div class="align-center">
 			<p>

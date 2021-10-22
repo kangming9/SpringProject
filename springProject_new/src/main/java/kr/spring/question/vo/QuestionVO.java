@@ -15,6 +15,7 @@ public class QuestionVO {
 	private String password; //질문글의 비번
 	private Date question_date; //질문 작성 날짜
 	private String id;	//회원 아이디
+	private String nickname; //회원 닉네임
 	private String p_name; //프로젝트 이름
 	
 	
@@ -60,8 +61,14 @@ public class QuestionVO {
 	public void setQuestion_date(Date question_date) {
 		this.question_date = question_date;
 	}
+
 	
-	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getP_name() {
 		return p_name;
 	}
@@ -78,9 +85,11 @@ public class QuestionVO {
 	@Override
 	public String toString() {
 		return "QuestionVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", title=" + title + ", content="
-				+ content + ", password=" + password + ", question_date=" + question_date + ", id=" + id + ", p_name="
-				+ p_name + "]";
+				+ content + ", password=" + password + ", question_date=" + question_date + ", id=" + id + ", nickname="
+				+ nickname + ", p_name=" + p_name + "]";
 	}
+	
+	
 	
 	
 	
