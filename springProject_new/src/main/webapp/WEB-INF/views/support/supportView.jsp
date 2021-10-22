@@ -172,7 +172,7 @@
 	<div class="support-info">
 		<div class="info-title">배송지 
 			<a class="change-btn updateDelivery">변경</a>
-			<a class="change-btn" href='${pageContext.request.contextPath}/mypage/myDeliveryUpdateForm.do'>추가</a>
+			<a class="change-btn" href='${pageContext.request.contextPath}/mypage/myDelivery.do'>추가</a>
 		</div>
 		<div id="deliveryList">
 			<div>
