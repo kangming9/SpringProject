@@ -866,6 +866,11 @@ public class MypageController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("/mypage/adminPage.do")
+	public String adminPageView() {
+		return "adminPageView";
+	}
 }
 
 

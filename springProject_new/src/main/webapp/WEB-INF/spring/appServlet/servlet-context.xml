@@ -90,6 +90,7 @@
 			<exclude-mapping path="/member/snsLogin.do"/>
 			<exclude-mapping path="/common/resultView.do"/>
 			<exclude-mapping path="/mypage/mphotoView.do"/>
+			<exclude-mapping path="/mypage/adminPageView.do"/>
 			<exclude-mapping path="/project/list.do"/>
 			<exclude-mapping path="/project/detail.do"/>
 			<exclude-mapping path="/guide/guide.do"/>

@@ -10,7 +10,7 @@
 <html lang='en'>
 	<head>
 		<meta charset="utf-8"/>
-		<title>Nowstartwebdesign.com-  Pure CSS Horizontal Drop Down Menu Bar</title>
+		<title>Header</title>
 <style>
 
 
@@ -50,15 +50,27 @@
 						<li style="float: right">
 						    <a>${user_nickname}</a>
 						</li>
-						
 					</c:if>
-					<c:if test="${!empty user_num && empty user_photo && user_grade <= 2}">
+					
+					<!-- 관리자일떄 -->
+					<c:if test="${!empty user_num && user_grade == 0}">
+						<li style="float: right">
+							<a href="${pageContext.request.contextPath}/mypage/adminPage.do" class="delete_line">
+							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="35" height="35" class="my-photo">
+							</a>
+						</li>
+					</c:if>
+					
+					<!-- 일반회원일떄(사진 없을경우) -->
+					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
 							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="35" height="35" class="my-photo">
 							</a>
 						</li>
 					</c:if>
+					
+					<!-- 일반회원일떄(사진 있을경우) -->
 					<c:if test="${!empty user_num && !empty user_photo && user_grade >= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
@@ -74,9 +86,6 @@
 							<a href="${pageContext.request.contextPath}/member/login.do" class="delete_line">로그인</a>
 						</li>
 					</c:if>
-					
-
-
 			</ul>
 		</div>
 	</body>

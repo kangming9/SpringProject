@@ -29,12 +29,4 @@
 	<b>결제수단</b>
 	<p>
 	결제수단 추가 | 결제수단 삭제
-	<c:if test="${user_grade == 0}">
-		</div>
-		<div class="item" onclick="location.href='${pageContext.request.contextPath}/member/memberList.do'">
-		<b>회원관리</b>
-		<p>
-		회원목록 관리 | 프로젝트 관리
-		</div>
-	</c:if>
 </div>
