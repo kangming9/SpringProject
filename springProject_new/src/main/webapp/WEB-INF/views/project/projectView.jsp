@@ -25,30 +25,32 @@
 	    	$(this).css('border' ,'1px solid #E6E6E6');
 	    });
 	    
-	    $(".share-btn").click(function() {
-	    	$(".popup_box").show();
-	    }); 
-	        
+	    $('.share-btn').click(function(e){
+	    	var offset = $('.share-btn').offset();
+	    	var width = $('.share-btn').width();
+	    	var height = $('.share-btn').height();
+	    	var pwidth = $('.popup_box').width();
+			var pheight = $('.popup_box').height();
+			
+			$('.popup_box').css({
+				"top": offset.top+width+12,
+				"left": offset.left,
+				"position": "absolute"
+			}).show();
+	   }); 
+	    
 	    $(".btn_close").click(function() {
 	    	$(".popup_box").hide();
 	   	});
-	        
-	    // 팝업 중앙 정렬 
-	   	var $layerPopup = $(".popup_box"); 
-	    var left = ($(window).scrollLeft() + ($(window).width() - $layerPopup.width()) / 2); 
-	    var top = ($(window).scrollTop() + ($(window).height() - $layerPopup.height()) / 2 ); 
-	    $layerPopup.css({ "left": left, "top":top, "position": "absolute" }); 
-	    $("body").css("position", "relative").append($layerPopup);
-
 
 	    $(".intro-btn").click(function(){
 	    	var offset = $('#intro').offset();
-        	$('html').animate({scrollTop : offset.top}, 400);
+        	$('html').animate({scrollTop : offset.top}, 1000);
 	    });
 	    
 	    $(".policy-btn").click(function(){
 	    	var offset = $('#policy').offset();
-        	$('html').animate({scrollTop : offset.top}, 400);
+        	$('html').animate({scrollTop : offset.top}, 1000);
 	    });
 	    
 	    var name = document.getElementById('name').innerText;
@@ -74,7 +76,7 @@
 	    	textarea.select();
 	    	document.execCommand("copy");
 	    	document.body.removeChild(textarea);
-	    	alert("URL이 복사되었습니다.")
+	    	alert("클립보드에 URL이 복사되었습니다.")
 	   	});
 
 	});
@@ -164,8 +166,8 @@
 	            <div class="popup_cont"> 
 	               <div>공유하기</div>
 	               <button id="kakao-link-btn" class="s-btn" type="button">
-	                     <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" height="40" width="40"/>
-	                  </button>
+	                     <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" height="30" width="30"/>
+	               </button>
 	               <button id="clip-link-btn" class="s-btn" type="button"><i class="far fa-clipboard"></i></button>
 	            </div> 
             </div>

@@ -193,25 +193,25 @@ button:hover{
 
 .s-btn{
 	border: 0;
-   	padding: 10px;
+   	padding: 8px;
    	border-radius: 100%;
 }
 
 .fa-clipboard{
-   	font-size: 40px;
+   	font-size: 35px;
 }
 
 .popup_box { 
-   	display: none; 
-   	width: 180px; 
-   	background: #fff; 
-   	border: 1px solid #333;
-   	overflow: hidden;
-   	height: auto;  
+	display: none;
+	background-color: #ffffff;
+	border: solid 1px #E6E6E6;
+	overflow: hidden;
+	width: 120px; 
+   	height: auto;
 }
 
 .popup_cont { 
-   	padding: 20px; 
+   	padding: 10px;
 } 
 
 .btn_close { 
