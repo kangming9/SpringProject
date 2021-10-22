@@ -91,6 +91,6 @@ public class MemberServiceImpl implements MemberService{
 	public int getMaxMemDetailNum() {
 		return memberMapper.getMaxMemDetailNum();
 	}
-
+ 
 
 }
