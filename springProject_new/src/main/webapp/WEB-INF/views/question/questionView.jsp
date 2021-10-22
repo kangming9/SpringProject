@@ -35,14 +35,17 @@
 						
 						$(param.list).each(function(index,item){
 							var output ='<div class="item">';
-								output += '<h4>' + item.nickname + '</h4>';
+								output += '<span style="width:3px;background:#ff5757;color:#ff5757;">1</span>'
+								output += '<span style="margin:5px;font-size:15px;font-weight:900;">' + item.nickname + '</span>';
 								output += '<div class="sub-item">';
 								output +='   <p>' + item.content + '</p>';
 								output += item.answer_date;
 							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면 보이는 버튼들
 							if($('#m_num').val()==item.m_num){
+								output += '	<div class="align-right">'
 								output += ' <input type="button" data-num="'+item.num+'" data-mem="'+item.m_num+'" value="수정" class="modify-btn">';
 								output += ' <input type="button" data-num="'+item.num+'" data-mem="'+item.m_num+'" value="삭제" class="delete-btn">';
+								output += '	</div>'
 							}
 							output += '  <hr size="1" noshade>';
 							output += '</div>';
@@ -141,9 +144,9 @@
 				}
 			});
 			
-			//댓글 수정 버튼 클릭시 수정폼 노출
+			//댓글 수정 버튼 클릭시 수정폼 노출	
 			$(document).on('click','.modify-btn',function(){
-				//댓글 글번호
+				//댓글 글번호	
 				var a_num = $(this).attr('data-num');
 				//작성자 회원 번호
 				var m_num = $(this).attr('data-mem');
@@ -177,15 +180,18 @@
 				//문서 객체에 반영
 				$('#m_a_first .letter-count').text(remain);		
 			});
+			
 			//수정폼에서 취소 버튼 클릭시 수정폼 초기화
 			$(document).on('click','.a-reset',function(){
 				initModifyForm();
 			});
+			
 			//댓글 수정 폼 초기화
 			function initModifyForm(){
 				$('.sub-item').show();
 				$('#m_a_form').remove();
 			}
+			
 			//댓글 수정
 			$(document).on('submit','#m_a_form',function(event){
 				if($('#m_a_content').val().trim()==''){
@@ -273,7 +279,8 @@
 	<!-- 문의글 내용 시작 -->
 	<div class="question-content">
 	<span class="question-content-title-line">No. ${question.num}</span>
-	<h2>${question.title}   /   ${question.id}</h2>
+	<h2>${question.title}</h2>
+	<h4 style="margin-left:10px;">작성자 : ${question.nickname}</h4>
 	<input type="hidden" value="${question.password}">
 	<span class="question-content-title-line">${question.question_date}</span><br>
 

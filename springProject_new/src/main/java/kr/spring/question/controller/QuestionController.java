@@ -119,11 +119,6 @@ public class QuestionController {
 		question.setTitle(question.getTitle());
 		question.setContent(question.getContent());
 		
-		if(question.getPassword()!=null) {
-			
-		}
-		
-		
 		return new ModelAndView("questionView","question",question);
 	}
 	
