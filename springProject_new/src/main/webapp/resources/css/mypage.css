@@ -252,8 +252,22 @@
 	list-style: none;
 	margin-left: 0;
 	padding-left: 0;
+	margin-bottom: 4px;
 }
-
-
-
+/*========= 후원 프로젝트 =========*/
+#supTitle_left{
+	float: left;
+}
+#supTitle_right{
+	float: right;
+}
+#pro-summary{
+	font-size: 9px;
+}
+#pro-detail-content{
+	font-size: 12px;
+}
+.myPro__item_content{
+	cursor: pointer;
+}
 

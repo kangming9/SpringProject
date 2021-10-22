@@ -48,6 +48,7 @@
   				rownum rnum 
   		 FROM(SELECT b.num, 
   		 			 b.name, 
+  		 			 b.summary,
   		 			 b.category, 
   		 			 b.start_date, 
   		 			 b.finish_date, 
@@ -90,6 +91,7 @@
   		 			 p.photo, 
   		 			 p.ship, 
   		 			 p.approval,
+  		 			 p.summary,
                      s.num,
                      s.m_num, 
                      s.p_num,
