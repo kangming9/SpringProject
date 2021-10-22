@@ -100,7 +100,7 @@
 </div>
 			<div class="item">
 				<div class="form-group socialimage" id="kakaoBtn">
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/main/main.do&response_type=code">
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=4234090cf188276e03ecdbf634a9c0b9&redirect_uri=http://localhost:8081/FundingAdventure2/member/login.do&response_type=code">
 						<img id="socialimage" src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="320px" height="100%" class="loginImage"/>
 					</a>
 				</div>
