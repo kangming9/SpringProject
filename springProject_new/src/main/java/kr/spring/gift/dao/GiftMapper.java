@@ -21,7 +21,7 @@ public interface GiftMapper {
 	public int selectNum();
 	@Select("SELECT gift_detail_seq.nextval FROM dual")
 	public int selectDNum();
-	@Insert("INSERT INTO gift (num, p_num, name, price, due_ship, num_component) VALUES (#{num}, #{p_num}, #{name}, #{price}, #{due_ship}, #{num_component})")
+	@Insert("INSERT INTO gift (num, p_num, name, price, due_ship, num_component, optional) VALUES (#{num}, #{p_num}, #{name}, #{price}, #{due_ship}, #{num_component}, #{optional})")
 	public void addGift(GiftVO gift);
 	@Select("SELECT num FROM gift WHERE name=#{name} AND p_num=#{p_num} ")
 	public int selectGNum(@Param("name") String gname, @Param("p_num") int pnum); //parameter가 2개 이상이라 @param 추가

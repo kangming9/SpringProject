@@ -84,6 +84,7 @@ public class GiftController {
 					else if("upshipped".equals((String)m.get("ship")))
 						giftVO.setDue_ship(0);
 					giftVO.setCom_cnt(Integer.parseInt(m.get("count").toString()));
+					giftVO.setOptional(Integer.parseInt(m.get("optional").toString()));
 					
 					giftService.addGift(giftVO);
 					
