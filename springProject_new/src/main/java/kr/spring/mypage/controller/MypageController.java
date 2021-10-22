@@ -90,17 +90,17 @@ public class MypageController {
 		int count = mypageService.getSupportCount(user_num);
 		logger.debug("<<후원프로젝트 호출>> map : " + map.toString() + "user_num" + count);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "mySupportView.do");
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "mySupport.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
 		
 		List<SupportVO> list = null;
 		
 		if(count > 0) {
-			Map<String,Object> map2 = new HashMap<String,Object>();
-			map2.put("keyword", keyword);
-			map2.put("start", page.getStartCount());
-			map2.put("end", page.getEndCount());
-			map2.put("m_num", user_num);
-			list = mypageService.supportSelectList(map2);
+			map.put("m_num", user_num);
+			logger.debug("map:"+map);
+			list = mypageService.supportSelectList(map);
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -130,7 +130,7 @@ public class MypageController {
 		map.put("p_num", p_num);
 		map.put("g_num", g_num);
 		map.put("num", num);
-		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num );
+		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
 		
 		SupportVO support = mypageService.selectmySupport(map);
 		
@@ -154,18 +154,17 @@ public class MypageController {
 		map.put("keyword", keyword);
 		
 		int count = mypageService.getProCount(user_num);
-		logger.debug("<<나의프로젝트 호출>> map : " + map.toString() + "user_num" + count);
-		logger.debug("<<나의프로젝트 호출>> 2 : " + map.toString() + "user_num" + count + "현재페이지" + currentPage);
-		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myProjectView.do");
-		logger.debug("현재페이지" + currentPage + "총 글갯수"+count+"행갯수"+rowCount+"페이지갯수");
+
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myProject.do");
+		logger.debug("<<나의 프로젝트>>");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
 		List<ProjectVO> list = null;
 		if(count > 0) {
-			Map<String,Object> map2 = new HashMap<String,Object>();
-			map2.put("keyword", keyword);
-			map2.put("start", page.getStartCount());
-			map2.put("end", page.getEndCount());
-			map2.put("m_num", user_num);
-			list = mypageService.proSelectList(map2);
+			map.put("m_num", user_num);
+			list = mypageService.proSelectList(map);
 		}
 		
 		ModelAndView mav = new ModelAndView();

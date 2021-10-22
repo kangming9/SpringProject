@@ -34,7 +34,17 @@ public class SupportVO {//후원 테이블
 	private int ship;	//프로젝트 배송여부
 	private int approval;	//프로젝트 진행상태
 	private int goal_amount; //후원목표 금액
+	private String summary; //프로젝트 요약
 	
+	public String getSummary() {
+		return summary;
+	}
+
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 	private String name_1;	//선물 명
 	private int price;	//선물 가격
 	private int due_ship;	//선물 배송여부 체크

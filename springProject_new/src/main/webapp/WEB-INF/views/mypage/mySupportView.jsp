@@ -33,23 +33,29 @@
 					<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
 				</a>
 				</c:if>
-				<div class="myPro__item_content">
+				<div class="myPro__item_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mysupportdetail.do?p_num=${project.p_num}&g_num=${project.g_num}&num=${project.num}'">
 					<ul>
 						<li>
 						<b>${project.name}</b>
-						<c:if test="${project.category==0}">온라인</c:if>
-						<c:if test="${project.category==1}">모바일</c:if>
-						<c:if test="${project.category==2}">보드</c:if>
-						<c:if test="${project.category==3}">카드</c:if>
+							<span>
+								<c:if test="${project.category==0}"> | 온라인</c:if>
+								<c:if test="${project.category==1}"> | 모바일</c:if>
+								<c:if test="${project.category==2}"> | 보드</c:if>
+								<c:if test="${project.category==3}"> | 카드</c:if>
+							</span>
 						</li>
-						<p>
-						<li>후원 번호 : ${project.num}</li>
-						<li>후원 금액 : ${project.support_amount}</li>
-						<li>결제예정일 : ${project.finish_date}</li>
-						<c:if test="${project.approval==-1}"><li>임시저장</li></c:if>
-						<c:if test="${project.approval==0}"><li>심사대기</li></c:if>
-						<c:if test="${project.approval==1}"><li>승인</li></c:if>
-						<c:if test="${project.approval==2}"><li>반려</li></c:if>
+						<li id="pro-summary">${project.summary}</li>
+						<div id="pro-detail-content">
+							<li>후원 번호 : ${project.num}</li>
+							<li>후원 금액 : ${project.support_amount}</li>
+							<li id="supTitle_left">결제예정일 : ${project.finish_date}</li>
+							<li id="supTitle_right">
+								<c:if test="${project.approval==-1}"><span id="mainDel">임시저장</span></c:if>
+								<c:if test="${project.approval==0}"><span id="mainDel">심사대기</span></c:if>
+								<c:if test="${project.approval==1}"><span id="mainDel">승인</span></c:if>
+								<c:if test="${project.approval==2}"><span id="mainDel">반려</span></c:if>
+							</li>
+						</div>
 					</ul>
 				</div>
 			</div>
