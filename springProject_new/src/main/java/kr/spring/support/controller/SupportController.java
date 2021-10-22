@@ -4,14 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.delivery.vo.DeliveryVO;
@@ -69,8 +76,13 @@ public class SupportController {
 		}
 		
 		GiftVO giftVO = giftService.selectGift(supportVO.getG_num());
-		supportVO.setP_num(giftVO.getP_num());
+		int p_num = giftVO.getP_num();
+		
+		supportVO.setP_num(p_num);
 		supportVO.setSupport_amount(giftVO.getPrice()+supportVO.getDonation());
+		
+		List<GiftVO> giftList = giftService.selectList(p_num);
+		List<GiftVO> comList = giftService.selectComList(p_num);
 		
 		logger.debug("<<후원하기-선택선물>> : " + giftVO);
 		logger.debug("<<후원하기-후원정보>> : " + supportVO);
@@ -80,6 +92,8 @@ public class SupportController {
 		mav.addObject("deliveryCnt", deliveryCnt);
 		mav.addObject("deliveryList", deliveryList);
 		mav.addObject("gift", giftVO);
+		mav.addObject("giftList", giftList);
+		mav.addObject("comList", comList);
 		mav.addObject("support", supportVO);
 		mav.setViewName("supportView");
 		
@@ -100,9 +114,10 @@ public class SupportController {
 				supportVO.setGift_option("");
 			}
 			
-			logger.debug("<<후원완료>> :" + supportVO);
-			
+			supportVO.setNum(supportService.selectNum());
 			supportService.insertSupport(supportVO);
+			
+			logger.debug("<<후원완료>> :" + supportVO);
 			
 			project = projectService.selectProject(supportVO.getP_num());
 			supporter = projectService.selectProjectSupporter(supportVO.getP_num());
@@ -114,4 +129,5 @@ public class SupportController {
 		
 		return mav;
 	}
+
 }
