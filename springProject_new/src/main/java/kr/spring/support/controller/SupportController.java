@@ -20,9 +20,10 @@ import kr.spring.gift.vo.GiftVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.service.MypageService;
+import kr.spring.project.service.ProjectService;
+import kr.spring.project.vo.ProjectVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
-import kr.spring.util.PagingUtil;
 
 @Controller
 public class SupportController {
@@ -36,6 +37,8 @@ public class SupportController {
 	private MemberService memberService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private ProjectService projectService;
 	
 	//자바빈(VO) 초기화
 	@ModelAttribute
@@ -86,7 +89,8 @@ public class SupportController {
 	@RequestMapping("/support/result.do")
 	public ModelAndView submit(SupportVO supportVO, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		ProjectVO project = null; 
+		int supporter = 0;
 		if(user_num==null) {
 			logger.debug("<<후원완료>> : 로그인 필요");
 		}else {
@@ -99,10 +103,15 @@ public class SupportController {
 			logger.debug("<<후원완료>> :" + supportVO);
 			
 			supportService.insertSupport(supportVO);
+			
+			project = projectService.selectProject(supportVO.getP_num());
+			supporter = projectService.selectProjectSupporter(supportVO.getP_num());
 		}
-		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("project", project);
+		mav.addObject("supporter", supporter);
 		mav.setViewName("supportResult");
+		
 		return mav;
 	}
 }
