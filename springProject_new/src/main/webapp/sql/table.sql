@@ -240,3 +240,6 @@ ALTER TABLE support ADD d_num NUMBER NULL;
 ALTER TABLE support ADD CONSTRAINT FK_support_d_num_delivery_num FOREIGN KEY (d_num) REFERENCES delivery (num);
 --21.10.22 gift 테이블에 옵션 선택 추가
 alter table gift add optional number default 0 not null;
+--21.10.23 notice 테이블에 작성자 번호 추가(0인 경우 전체 공지)
+ALTER TABLE notice add m_num NUMBER default 0 not null;
+ALTER TABLE notice ADD CONSTRAINT FK_notice_m_num_member_num FOREIGN KEY (m_num) REFERENCES member (num);
