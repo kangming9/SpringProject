@@ -130,7 +130,7 @@ public class MypageController {
 		map.put("p_num", p_num);
 		map.put("g_num", g_num);
 		map.put("num", num);
-		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num );
+		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
 		
 		SupportVO support = mypageService.selectmySupport(map);
 		
@@ -156,7 +156,7 @@ public class MypageController {
 		int count = mypageService.getProCount(user_num);
 
 		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myProject.do");
-		logger.debug("<<나의 프로젝트>> : 현재페이지" + currentPage + "총 글갯수"+count+"행갯수"+rowCount+"페이지갯수");
+		logger.debug("<<나의 프로젝트>>");
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());

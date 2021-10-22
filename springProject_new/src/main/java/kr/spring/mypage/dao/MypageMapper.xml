@@ -137,7 +137,7 @@
 	WHERE p.m_num=s.m_num 
 	AND s.p_num=g.p_num
 	AND g.p_num=p.num
-	AND s.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num} AND num=#{num}
+	AND s.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num} AND s.num=#{num}
   </select>
   
 </mapper>
