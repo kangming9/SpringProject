@@ -69,6 +69,77 @@
   		 ]]>
   </select>
   
+  <!-- 나의 후원프로젝트 목록 갯수 -->
+  <select id="getSupportCount" parameterType="integer" resultType="integer">
+  	SELECT 
+  		count(*) 
+  	FROM project p, support s
+  	WHERE p.num=s.p_num
+  	AND s.m_num=#{m_num}
+  </select>
+  
+  <!-- 나의 후원프로젝트 목록 -->
+  <select id="supportSelectList" parameterType="map" resultType="supportVO">
+  	SELECT 
+  	  * 
+  	FROM(SELECT a.*, 
+  				rownum rnum 
+  		 FROM(SELECT p.name, 
+  		 			 p.category, 
+  		 			 p.finish_date, 
+  		 			 p.photo, 
+  		 			 p.ship, 
+  		 			 p.approval,
+                     s.num,
+                     s.m_num, 
+                     s.p_num,
+                     s.g_num, 
+                     s.payment, 
+                     s.support_amount, 
+                     s.donation, 
+                     s.payment_date
+  		 	 FROM  project p, support s
+  		 	 WHERE p.num=s.p_num
+             AND s.m_num=#{m_num}
+             <where>
+  		 	 	<if test="keyword != ''">
+                	AND p.name LIKE '%' || #{keyword} || '%'
+                </if>
+  		 	 </where>
+  		 	 ORDER BY s.num DESC)a)
+  		<![CDATA[
+  		WHERE rnum >= #{start} AND rnum <= #{end}
+  		]]>
+  </select>
+  
+  <!-- 후원 프로젝트 상세페이지 정보 -->
+  <select id="selectmySupport" parameterType="map" resultType="supportVO">
+  	SELECT 
+  		p.name, 
+  		p.category, 
+  		p.finish_date, 
+  		p.goal_amount, 
+  		p.m_num, 
+  		p.photo, 
+  		p.ship, 
+  		p.approval,
+		g.name as name_1, 
+		g.price, 
+		g.due_ship, 
+		g.num_component, 
+		s.num, 
+		s.g_num, 
+		s.payment, 
+		s.support_amount, 
+		s.donation, 
+		s.payment_date
+	FROM project p, gift g, support s
+	WHERE p.m_num=s.m_num 
+	AND s.p_num=g.p_num
+	AND g.p_num=p.num
+	AND s.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num}
+  </select>
+  
 </mapper>
 
 

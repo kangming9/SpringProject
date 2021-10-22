@@ -78,11 +78,67 @@ public class MypageController {
 	}
 	//후원프로젝트 호출
 	@RequestMapping("/mypage/mySupport.do")
-	public String mySupportView() {
+	public ModelAndView mySupportView(HttpSession session,
+								@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+								@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
-		logger.debug("<<후원프로젝트 호출>>");
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		return "mySupportView";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		
+		int count = mypageService.getSupportCount(user_num);
+		logger.debug("<<후원프로젝트 호출>> map : " + map.toString() + "user_num" + count);
+		
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "mySupportView.do");
+		
+		List<SupportVO> list = null;
+		
+		if(count > 0) {
+			Map<String,Object> map2 = new HashMap<String,Object>();
+			map2.put("keyword", keyword);
+			map2.put("start", page.getStartCount());
+			map2.put("end", page.getEndCount());
+			map2.put("m_num", user_num);
+			list = mypageService.supportSelectList(map2);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		//뷰 이름 설정
+		mav.setViewName("mySupportView");
+		//데이터 저장
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
+	//후원프로젝트 디테일
+	@RequestMapping("/mypage/mysupportdetail.do")
+	public ModelAndView mySupportView(HttpSession session,
+									 @RequestParam(value="p_num") int p_num,
+									 @RequestParam(value="g_num") int g_num) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+
+		logger.debug("<<후원프로젝트 상세페이지 호출>>");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("m_num", user_num);
+		map.put("p_num", p_num);
+		map.put("g_num", g_num);
+		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num );
+		
+		SupportVO support = mypageService.selectmySupport(map);
+		
+		logger.debug("<<supportVO>> : " + support);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mySupportDetailView");
+		mav.addObject("support", support);
+		
+		return mav;
 	}
 	//나의프로젝트 호출
 	@RequestMapping("/mypage/myProject.do")
@@ -97,9 +153,9 @@ public class MypageController {
 		
 		int count = mypageService.getProCount(user_num);
 		logger.debug("<<나의프로젝트 호출>> map : " + map.toString() + "user_num" + count);
-		
+		logger.debug("<<나의프로젝트 호출>> 2 : " + map.toString() + "user_num" + count + "현재페이지" + currentPage);
 		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myProjectView.do");
-		
+		logger.debug("현재페이지" + currentPage + "총 글갯수"+count+"행갯수"+rowCount+"페이지갯수");
 		List<ProjectVO> list = null;
 		if(count > 0) {
 			Map<String,Object> map2 = new HashMap<String,Object>();

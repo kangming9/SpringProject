@@ -1,3 +1,4 @@
+
 package kr.spring.support.vo;
 
 import java.sql.Date;
@@ -5,9 +6,6 @@ import java.text.DecimalFormat;
 
 
 import javax.validation.constraints.NotEmpty;
-
-import kr.spring.gift.vo.GiftVO;
-import kr.spring.member.vo.MemberVO;
 
 public class SupportVO {//후원 테이블
 	@NotEmpty
@@ -27,7 +25,130 @@ public class SupportVO {//후원 테이블
 	private String gift_option;//후원의 추가적인 옵션 사항
 	private int donation; //추가후원금액
 	private String donation_str; //추가후원금액 스트링
-	private String support_amount_str; //전체 후원금액 스트링
+	private String support_amount_str; //전체 후원금액 스트링 
+	
+	private String name; //프로젝트 명
+	private int category;	//프로젝트 카테고리
+	private Date finish_date;	//프로젝트 마감일자
+	private String photo;	//프로젝트 사진
+	private int ship;	//프로젝트 배송여부
+	private int approval;	//프로젝트 진행상태
+	private int goal_amount; //후원목표 금액
+	
+	private String name_1;	//선물 명
+	private int price;	//선물 가격
+	private int due_ship;	//선물 배송여부 체크
+	private int num_component;	//선물 한정수량
+	
+	
+	public int getGoal_amount() {
+		return goal_amount;
+	}
+
+
+	public void setGoal_amount(int goal_amount) {
+		this.goal_amount = goal_amount;
+	}
+
+
+	public String getname_1() {
+		return name_1;
+	}
+
+
+	public void setname_1(String name_1) {
+		this.name_1 = name_1;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public int getDue_ship() {
+		return due_ship;
+	}
+
+
+	public void setDue_ship(int due_ship) {
+		this.due_ship = due_ship;
+	}
+
+
+	public int getNum_component() {
+		return num_component;
+	}
+
+
+	public void setNum_component(int num_component) {
+		this.num_component = num_component;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+
+	public Date getFinish_date() {
+		return finish_date;
+	}
+
+
+	public void setFinish_date(Date finish_date) {
+		this.finish_date = finish_date;
+	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+
+	public int getShip() {
+		return ship;
+	}
+
+
+	public void setShip(int ship) {
+		this.ship = ship;
+	}
+
+
+	public int getApproval() {
+		return approval;
+	}
+
+
+	public void setApproval(int approval) {
+		this.approval = approval;
+	}
 	
 	public int getNum() {
 		return num;
@@ -101,14 +222,15 @@ public class SupportVO {//후원 테이블
 	public void setSupport_amount_str(String support_amount_str) {
 		this.support_amount_str = support_amount_str;
 	}
+
 	@Override
 	public String toString() {
-		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", payment_date="+ payment_date +", payment=" + payment + ", g_num="
-				+ g_num + ", support_amount=" + support_amount + ", gift_option=" + gift_option + ", donation="
-				+ donation + "]";
-	}
-	
-	
-	
-	
+		return "SupportVO [num=" + num + ", m_num=" + m_num + ", p_num=" + p_num + ", payment_date=" + payment_date
+				+ ", payment=" + payment + ", g_num=" + g_num + ", support_amount=" + support_amount + ", gift_option="
+				+ gift_option + ", donation=" + donation + ", donation_str=" + donation_str + ", support_amount_str="
+				+ support_amount_str + ", name=" + name + ", category=" + category + ", finish_date=" + finish_date
+				+ ", photo=" + photo + ", ship=" + ship + ", approval=" + approval + ", goal_amount=" + goal_amount
+				+ ", name_1=" + name_1 + ", price=" + price + ", due_ship=" + due_ship + ", num_component="
+				+ num_component + "]";
+	}	
 }
