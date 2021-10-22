@@ -24,12 +24,12 @@
 		<c:forEach var="project" items="${list}">
 			<div class="myPro__item">
 				<c:if test="${project.photo == 'default_team.jpg'}">
-				<a href="${pageContext.request.contextPath}/mypage/mysupportdetail.do?p_num=${project.p_num}&g_num=${project.g_num}">
+				<a href="${pageContext.request.contextPath}/mypage/mysupportdetail.do?p_num=${project.p_num}&g_num=${project.g_num}&num=${project.num}">
 					<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" >
 				</a>
 				</c:if>
 				<c:if test="${project.photo != 'default_team.jpg'}">
-				<a href="${pageContext.request.contextPath}/mypage/mysupportdetail.do?p_num=${project.p_num}&g_num=${project.g_num}">
+				<a href="${pageContext.request.contextPath}/mypage/mysupportdetail.do?p_num=${project.p_num}&g_num=${project.g_num}&num=${project.num}">
 					<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
 				</a>
 				</c:if>

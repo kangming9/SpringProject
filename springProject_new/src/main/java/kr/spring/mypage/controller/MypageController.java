@@ -117,7 +117,8 @@ public class MypageController {
 	@RequestMapping("/mypage/mysupportdetail.do")
 	public ModelAndView mySupportView(HttpSession session,
 									 @RequestParam(value="p_num") int p_num,
-									 @RequestParam(value="g_num") int g_num) {
+									 @RequestParam(value="g_num") int g_num,
+									 @RequestParam(value="num") int num) {
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
@@ -128,6 +129,7 @@ public class MypageController {
 		map.put("m_num", user_num);
 		map.put("p_num", p_num);
 		map.put("g_num", g_num);
+		map.put("num", num);
 		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num );
 		
 		SupportVO support = mypageService.selectmySupport(map);
