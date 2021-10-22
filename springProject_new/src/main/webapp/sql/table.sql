@@ -238,3 +238,5 @@ ALTER TABLE support ADD payment_date DATE DEFAULT sysdate NOT NULL;
 --21.10.22 support테이블에 배송지 넘버 fk 추가
 ALTER TABLE support ADD d_num NUMBER NULL;
 ALTER TABLE support ADD CONSTRAINT FK_support_d_num_delivery_num FOREIGN KEY (d_num) REFERENCES delivery (num);
+--21.10.22 gift 테이블에 옵션 선택 추가
+alter table gift add optional number default 0 not null;
