@@ -8,6 +8,11 @@
 <!-- xml 파일의 이름을 변경하실 경우, servlet-context.xml와 root-context.xml에서도 변경해주세요 -->
 
 <tiles-definitions>
+
+	<definition name="adminPageView" extends="main">
+    	<put-attribute name="title" value="마이페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/adminPageView.jsp"/>
+    </definition>
     <definition name="mypageView" extends="main">
     	<put-attribute name="title" value="마이페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myPageView.jsp"/>
@@ -84,6 +89,7 @@
     	<put-attribute name="title" value="설정 결제수단"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myPaymentView.jsp"/>
     </definition>
+    
 </tiles-definitions>
 
 
