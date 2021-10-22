@@ -17,4 +17,6 @@ public interface SupportMapper {
 	public void insertSupport(SupportVO supportVO);
 	@Select("SELECT count(m_num) as m_num, sum(support_amount) as support_amount, sum(donation) as donation FROM support WHERE p_num = #{pnum}")
 	public SupportVO selectSupportSum(int pnum);
+	@Select("SELECT name, sum(support_amount) as support_amount FROM (SELECT * FROM SUPPORT s JOIN gift g ON s.g_num = g.num) GROUP BY name")
+	public List<SupporterVO> selectGiftMoney();
 }

@@ -264,6 +264,10 @@ public class MypageController {
 			for(GiftVO i : giftList) {
 				supportList.add(supportService.selectGiftSupport(i.getNum()));
 			}
+			
+			List<SupporterVO> giftSupport = supportService.selectGiftMoney();
+			
+			mav.addObject("giftSupport", giftSupport);
 			mav.addObject("supportList", supportList);
 			mav.setViewName("stateInfo");
 		}else if("money".equals(info)) {

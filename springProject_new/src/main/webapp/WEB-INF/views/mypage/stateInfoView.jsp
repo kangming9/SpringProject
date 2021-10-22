@@ -50,12 +50,22 @@
 		arr[1][0] = garr[i];
 	}
 	
+	var arr2 = [["선물", "후원 금액"]];
+	<c:forEach items="${giftSupport}" var="item">
+		var inarr = new Array(2);
+		inarr[0] = "${item.name}";
+		inarr[1] = ${item.support_amount};
+		arr2.push(inarr);
+	</c:forEach>
+	
 	google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawStuff);
 
     function drawChart() {
 
-      var data = google.visualization.arrayToDataTable(arr);
+      var data1 = google.visualization.arrayToDataTable(arr);
 
       var options = {
         title: '선물별 후원자 수'
@@ -63,8 +73,35 @@
 
       var chart = new google.visualization.PieChart(document.getElementById('supportChart'));
 
-      chart.draw(data, options);
+      chart.draw(data1, options);
     }
+    
+    function drawStuff(){
+    	
+    	var data2 = google.visualization.arrayToDataTable(arr2);
+    	
+    	var options = {
+    	          width: 800,
+    	          legend: { position: 'none' },
+    	          chart: {
+    	            title: '선물별 후원 금액' },
+    	          axes: {
+    	            x: {
+    	              0: { side: 'top', label: '후원 금액'} // Top x-axis.
+    	            }
+    	          },
+    	          bar: { groupWidth: "90%" }
+    	        };
+
+    	var chart = new google.charts.Bar(document.getElementById('giftChart'));
+
+		var fm = new google.visualization.NumberFormat({surfix: '원', pattern: '###,###'});
+		fm.format(data2, 1);
+    	        
+    	chart.draw(data2, google.charts.Bar.convertOptions(options));
+    }
+    
+    
 	
 </script>
 
@@ -93,4 +130,5 @@
 		</form:form>
 	</div>
 	<div id="supportChart" style="width: 900px; height: 500px;"></div>
+	<div id="giftChart" style="width: 900px; height: 500px;"></div>
 </div>
