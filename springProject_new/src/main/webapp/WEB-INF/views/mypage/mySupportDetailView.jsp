@@ -49,10 +49,14 @@
 				<div class="plex_container align-left">
 					<div class="plex_items">
 						<c:if test="${support.photo == 'default_team.jpg'}">
+							<a href="${pageContext.request.contextPath}/project/detail.do?num=${support.p_num}">
 							<img class="detailPhoto" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" >
+							</a>
 						</c:if>
 						<c:if test="${support.photo != 'default_team.jpg'}">
+							<a href="${pageContext.request.contextPath}/project/detail.do?num=${support.p_num}">
 							<img class="detailPhoto" src="${pageContext.request.contextPath}/upload/${support.photo}">
+							</a>
 						</c:if>
 					</div>
 					<div class="plex_items" id="supPro_content">
