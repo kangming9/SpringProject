@@ -2,16 +2,17 @@
 
 body {
   font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
-  margin: 0px;
+  margin: 20px;
   padding: 50px;
-  
 }
 /* 메뉴 하단 라인 */
 .menu {				
   position: relative;
-  height: 44px;
+  height: 50px;
   background: #ffffff;
   width: auto;
+  align-items: center;
+  overflow:hidden;
 }
 .menu ul {
   list-style: none;
@@ -70,7 +71,7 @@ body {
 
 /*메뉴 글자*/
 .menu > ul > di > a {
-  font-size: 14px;
+  font-size: 50px;
   font-weight: bold;
   padding: 15px 20px;
   color: #2b2f3a;
@@ -94,7 +95,7 @@ body {
 
 /* 메뉴 글자 */
 .menu > ul > li > a {
-  font-size: 14px;
+  font-size: 50px;
   font-weight: bold;
   padding: 15px 20px;
   color: #2b2f3a;
