@@ -14,7 +14,7 @@
     	<put-attribute name="title" value="창작자 가이드"/>
     	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
     </definition>
-    <definition name="supporterGuide" extends="main">
+    <definition name="supporterGuideView" extends="main">
     	<put-attribute name="title" value="후원자 가이드"/>
     	<put-attribute name="body" value="/WEB-INF/views/guide/supporterGuideView.jsp"/>
     </definition>
