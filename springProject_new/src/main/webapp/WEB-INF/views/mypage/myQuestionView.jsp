@@ -3,6 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css" type="text/css">
+<script type="text/javascript">
+	$(function(){
+		//검색 유효성 체크
+		$('#search_form').submit(function(){
+			if($('#keyword').val().trim() == ''){
+				alert('검색어를 입력하세요');
+				$('#keyword').val('').focus();
+				return false;
+			}
+		});
+		
+	});
+</script>
 <div>
 	<div class="miniTitle_left">
 	<b class="miniTitle_content">문의</b>
@@ -14,15 +27,12 @@
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
-
 <!-- 중앙 내용 시작 -->
-<div class="container">
-	<div class="box">
-	<div class="list-title">
-		<h2>문의게시판</h2>
-		<span>무엇이든 물어보세요!</span>
+<div class="q_container">
+	<div class="q_box">
+	<div class="q_list-title">
 		<form id="search_form" action="list.do" method="get">
-			<ul class="search">
+			<ul class="q_search">
 				<li>
 					<select name="keyfield" id="keyfield">
 						<option value="1">제목</option>
@@ -33,15 +43,12 @@
 					<input type="search" name="keyword" id="keyword">
 					<input type="submit" value="찾기" class="btns">
 				</li>
-				
 			</ul>
 		</form>
 	</div>
-	
-	
 	<c:if test="${!empty user_num}">
-		<div class="question-btn">
-			<input type="button" value="문의 등록" onclick="location.href='register.do'" class="question-register-btn">
+		<div class="q_question-btn">
+			<input type="button" value="문의 등록" onclick="location.href='register.do'" class="q_question-register-btn">
 		</div>
 	</c:if>
 	<c:if test="${count==0}">
@@ -50,19 +57,19 @@
 		</div>
 	</c:if>
 	<c:if test="${count > 0}">
-		<table id="question-table" class="align-center">
+		<table id="q_question-table" class="align-center">
 			<tr>
-				<th class="question-line">번호</th>
-				<th width="250" class="question-line">제목</th>
-				<th class="question-line">닉네임</th>
-				<th class="question-line">작성일</th>
+				<th class="q_question-line">번호</th>
+				<th width="250" class="q_question-line">제목</th>
+				<th class="q_question-line">닉네임</th>
+				<th class="q_question-line">작성일</th>
 			</tr>
 			<c:forEach var="question" items="${list}">
 			<tr>
-				<td class="question-line">${question.num}</td>
-				<td class="question-line"><a href="detail.do?num=${question.num}">${question.title}</a></td>
-				<td class="question-line">${question.nickname}</td>
-				<td class="question-line">${question.question_date}</td>
+				<td class="q_question-line">${question.num}</td>
+				<td class="q_question-line"><a class="deleteA" href="${pageContext.request.contextPath}/question/detail.do?num=${question.num}">${question.title}</a></td>
+				<td class="q_question-line">${question.nickname}</td>
+				<td class="q_question-line">${question.question_date}</td>
 			</tr>
 			</c:forEach>
 			

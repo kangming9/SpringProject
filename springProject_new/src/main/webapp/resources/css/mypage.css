@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.deleteA{
+	text-decoration: none;
+	color: black;
+}
 /*=========상단 미니제목=========*/
 .miniTitle_left{
 	float:left;
@@ -334,4 +338,88 @@
 }
 .subpro_detailContet{
 	font-size: 9px;
+}
+/*========= 문의 게시판 =========*/
+.q_container{
+	margin:50px 100px;
+	width:800px;
+	display:flex;
+	justify-content:center;
+}
+.q_box{
+	display:block;
+	border:solid 1px #E4E4E4;
+	border-radius:5px;
+	height:auto;
+	justify-content:center;
+	align-items:center;
+	padding:40px;
+	padding-bottom:70px;
+	background:#fafafa;
+}
+.q_list-title{
+	text-align:center;
+	margin:10px 40px;
+}
+
+/* 리스트 */
+.q_list-title{
+	text-align:center;
+	margin:10px 40px;
+}
+
+.q_question-btn{
+	margin:20px;
+	text-align:right;
+}
+
+.q_btns{
+	width:50px;
+	height:25px;
+	background:#E6E6E6;
+	border:0;
+	border-radius:4px;
+}
+
+
+.q_question-register-btn{
+	width:80px;
+	height:25px;
+	background:#FF7878;
+	color:white;
+	border:0;
+	border-radius:4px;
+}
+
+#q_question-table {
+    width: 750px;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    font-size:14px;
+    margin:20px;
+ }
+  
+.q_question-line{
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align:center;
+}
+
+.q_search > li{
+	background-color: rd;
+	list-style:none;
+	align-items:vertical;
+}
+
+
+input[type="search" i] {
+	border:1px solid #E6E6E6;
+	margin-top:15px;
+	height:25px;
+}
+
+select {
+    border: 1px solid #E6E6E6;
+    height: 25px;
+    border-radius: 3px;
 }
