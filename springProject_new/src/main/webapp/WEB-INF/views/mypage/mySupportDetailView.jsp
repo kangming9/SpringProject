@@ -109,16 +109,16 @@
 			</colgroup>
 			<thead class="align-center">
 				<tr class="top_title" class="align-items">
-					<th><p>선물금액</p></th>
+					<th><p>선물 금액</p></th>
 					<th><p>추가 후원금액</p></th>
 					<th><p>총 후원 금액</p></th>
 				</tr>
 			<thead>
 			<tbody>
 				<tr>
-					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.price}" pattern="#,###,###"/></span></td>
-					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.donation}" pattern="#,###,###"/></span></td>
-					<td class="align-center"><span class="color supPamentContent"><fmt:formatNumber value="${support.support_amount}" pattern="#,###,###"/></span></td>
+					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.price}" pattern="#,###,###"/></span>원</td>
+					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.donation}" pattern="#,###,###"/></span>원</td>
+					<td class="align-center"><span class="color supPamentContent"><fmt:formatNumber value="${support.support_amount}" pattern="#,###,###"/></span>원</td>
 				<tr>
 			</tbody>
 		</table>
@@ -139,7 +139,7 @@
 				</tr>
 				<tr><td colspan="2"><hr size=0.5></td></tr>
 				<tr>
-					<th class="align-center supDelTitle">휴대폰번호</th>
+					<th class="align-center supDelTitle">휴대폰 번호</th>
 					<td colspan="2" class="supDelTitle_content supDel_padding">${delivery.phone}</td>
 				</tr>
 				<tr><td colspan="2"><hr size=0.5></td></tr>
@@ -152,8 +152,31 @@
 		</table>
 	</c:if>
 	<span class="top_supNum">결제 수단</span>
-	<table>
-		
+	<table class="supDetailtable">
+		<colgroup>
+			<col style="width:30%;">
+			<col style="width:70%;">
+		</colgroup>
+		<thead class="align-center">
+			<tr><td colspan="2"><hr class="slimHr"></td></tr>
+		<thead>
+		<tbody>
+			<tr>
+				<th class="align-center supDelTitle">결제 수단</th>
+				<td colspan="2" class="supDelTitle_content supDel_padding">이니시스 간편결제</td>
+			</tr>
+			<tr><td colspan="2"><hr size=0.5></td></tr>
+			<tr>
+				<th class="align-center supDelTitle">결제 금액</th>
+				<td colspan="2" class="supDelTitle_content supDel_padding"><fmt:formatNumber value="${support.support_amount}" pattern="#,###,###"/>원</td>
+			</tr>
+			<tr><td colspan="2"><hr size=0.5></td></tr>
+			<tr>
+				<th class="align-center supDelTitle">결제 상태</th>
+				<td colspan="2" class="supDelTitle_content supDel_padding">${support.payment_date} 결제 예약</td>
+			</tr>
+			<tr><td colspan="2"><hr size=0.5></td></tr>
+		</tbody>
 	</table>
 			<%-- <ul>
 				<li>

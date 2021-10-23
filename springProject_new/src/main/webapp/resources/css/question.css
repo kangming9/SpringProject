@@ -225,3 +225,31 @@ select {
 	border:0;
 	border-radius:4px;
 }
+
+/* 비밀번호 체크 */
+
+#qpass_form ul{
+	padding:0;
+}
+
+#qpass_form li{
+	display:flex;
+	margin:10px;
+	flex-flow:column nowrap;
+	margin:10px;
+}
+
+#qpass_form label{
+	width:100px;
+	padding:10px 10px 10px 0;
+	font-weight:900;
+	font-size:15px;
+}
+
+#qpass_form li input{
+	border:1px solid #E6E6E6;
+	border-radius:4px;
+	width:250px;
+	height:40px;
+	margin-bottom:15px;
+}

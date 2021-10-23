@@ -9,7 +9,7 @@
 <p>
 <p>
 <div>
-	<div>
+	<div id="mypagePhotoWrap">
 		<div class="justify-content">
 			<c:if test="${empty member.photo}">
 				<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="150" height="150" class="my-photo">
@@ -22,45 +22,52 @@
 			<p style="font-size: 45px; margin: 0;"><b>MY PAGE</b></p>
 		</div>
 		<div class="justify-content">
-			<span>${member.nickname}님</span>
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+			<span>${member.nickname}</span>
 		</div>
 	</div>
 </div>
-<table>
+<div id="mypageTableWrap">
+<table id="mypageTable">
 	<colgroup>
-		<col style="width:33%;">
-		<col style="width:33%;">
-		<col style="width:33%;">
+		<col style="width:25%;">
+		<col style="width:25%;">
+		<col style="width:25%;">
+		<col style="width:25%;">
 	</colgroup>
 	<thead>
-		<tr><td colspan="3"><hr size="0.5"></td></tr>
-		<tr>
+		<tr><td colspan="4"><hr size="0.5"></td></tr>
+		<tr class="mypageContentTitleWrap">
 			<td>프로젝트</td>
 			<td>문의</td>
 			<td>정보관리</td>
+			<td>로그아웃</td>
 		</tr>
-		<tr><td colspan="3"><hr size="0.5"></td></tr>
+		<tr><td colspan="4"><hr size="0.5"></td></tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>후원프로젝트 내역</td>
-			<td>문의 내역</td>
-			<td>회원정보수정</td>
+		<tr class="mypageContentWrap">
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/mySupport.do'">후원프로젝트 내역</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myQuestion.do'">문의 내역</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myInformation.do'">회원정보수정</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">로그아웃</td>
 		</tr>
-		<tr>
-			<td>창작프로젝트 내역</td>
+		<tr class="mypageContentWrap">
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myProject.do'">창작프로젝트 내역</td>
 			<td></td>
-			<td>배송지 관리</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myDelivery.do'">배송지 관리</td>
+			<td></td>
 		</tr>
-		<tr>
+		<tr class="mypageContentWrap">
 			<td></td>
 			<td></td>
-			<td>회원 탈퇴</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/deleteform.do'">회원 탈퇴</td>
+			<td></td>
 		</tr>
 	</tbody>
-</table>
-<div class="container">
+</table>	
+</div>
+
+<%-- <div class="container">
 	<div class="item" onclick="location.href='${pageContext.request.contextPath}/mypage/mySupport.do'">
 	<b>후원 프로젝트</b>
 	<p>
@@ -81,4 +88,4 @@
 	<p>
 	회원정보 변경과 배송지 관리, 결제수단을 관리할 수 있습니다.
 	</div>
-</div>
+</div> --%>

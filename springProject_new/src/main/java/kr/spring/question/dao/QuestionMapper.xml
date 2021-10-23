@@ -15,6 +15,7 @@
 		              REPLACE(REPLACE(q.title,'<','&lt;'),'>','&gt;') title,
 		              ]]>
   					q.question_date,
+  					q.password,
   					q.m_num,
   					d.nickname
   				FROM question q JOIN member_detail d ON q.m_num = d.m_num

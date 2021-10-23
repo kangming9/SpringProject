@@ -1,6 +1,5 @@
 package kr.spring.member.controller;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -166,38 +165,6 @@ public class MemberController {
 		return "redirect:/main/main.do";
 	}
 
-	
-	
-	
-	//sns 로그인
-	//구글아이디로 로그인
-	/*
-	 * @ResponseBody
-	 * 
-	 * @PostMapping("/member/googleLogin") public String googleLogin(MemberVO
-	 * memberVO, HttpSession session, MemberVO vo) throws Exception{ MemberVO
-	 * returnVO = memberService.loginByGoogle(memberVO);
-	 * 
-	 * System.out.println("구글아이디 포스트 db에서 가져온 vo "+ memberVO);
-	 * 
-	 * String vo_ajaxid = vo.getId(); if(returnVO == null) { //아이디가 DB에 존재하지 않는 경우
-	 * //구글 회원가입 memberService.registerByGoogle(memberVO);
-	 * 
-	 * //구글 로그인 returnVO = memberService.loginByGoogle(memberVO);
-	 * session.setAttribute("id", returnVO.getId());
-	 * session.setAttribute("pass",returnVO); }
-	 * 
-	 * if(vo_ajaxid.equals(returnVO.getId())){ //아이디가 DB에 존재하는 경우 //구글 로그인
-	 * memberService.loginByGoogle(memberVO); session.setAttribute("id",
-	 * returnVO.getId()); }else {//아이디가 DB에 존재하지 않는 경우 //구글 회원가입
-	 * memberService.registerByGoogle(memberVO); //구글 로그인 returnVO =
-	 * memberService.loginByGoogle(memberVO); session.setAttribute("id",
-	 * returnVO.getId()); }
-	 * 
-	 * return "redirect:/main/main.do";
-	 * 
-	 * }
-	 */
 	 
 	//카카오 로그인
 	 @GetMapping("/member/snsLogin.do")
@@ -243,6 +210,7 @@ public class MemberController {
 			return "redirect:/main/main.do";
 	}
 	 
+	 
 	// 회원가입 - 회원가입 처리
 	@PostMapping("/member/snsRegister.do")
 	public String submitSNSRegister(@Valid MemberVO memberVO, BindingResult result) {
@@ -279,10 +247,6 @@ public class MemberController {
 		logger.debug("<<user_email>> : "  + memberVO.getEmail());
 		logger.debug("<<user_phone>> : "  + memberVO.getPhone());
 		
-		/*
-		 * if(result.hasErrors()) {
-		 * return "searchID"; }
-		 */
 		
 		String id = memberService.searchId(memberVO.getName(), memberVO.getEmail(), memberVO.getPhone());
 		logger.debug("===========" + id);

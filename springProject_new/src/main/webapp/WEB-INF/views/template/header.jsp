@@ -56,7 +56,7 @@
 					<c:if test="${!empty user_num && user_grade == 0}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/adminPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="20" height="20" class="my-photo">
+							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="25" height="25" class="my-photo">
 							</a>
 						</li>
 					</c:if>
@@ -65,7 +65,7 @@
 					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="15" height="15" class="my-photo">
+							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="25" height="25" class="my-photo">
 							</a>
 						</li>
 					</c:if>
@@ -74,7 +74,7 @@
 					<c:if test="${!empty user_num && !empty user_photo && user_grade >= 2}">
 						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="15" height="15" class="my-photo">
+							<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="25" height="25" class="my-photo">
 							</a>
 							</li>
 					</c:if>

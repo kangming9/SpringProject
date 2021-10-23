@@ -24,6 +24,10 @@
     	<put-attribute name="title" value="문의 수정"/>
     	<put-attribute name="body" value="/WEB-INF/views/question/questionModify.jsp"/>
     </definition>
+    <definition name="qCheckPass" extends="main">
+    	<put-attribute name="title" value="비밀번호 확인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/question/qCheckPass.jsp"/>
+    </definition>
     
 </tiles-definitions>
 
