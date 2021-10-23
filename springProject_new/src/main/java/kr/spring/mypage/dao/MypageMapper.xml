@@ -143,6 +143,64 @@
 	AND s.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num} AND s.num=#{num}
   </select>
   
+  <!-- 문의 게시판 리스트 -->
+  <select id="questionSelectList" parameterType="map" resultType="questionVO">
+  	SELECT
+  		*
+  	FROM (SELECT
+			a.*,
+			rownum rnum
+  		  FROM (SELECT
+	  				q.num,
+			        <![CDATA[
+			        REPLACE(REPLACE(q.title,'<','&lt;'),'>','&gt;') title,
+			        ]]>
+  					q.question_date,
+  					q.m_num,
+  					d.nickname
+  				FROM question q JOIN member_detail d 
+  				ON q.m_num = d.m_num
+                AND q.m_num=#{m_num}
+	            <where>
+	  				<if test="keyword != '' and keyfield == 1">
+	  					q.title LIKE '%' || #{keyword} || '%'
+	  				</if>
+	  				<if test="keyword != '' and keyfield == 3">
+	  					q.content LIKE '%' || #{keyword} || '%'
+	  				</if>
+	  				<if test="keyword != '' and keyfield == 4">
+	  					q.title LIKE '%' || #{keyword} || '%' or 
+	  					q.content LIKE '%' || #{keyword} || '%'
+	  				</if>
+	  			</where>
+  				ORDER BY q.num DESC)a)
+  			<![CDATA[
+  			WHERE rnum >= #{start} AND rnum <=#{end}
+  			]]>
+  </select>
+  <!-- 문의 게시판 댓글 목록 -->
+  <select id="questionselectCount" parameterType="map" resultType="integer">
+  		SELECT
+  			COUNT(*)
+  		FROM question q JOIN member_detail d ON q.m_num = d.m_num
+  		AND q.m_num=#{m_num}
+  		<where>
+			<if test="keyword != '' and keyfield == 1">
+				q.title LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 2">
+				d.nickname LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 3">
+				q.content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyword != '' and keyfield == 4">
+				q.title LIKE '%' || #{keyword} || '%' or 
+				q.content LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
+  	</select>
+  
 </mapper>
 
 

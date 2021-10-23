@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.question.vo.QuestionVO;
 import kr.spring.support.vo.SupportVO;
 
 public interface MypageMapper {
@@ -56,6 +57,8 @@ public interface MypageMapper {
 	  public List<SupportVO> supportSelectList(Map<String, Object> map);
 	  public SupportVO selectmySupport(Map<String, Object> map);
 	  
+	  public List<QuestionVO> questionSelectList(Map<String, Object> map);
+	  public int questionselectCount(Map<String,Object> map);
 }
 
 

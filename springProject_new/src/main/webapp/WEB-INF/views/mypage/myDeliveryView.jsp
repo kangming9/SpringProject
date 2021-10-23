@@ -14,6 +14,7 @@ $(function(){
 		$('#del_list').hide();
 		$('#delPageNum').hide();
 		$('#del_reset').show();
+		$('.noContent').hide();
 	});
 	//추가 취소 버튼 클릭
 	$('#del_reset').click(function(){
@@ -21,6 +22,7 @@ $(function(){
 		$('#del_addbtn').show();
 		$('#del_list').show();
 		$('#delPageNum').show();
+		$('.noContent').show();
 		$(this).hide();
 	});
 	//추가 한경우
@@ -162,6 +164,11 @@ $(function(){
 		<input type="submit" value="등록 완료" id="delsubmit">
 	</form>
 </div>
+<c:if test="${count == 0}">
+	<div class="noContent">
+		등록된 배송지가 없습니다.
+	</div>
+</c:if>
 <c:if test="${count > 0}">
 	<div class="del_container" id="del_list">
 	<c:forEach var="del" items="${list}">
@@ -185,8 +192,3 @@ $(function(){
 	</div><!-- 컨테이너 -->
 </c:if>
 <div style="text-align: center;" id="delPageNum">${pagingHtml}</div>
-<c:if test="${count == 0}">
-	<div class="noContent">
-		등록된 배송지가 없습니다.
-	</div>
-</c:if>

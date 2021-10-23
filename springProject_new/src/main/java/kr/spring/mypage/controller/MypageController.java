@@ -43,6 +43,7 @@ import kr.spring.mypage.dao.MypageMapper;
 import kr.spring.mypage.service.MypageService;
 import kr.spring.project.service.ProjectService;
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.question.vo.QuestionVO;
 import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
 import kr.spring.support.vo.SupporterVO;
@@ -310,11 +311,42 @@ public class MypageController {
 	
 	//내문의게시판 호출
 	@RequestMapping("/mypage/myQuestion.do")
-	public String myQuestionView() {
-			
-		logger.debug("<<문의페이지 호출>>");
-			
-		return "myQuestionView";
+	public ModelAndView myQuestionView(HttpSession session,
+									   @RequestParam(value="pageNum",defaultValue="1") int currentPage,
+									   @RequestParam(value="keyfield",defaultValue="") String keyfield,
+									   @RequestParam(value="keyword",defaultValue="") String keyword ) {
+		
+		Integer user_num =(Integer)session.getAttribute("user_num");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("keyfield", keyfield);
+		map.put("m_num", user_num);
+		
+		int count = mypageService.questionselectCount(map);
+		
+		logger.debug("<<문의 목록 count>> : " + count);
+		
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage, count, rowCount, pageCount, "myQuestion.do");
+		logger.debug("<<문의 페이지 호출>>");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<QuestionVO> list = null;
+		if(count > 0) {
+			list = mypageService.questionSelectList(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		//뷰 이름 설정
+		mav.setViewName("myQuestionView");
+		//데이터 저장
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
 	} 
 	//설정 호출
 	@RequestMapping("/mypage/mySettings.do")

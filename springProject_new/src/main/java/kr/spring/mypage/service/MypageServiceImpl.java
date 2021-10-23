@@ -13,6 +13,7 @@ import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.dao.MypageMapper;
 import kr.spring.project.vo.ProjectVO;
+import kr.spring.question.vo.QuestionVO;
 import kr.spring.support.vo.SupportVO;
 
 @Service
@@ -135,5 +136,16 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public SupportVO selectmySupport(Map<String, Object> map) {
 		return mypageMapper.selectmySupport(map);
+	}
+
+	@Override
+	public List<QuestionVO> questionSelectList(Map<String, Object> map) {
+		return mypageMapper.questionSelectList(map);
+	}
+
+	@Override
+	public int questionselectCount(Map<String, Object> map) {
+		int check = mypageMapper.questionselectCount(map);
+		return check;
 	}
 }
