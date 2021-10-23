@@ -96,6 +96,7 @@ hr{
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 5px;
+	flex-wrap: wrap;
 }
 
 .info-name{
