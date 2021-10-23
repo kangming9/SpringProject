@@ -96,7 +96,7 @@ body {
 
 /* 메뉴 글자 */
 .menu > ul > li > a {
-  font-size: 25px;
+  font-size: 14px;
   font-weight: bold;
   padding: 15px 20px;
   color: #2b2f3a;
