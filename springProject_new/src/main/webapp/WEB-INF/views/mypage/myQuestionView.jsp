@@ -48,7 +48,7 @@
 	</div>
 	<c:if test="${!empty user_num}">
 		<div class="q_question-btn">
-			<input type="button" value="문의 등록" onclick="location.href='register.do'" class="q_question-register-btn">
+			<input type="button" value="문의 등록" onclick="location.href='${pageContext.request.contextPath}/question/register.do'" class="q_question-register-btn">
 		</div>
 	</c:if>
 	<c:if test="${count==0}">

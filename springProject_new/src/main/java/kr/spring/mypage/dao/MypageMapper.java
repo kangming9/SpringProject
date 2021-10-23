@@ -47,6 +47,8 @@ public interface MypageMapper {
 	  public void deleteDelivery(Integer num);
 	  @Select("SELECT * FROM delivery WHERE num=#{num}")
 	  public DeliveryVO selectDelivery(Integer num);
+	  @Select("SELECT * FROM delivery d, support s WHERE s.d_num=d.num AND s.num=#{s_num}")
+	  public DeliveryVO selectPaymentAddress(Integer s_num);
 	  @Update("UPDATE delivery SET name=#{name}, zipcode=#{zipcode}, address=#{address}, address_detail=#{address_detail}, address_check=#{address_check}, phone=#{phone} WHERE num=#{num}")
 	  public void updateDelivery(DeliveryVO deliveryVO);
 	  

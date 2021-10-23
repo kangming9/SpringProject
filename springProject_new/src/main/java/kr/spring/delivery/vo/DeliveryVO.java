@@ -20,6 +20,14 @@ public class DeliveryVO {	//배송지 테이블
 	private int address_check; //기본 배송지 여부(1:기본배송지 0:일반배송지(디폴트값)
 	@NotEmpty
 	private String phone; //받을사람 폰번호
+	private int s_num; //프로젝트 번호
+	
+	public int getS_num() {
+		return s_num;
+	}
+	public void setS_num(int s_num) {
+		this.s_num = s_num;
+	}
 	public int getNum() {
 		return num;
 	}

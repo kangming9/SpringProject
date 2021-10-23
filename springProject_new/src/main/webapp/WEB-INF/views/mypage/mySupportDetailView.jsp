@@ -22,8 +22,8 @@
 		</div>
 	</c:if>
 	<c:if test="${support.num > 0}">
-	<span id="top_supNum">후원번호 : ${support.num} 후원 날짜 : ${support.payment_date}</span>
-	<table id="supDetailtable">
+	<span class="top_supNum">후원번호 : ${support.num} 후원 날짜 : ${support.payment_date}</span>
+	<table class="supDetailtable">
 		<colgroup>
 			<col style="width:60%;">
 			<col style="width:10%;">
@@ -32,7 +32,7 @@
 			<col style="width:10%;">
 		</colgroup>
 		<thead class="align-center">
-			<tr><td colspan="5"><hr size=0.5></td></tr>
+			<tr><td colspan="5"><hr class="slimHr"></td></tr>
 			<tr class="top_title">
 				<th>프로젝트 정보</th>
 				<th>선물 정보</th>
@@ -72,7 +72,7 @@
 						</p>
 						<p id="pro-summary" class="subpro_detailContet">${support.summary}</p>
 						<p class="subpro_detailContet">프로젝트 번호 : ${support.p_num}</p>
-						<p class="subpro_detailContet">목표 금액 : ${support.goal_amount}</p>
+						<p class="subpro_detailContet">목표 금액 : <fmt:formatNumber value="${support.goal_amount}" pattern="#,###,###"/></p>
 						<p class="subpro_detailContet">프로젝트 마감일 : ${support.finish_date}</p>
 					</div>
 				</div>
@@ -96,7 +96,64 @@
 				<c:if test="${support.payment==2}">결제 취소</c:if>
 			</td>
 			<tr>
+			<tr><td colspan="5"><hr size=0.5></td></tr>
 		</tbody>
+	</table>
+		<p>
+		<span class="top_supNum">결제 정보</span>
+		<table id="supPaymentDetailtable">
+			<colgroup>
+				<col style="width:30%;">
+				<col style="width:30%;">
+				<col style="width:40%;">
+			</colgroup>
+			<thead class="align-center">
+				<tr class="top_title" class="align-items">
+					<th><p>선물금액</p></th>
+					<th><p>추가 후원금액</p></th>
+					<th><p>총 후원 금액</p></th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr>
+					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.price}" pattern="#,###,###"/></span></td>
+					<td class="align-center"><span class="supPamentContent"><fmt:formatNumber value="${support.donation}" pattern="#,###,###"/></span></td>
+					<td class="align-center"><span class="color supPamentContent"><fmt:formatNumber value="${support.support_amount}" pattern="#,###,###"/></span></td>
+				<tr>
+			</tbody>
+		</table>
+	<c:if test="${support.due_ship==1}">
+		<span class="top_supNum">배송지 정보</span>
+		<table class="supDetailtable">
+			<colgroup>
+				<col style="width:30%;">
+				<col style="width:70%;">
+			</colgroup>
+			<thead class="align-center">
+				<tr><td colspan="2"><hr class="slimHr"></td></tr>
+			<thead>
+			<tbody>
+				<tr>
+					<th class="align-center supDelTitle">받으시는분</th>
+					<td colspan="2" class="supDelTitle_content supDel_padding">${delivery.name}</td>
+				</tr>
+				<tr><td colspan="2"><hr size=0.5></td></tr>
+				<tr>
+					<th class="align-center supDelTitle">휴대폰번호</th>
+					<td colspan="2" class="supDelTitle_content supDel_padding">${delivery.phone}</td>
+				</tr>
+				<tr><td colspan="2"><hr size=0.5></td></tr>
+				<tr>
+					<th class="align-center supDelTitle">배송지 주소</th>
+					<td colspan="2" class="supDelTitle_content supDel_padding">[${delivery.zipcode}] ${delivery.address} ${delivery.address_detail}</td>
+				</tr>
+				<tr><td colspan="2"><hr size=0.5></td></tr>
+			</tbody>
+		</table>
+	</c:if>
+	<span class="top_supNum">결제 수단</span>
+	<table>
+		
 	</table>
 			<%-- <ul>
 				<li>

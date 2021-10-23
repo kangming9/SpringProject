@@ -148,4 +148,13 @@ public class MypageServiceImpl implements MypageService{
 		int check = mypageMapper.questionselectCount(map);
 		return check;
 	}
+
+	@Override
+	public DeliveryVO selectPaymentAddress(Integer s_num) {
+		DeliveryVO delivery = mypageMapper.selectPaymentAddress(s_num);
+		
+		return delivery;
+	}
+
+	
 }

@@ -157,11 +157,15 @@ public class MypageController {
 		gift = giftService.selectGiftDetail(map2);
 		logger.debug("<<GiftVO>> : " + gift);
 		
+		DeliveryVO delivery = mypageService.selectPaymentAddress(support.getNum());
+		logger.debug("<<DeliveryVO>> : " + delivery);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mySupportDetailView");
 		mav.addObject("support", support);
 		mav.addObject("gift", gift);
-		
+		mav.addObject("delivery", delivery);
+
 		return mav;
 	}
 	//나의프로젝트 호출

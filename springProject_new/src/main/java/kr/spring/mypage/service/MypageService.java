@@ -42,4 +42,6 @@ public interface MypageService {
 	
 	public List<QuestionVO> questionSelectList(Map<String, Object> map);
 	public int questionselectCount(Map<String,Object> map);
+	
+	public DeliveryVO selectPaymentAddress(Integer s_num);
 }
