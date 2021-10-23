@@ -42,49 +42,49 @@
 				</li>
 					
 					<c:if test="${!empty user_num}">
-						<di>
+						<li style="float: right" >
 							
 							<a href="${pageContext.request.contextPath}/member/logout.do" class="delete_line">Logout</a>
 							
-						</di>
-						<di>
+						</li>
+						<li style="float: right">
 						    <a>${user_nickname}</a>
-						</di>
+						</li>
 					</c:if>
 					
 					<!-- 관리자일떄 -->
 					<c:if test="${!empty user_num && user_grade == 0}">
-						<di>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/adminPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="20" height="20" class="my-photo">
+							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="25" height="25" class="my-photo">
 							</a>
-						</di>
+						</li>
 					</c:if>
 					
 					<!-- 일반회원일떄(사진 없을경우) -->
 					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
-						<di>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="15" height="15" class="my-photo">
+							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="25" height="25" class="my-photo">
 							</a>
-						</di>
+						</li>
 					</c:if>
 					
 					<!-- 일반회원일떄(사진 있을경우) -->
 					<c:if test="${!empty user_num && !empty user_photo && user_grade >= 2}">
-						<di>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
-							<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="15" height="15" class="my-photo">
+							<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="25" height="25" class="my-photo">
 							</a>
-							</di>
+							</li>
 					</c:if>
 					<c:if test="${empty user_num}">
-						<di>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/member/selectRegister.do" class="delete_line">회원가입</a>
-						</di>
-						<di>
+						</li>
+						<li style="float: right">
 							<a href="${pageContext.request.contextPath}/member/login.do" class="delete_line">로그인</a>
-						</di>
+						</li>
 					</c:if>
 			</ul>
 		</div>
