@@ -62,7 +62,17 @@
 			<c:forEach var="question" items="${list}">
 			<tr>
 				<td class="question-line">${question.num}</td>
-				<td class="question-line"><a href="detail.do?num=${question.num}">${question.title}</a></td>
+				<td class="question-line">
+				
+				<c:if test="${empty question.password}">
+					<a href="detail.do?num=${question.num}">${question.title}</a> 
+				</c:if>
+				
+				<c:if test="${!empty question.password}">
+					<a href="qCheckPass.do?num=${question.num}">${question.title}</a> 
+				</c:if>
+				
+				</td>
 				<td class="question-line">${question.nickname}</td>
 				<td class="question-line">${question.question_date}</td>
 			</tr>

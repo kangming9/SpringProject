@@ -108,12 +108,53 @@ public class QuestionController {
 		return mav;
 	}
 	
+	//비밀번호 확인 폼 호출
+	@GetMapping("/question/qCheckPass.do")
+	public ModelAndView checkPassform(@RequestParam int num) {
+		
+		QuestionVO question = questionService.selectQuestion(num);
+		
+		
+		return new ModelAndView("qCheckPass","question",question);
+	}
+	
+	//비밀번호 확인 데이터 처리
+	@PostMapping("/question/qCheckPass.do") 
+	public String questionPassword(@RequestParam String password, @RequestParam int num,HttpServletRequest request, Model model) {
+		
+		QuestionVO question = questionService.selectQuestion(num);
+		
+		logger.debug("===========<<입력된 비밀번호>>" + password);
+		logger.debug("===========<<원래 비밀번호>>" + question.getPassword());
+		
+		if(!password.equals(question.getPassword())) {
+			
+			model.addAttribute("check", "question");
+			model.addAttribute("message", "문의글의 비밀번호가 잘못 입력되었습니다. 다시 입력해주세요.");
+			model.addAttribute("url", request.getContextPath()+"/question/list.do");
+			
+			return "common/resultView";
+		}
+		
+		question.setTitle(question.getTitle());
+		question.setContent(question.getContent());
+		
+		request.setAttribute("question", question);
+			
+		return "questionView";
+	}
+
+	
+	
+	
+	
 	//question 디테일
-	@RequestMapping("/question/detail.do")
+	@GetMapping("/question/detail.do")
 	public ModelAndView process(@RequestParam int num) {
 		
 		QuestionVO question = questionService.selectQuestion(num);
 		
+		logger.debug("=============" + question.getPassword());
 		logger.debug("<< 제목 >> : " + question.getTitle());
 		
 		question.setTitle(question.getTitle());
