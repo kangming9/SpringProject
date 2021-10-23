@@ -3,4 +3,58 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.notice.dao.NoticeMapper">
+  	<select id="selectList" parameterType="map" resultType="noticeVO">
+ 		SELECT
+  			*
+  		FROM (SELECT
+  				a.*,
+  				rownum rnum
+  			FROM (SELECT
+  					n.num,
+  					<![CDATA[
+		              REPLACE(REPLACE(n.title,'<','&lt;'),'>','&gt;') title,
+		              ]]>
+		            n.m_num,
+		            n.p_num,
+  					d.nickname,
+  					n.not_date,
+  					n.mod_date
+  				FROM notice n JOIN member_detail d ON n.m_num = d.m_num
+  				<where>
+  					<if test="keyword != '' and keyfield == 1">
+  						n.title LIKE '%' || #{keyword} || '%'
+  					</if>
+  					<if test="keyword != '' and keyfield == 2">
+  						n.content LIKE '%' || #{keyword} || '%'
+  					</if>
+  					<if test="keyword != '' and keyfield == 3">
+  						n.title LIKE '%' || #{keyword} || '%' or 
+  						n.content LIKE '%' || #{keyword} || '%'
+  					</if>
+  					AND n.p_num = #{p_num}
+  				</where>
+  				ORDER BY n.num DESC)a)
+  		<![CDATA[
+  			WHERE rnum >= #{start} AND rnum <=#{end}
+  		]]>
+  	</select>
+  	
+  	<select id="selectRowCount" parameterType="map" resultType="integer">
+				SELECT
+  					COUNT(*)
+  				FROM notice n JOIN member_detail d ON n.m_num = d.m_num
+  				<where>
+  					<if test="keyword != '' and keyfield == 1">
+  						n.title LIKE '%' || #{keyword} || '%'
+  					</if>
+  					<if test="keyword != '' and keyfield == 2">
+  						n.content LIKE '%' || #{keyword} || '%'
+  					</if>
+  					<if test="keyword != '' and keyfield == 3">
+  						n.title LIKE '%' || #{keyword} || '%' or 
+  						n.content LIKE '%' || #{keyword} || '%'
+  					</if>
+  					AND n.p_num = #{p_num}
+  				</where>
+  	</select>
 </mapper>
