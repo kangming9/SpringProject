@@ -2,6 +2,34 @@
 <!DOCTYPE mapper   
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="kr.spring.support.dao.SupportMapper">    
- 	
+<mapper namespace="kr.spring.support.dao.SupportMapper">
+ 	<insert id="insertSupport" parameterType="supportVO">
+		INSERT 
+		INTO support
+			(
+				num,
+				m_num,
+				p_num,
+				g_num,
+				<if test="d_num != -1">
+				d_num,
+				</if>
+				support_amount,
+				gift_option,
+				donation
+			)
+			VALUES
+			(
+				#{num},
+				#{m_num},
+				#{p_num},
+				#{g_num},
+				<if test="d_num != -1">
+				#{d_num},
+				</if>
+				#{support_amount},
+				#{gift_option},
+				#{donation}
+			) 
+	</insert>
 </mapper>

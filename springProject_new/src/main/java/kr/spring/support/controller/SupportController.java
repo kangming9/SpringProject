@@ -120,6 +120,10 @@ public class SupportController {
 				supportVO.setGift_option("");
 			}
 			
+			if(supportVO.getD_num() == 0) {
+				supportVO.setD_num(-1);
+			}
+			
 			supportService.insertSupport(supportVO);
 			map.put("result", "success");
 			
