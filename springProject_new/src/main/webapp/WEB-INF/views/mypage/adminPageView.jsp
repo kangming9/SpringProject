@@ -22,8 +22,8 @@
 	회원 정보조회 | 회원 정보수정
 	</div>
 	<div class="item" onclick="location.href='${pageContext.request.contextPath}">
-	<b>배송지</b>
+	<b>프로젝트 관리</b>
 	<p>
-	기본 배송지설정 | 배송지 추가 | 배송지 변경
+	프로젝트 조회 | 프로젝트 통과 여부 결정
 	</div>
 </div>

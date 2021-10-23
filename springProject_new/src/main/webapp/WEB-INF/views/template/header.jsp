@@ -27,10 +27,10 @@
 					<a href='#'>가이드</a>
 					<ul>
 						<li>
-							<a href='#'>창작자 가이드</a>
+							<a href="${pageContext.request.contextPath}/guide/creatorGuide.do" class="delete_line">창작자 가이드</a>
 						</li>
 						<li class='last'>
-							<a href='#'>후원자 가이드</a>
+							<a href="${pageContext.request.contextPath}/guide/supporterGuide.do" class="delete_line">후원자 가이드</a>
 						</li>
 					</ul>
 				</li>
