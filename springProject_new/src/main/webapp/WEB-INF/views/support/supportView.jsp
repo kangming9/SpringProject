@@ -96,6 +96,12 @@
 		});
 		
 		$(".supportButton").on("click", function () {
+			var existD = $("input[name='exist-del']").val();
+			if(existD == 0){
+				alert("배송지를 추가해주세요!");
+				return false;
+			}
+			
 			var title = '펀딩어드벤처:'+$(".support_name").text();
 			var amount = $("#support_amount").val();
 			var email = $(".semail").text();
@@ -284,6 +290,7 @@
 		<c:if test="${deliveryCnt > 0}">
 			<c:forEach var="delivery" items="${deliveryList}">
 				<c:if test="${delivery.address_check==1}">
+					<input type="hidden" name="exist-del" value="1">
 					<input type="hidden" id="d_num" value="${delivery.num}" name="d_num">
 					<div class="info-wrap">
 						<div class="info-con">
@@ -303,21 +310,13 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${deliveryCnt == 0}">
+			<input type="hidden" name="exist-del" value="0">
 			<div class="info-wrap">
 				배송지 정보가 없습니다.<br>
 			</div>
 		</c:if>
 	</div>
 	</c:if>
-	<div class="support-info">
-		<div class="info-title">결제수단 <a class="change-btn">추가</a></div>
-		<div class="info-wrap">
-			<div class="info-con">
-				<span class="info-name"></span>
-				<span class="info-item"></span>
-			</div>
-		</div>
-	</div>
 	<div class="btn-wrap"><div class="supportButton">결제 예약하기</div></div>
 	</form:form>
 </div>
