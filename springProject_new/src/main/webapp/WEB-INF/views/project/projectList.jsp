@@ -7,80 +7,102 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function(){
-		/*
-		//검색 유효성 체크
-		$('#search_form').submit(function(){
+		
+		$('.container-title').click(function(){
+			location.replace('list.do');
+		});
+		
+		$('.searchButton').click(function(){
 			if($('#keyword').val().trim() == ''){
 				alert('검색어를 입력하세요!');
 				$('#keyword').val('').focus();
 				return false;
 			}
+			$("#filter_form").submit();
 		});
-		*/
-
+		
+		$(".cate-nav li").click(function(){
+			var cate = $(this).val();
+			if(cate < 0){
+				cate = "";
+			}
+			
+			$("#category").val(cate);
+			$("#filter_form").submit();
+		});
+		
+		$("#state").change(function() {
+			$("#filter_form").submit();
+		});
+		
+		$("#order").change(function() {
+			$("#filter_form").submit();
+		});
+		
+		
 	});
 </script>
 <div class="container">
 	<div class="container-title"><span>프로젝트</span></div>
-	<div class="category_wrap">
-		<ul class="category">
-			<li><a href="list.do">전체</a></li>
-			<li>l</li>
-			<li><a href="list.do?category=0">온라인</a></li>
-			<li>l</li>
-			<li><a href="list.do?category=1">모바일</a></li>
-			<li>l</li>
-			<li><a href="list.do?category=2">보드</a></li>
-			<li>l</li>
-			<li><a href="list.do?category=3">카드</a></li>
-		</ul>
-	</div>
+	<form id="filter_form" action="list.do" method="get">
+		<input type="hidden" id="category" name="category" value="">
+		<div class="category_wrap">
+			<ul class="cate-nav">
+				<li value="-1" ${category == '' or category=='-1' ? 'style="color: #FF7878;"' : ''}>전체</li>
+				<li>l</li>
+				<li value="0" ${category=='-1' ? 'style="color: #FF7878;"' : ''}>온라인</li>
+				<li>l</li>
+				<li value="1" ${category=='1' ? 'style="color: #FF7878;"' : ''}>모바일</li>
+				<li>l</li>
+				<li value="2" ${category=='2' ? 'style="color: #FF7878;"' : ''}>보드</li>
+				<li>l</li>
+				<li value="3" ${category=='3' ? 'style="color: #FF7878;"' : ''}>카드</li>
+			</ul>
+		</div>
+		<div class="filter-bar">
+			<div class="filter_wrap">
+				<ul class="filter">
+					<li>
+						<select name="state" id="state">
+							<option value="0" ${state == '0' ? 'selected="selected"' : ''}>전체</option>
+							<option value="1" ${state == '1' or state == '' ? 'selected="selected"' : ''}>진행</option>
+							<option value="2" 
+							${state == '2' ? 'selected="selected"' : ''}
+							${order == '3' ? 'disabled="disabled"' : ''}
+							>마감</option>
+							<option value="3" ${state == '3' ? 'selected="selected"' : ''}>공개예정</option>
+						</select>
+					</li>
+					<li>
+						<select name="order" id="order">
+							<option value="1" ${order == '1' ? 'selected="selected"' : ''}>최신순</option>
+							<option value="2" ${order == '2' or order == '' ? 'selected="selected"' : ''}>인기순</option>
+							<option value="3" 
+							${order == '3' ? 'selected="selected"' : ''}
+							${state == '2' ? 'disabled="disabled"' : ''}
+							>마감임박순</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="search_wrap">
+				<c:if test="${keyword == ''}">
+					<input type="search" name="keyword" id="keyword">
+				</c:if>
+				<c:if test="${keyword != ''}">
+					<input type="search" name="keyword" id="keyword" value="${keyword}">
+				</c:if>
+				<div class="searchButton"><i class="fas fa-search"></i></div>
+			</div>
+		</div>
+	</form>
 	<c:if test="${count == 0}">
 		<div class="result-display">
 			등록된 프로젝트가 없습니다.
 		</div>
 	</c:if>
 	<c:if test="${count > 0}">
-		<div class="filter-bar">
-			<div class="filter_wrap">
-				<form id="filter_form" action="list.do" method="get">
-					<ul class="filter">
-						<li>
-							<select name="state" id="state">
-								<option value="" >전체</option>
-								<option value="1">진행</option>
-								<option value="2">마감</option>
-								<option value="3">공개예정</option>
-							</select>
-						</li>
-						<li>
-							<select name="order" id="order">
-								<option value="1">최신순</option>
-								<option value="2">인기순</option>
-								<option value="3">마감임박순</option>
-							</select>
-						</li>
-						<li>
-							<button type="submit" class="filterButton">검색</button>
-							
-						</li>
-					</ul>
-				</form>
-			</div>
-			<div class="form_wrap">
-				<form id="search_form" action="list.do" method="get">
-					<ul class="search">
-						<li>
-							<div class="search_wrap">
-								<input type="search" name="keyword" id="keyword">
-						    	<button type="submit" class="searchButton"><i class="fas fa-search"></i></button>
-							</div>
-						</li>
-					</ul>
-				</form>
-			</div>
-		</div>
-		<div class="content-wrap">
+	<div class="content-wrap">
 		<c:forEach var="project" items="${list}">
 			<div class="content">
 				<c:if test="${project.photo == 'default_team.jpg'}">
@@ -120,8 +142,8 @@
 				</div>
 			</div>
 		</c:forEach>
-		</div>
-		<div class="align-center">${pagingHtml}</div> 
+	</div>
+	<div class="align-center">${pagingHtml}</div> 
 	</c:if>
 </div>
 <!-- 중앙 내용 끝 -->

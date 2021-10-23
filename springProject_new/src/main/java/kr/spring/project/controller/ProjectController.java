@@ -41,7 +41,7 @@ public class ProjectController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 	private int rowCount = 9;
-	private int pageCount = 10;
+	private int pageCount = 5;
 
 	@Autowired
 	private ProjectService projectService;
@@ -266,15 +266,16 @@ public class ProjectController {
 		map.put("order", order);
 		map.put("keyword", keyword);
 
-		logger.debug("======list map=======: " + map.toString());
+		logger.debug("======프로젝트 리스트 filter map=======: " + map.toString());
 
 		int count = projectService.selectRowCount(map);
-		logger.debug("======count=======: " + count);
 
-		 PagingUtil page = new
-		 PagingUtil("",keyword,currentPage,count,rowCount,pageCount,"list.do");
-		 map.put("start", page.getStartCount()); map.put("end", page.getEndCount());
-		 
+		String add = "&category="+category+"&state="+state+"&order="+order;
+		PagingUtil page = new
+		PagingUtil("",keyword,currentPage,count,rowCount,pageCount,"list.do",add);
+		map.put("start", page.getStartCount()); 
+		map.put("end", page.getEndCount());
+		
 		List<ProjectVO> list = null;
 		if (count > 0) {
 			list = projectService.selectList(map);
@@ -285,7 +286,10 @@ public class ProjectController {
 		mav.addObject("count", count);
 		mav.addObject("list", list);
 		mav.addObject("pagingHtml", page.getPagingHtml());
-		mav.addObject("result", "success");
+		mav.addObject("category", category);
+		mav.addObject("state", state);
+		mav.addObject("order", order);
+		mav.addObject("keyword", keyword);
 		return mav;
 	}
 

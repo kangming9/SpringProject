@@ -358,3 +358,8 @@ button:hover{
 .deadline-card{
 	opacity:0.8; 
 }
+
+/* notice */
+.notice-wrap{
+	display: none;
+}

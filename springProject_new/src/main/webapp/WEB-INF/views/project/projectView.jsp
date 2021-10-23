@@ -176,8 +176,8 @@
 	<hr>
 	<div class="nav_wrap">
 		<ul>
-			<li class="btn_project"><a href="">프로젝트 계획</a></li>
-			<li class="btn_notice"><a href="">공지사항</a></li>
+			<li class="btn_project"><a>프로젝트 계획</a></li>
+			<li class="btn_notice"><a href="${pageContext.request.contextPath}/notice/list.do?p_num=${project.num}">공지사항</a></li>
 			<li class="btn_qna"><a href="${pageContext.request.contextPath}/question/register.do?p_num=${project.num}">문의하기</a></li>
 		</ul>
 	</div>
