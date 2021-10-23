@@ -16,7 +16,7 @@ public class GuideController {
 
 @RequestMapping("/guide/creatorGuide.do")
 	public String creatorGuideView() {
-		return "/guide/creatorGuideView";
+		return "creatorGuideView";
 	}
 	
 @RequestMapping("/guide/supporterGuide.do")

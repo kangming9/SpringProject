@@ -10,25 +10,25 @@
     	<put-attribute name="title" value="guide"/>
     	<put-attribute name="body" value="/WEB-INF/views/guide/guide.jsp"/>
     </definition>
-   <definition name="creatorGuide" extends="main">
+   <definition name="creatorGuideView" extends="main">
     	<put-attribute name="title" value="창작자 가이드"/>
     	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
     </definition>
     <definition name="supporterGuide" extends="main">
     	<put-attribute name="title" value="후원자 가이드"/>
-    	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/guide/supporterGuideView.jsp"/>
     </definition>
-    <definition name="projectStandard" extends="main">
+    <definition name="projectStandardView" extends="main">
     	<put-attribute name="title" value="프로젝트 심사 기준"/>
-    	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/guide/projectStandardView.jsp"/>
     </definition>
-    <definition name="termsOfUse" extends="main">
+    <definition name="termsOfUseView" extends="main">
     	<put-attribute name="title" value="이용약관"/>
-    	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/guide/termsOfUseView.jsp"/>
     </definition>
-    <definition name="privacyPolicy" extends="main">
+    <definition name="privacyPolicyView" extends="main">
     	<put-attribute name="title" value="개인정보 처리방침"/>
-    	<put-attribute name="body" value="/WEB-INF/views/guide/creatorGuideView.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/guide/privacyPolicyView.jsp"/>
     </definition>
 </tiles-definitions>
 

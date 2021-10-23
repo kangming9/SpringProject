@@ -10,7 +10,7 @@
 <tiles-definitions>
 
 	<definition name="adminPageView" extends="main">
-    	<put-attribute name="title" value="마이페이지"/>
+    	<put-attribute name="title" value="관리자 페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/adminPageView.jsp"/>
     </definition>
     <definition name="mypageView" extends="main">
