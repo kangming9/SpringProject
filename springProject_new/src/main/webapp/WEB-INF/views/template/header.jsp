@@ -42,49 +42,49 @@
 				</li>
 					
 					<c:if test="${!empty user_num}">
-						<li style="float: right" >
+						<di>
 							
 							<a href="${pageContext.request.contextPath}/member/logout.do" class="delete_line">Logout</a>
 							
-						</li>
-						<li style="float: right">
+						</di>
+						<di>
 						    <a>${user_nickname}</a>
-						</li>
+						</di>
 					</c:if>
 					
 					<!-- 관리자일떄 -->
 					<c:if test="${!empty user_num && user_grade == 0}">
-						<li style="float: right">
+						<di>
 							<a href="${pageContext.request.contextPath}/mypage/adminPage.do" class="delete_line">
 							<img src="${pageContext.request.contextPath}/resources/images/Admin.png" width="20" height="20" class="my-photo">
 							</a>
-						</li>
+						</di>
 					</c:if>
 					
 					<!-- 일반회원일떄(사진 없을경우) -->
 					<c:if test="${!empty user_num && empty user_photo && user_grade >= 2}">
-						<li style="float: right">
+						<di>
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
 							<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="15" height="15" class="my-photo">
 							</a>
-						</li>
+						</di>
 					</c:if>
 					
 					<!-- 일반회원일떄(사진 있을경우) -->
 					<c:if test="${!empty user_num && !empty user_photo && user_grade >= 2}">
-						<li style="float: right">
+						<di>
 							<a href="${pageContext.request.contextPath}/mypage/myPage.do" class="delete_line">
 							<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="15" height="15" class="my-photo">
 							</a>
-							</li>
+							</di>
 					</c:if>
 					<c:if test="${empty user_num}">
-						<li style="float: right">
+						<di>
 							<a href="${pageContext.request.contextPath}/member/selectRegister.do" class="delete_line">회원가입</a>
-						</li>
-						<li style="float: right">
+						</di>
+						<di>
 							<a href="${pageContext.request.contextPath}/member/login.do" class="delete_line">로그인</a>
-						</li>
+						</di>
 					</c:if>
 			</ul>
 		</div>
