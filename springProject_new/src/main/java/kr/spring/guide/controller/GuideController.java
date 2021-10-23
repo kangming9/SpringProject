@@ -15,27 +15,27 @@ public class GuideController {
 	}
 
 @RequestMapping("/guide/creatorGuide.do")
-	public String creatorGuide() {
-		return "creatorGuide";
+	public String creatorGuideView() {
+		return "creatorGuideView";
 	}
 	
 @RequestMapping("/guide/supporterGuide.do")
-	public String supporterGuide() {
-		return "supporterGuide";
+	public String supporterGuideView() {
+		return "supporterGuideView";
 	}
 
 @RequestMapping("/guide/projectStandard.do")
-	public String projectStandard() {
-		return "projectStandard";
+	public String projectStandardView() {
+		return "projectStandardView";
 	}
 
 @RequestMapping("/guide/termsOfUse.do")
-	public String termsOfUse() {
-		return "termsOfUse";
+	public String termsOfUseView() {
+		return "termsOfUseView";
 	}
 
 @RequestMapping("/guide/privacyPolicy.do")
-	public String privacyPolicy() {
-		return "privacyPolicy";
+	public String privacyPolicyView() {
+		return "privacyPolicyView";
 	}
 }
