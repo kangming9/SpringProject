@@ -16,6 +16,10 @@
 .boldHr{
 	border: 2px solid black;
 }
+.justify-content{
+	display: flex;
+	justify-content: center;	
+}
 /*=========상단 미니제목=========*/
 .miniTitle_left{
 	float:left;

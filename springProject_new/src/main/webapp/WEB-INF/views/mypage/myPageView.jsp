@@ -3,25 +3,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css" type="text/css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<p>
+<p>
+<p>
+<p>
+<p>
 <div>
-	<div class="miniTitle_left">
-		<c:if test="${empty member.photo}">
-			<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="100" height="100" class="my-photo">
-		</c:if>
-		<c:if test="${!empty member.photo}"> <!-- 사진있는경우 -->
-			<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="100" height="100" class="my-photo">
-		</c:if>
-		<span>${member.nickname}님</span>
-		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-		
+	<div>
+		<div class="justify-content">
+			<c:if test="${empty member.photo}">
+				<img src="${pageContext.request.contextPath}/resources/images/userimage.png" width="150" height="150" class="my-photo">
+			</c:if>
+			<c:if test="${!empty member.photo}"> <!-- 사진있는경우 -->
+				<img src="${pageContext.request.contextPath}/mypage/photoView.do" width="150" height="150" class="my-photo">
+			</c:if>
+		</div>
+		<div class="justify-content">
+			<p style="font-size: 45px; margin: 0;"><b>MY PAGE</b></p>
+		</div>
+		<div class="justify-content">
+			<span>${member.nickname}님</span>
+			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+		</div>
 	</div>
-	<div class="miniTitle_right">
-		<br><br><br><br><br><br>
-		<i class="fas fa-bell xs" id="notice_alarm"></i>
-		나의 프로젝트 크레이지 아케이드 목표금액 달성
-	</div>
-	<hr noshade="noshade" class="line">
 </div>
+<table>
+	<colgroup>
+		<col style="width:33%;">
+		<col style="width:33%;">
+		<col style="width:33%;">
+	</colgroup>
+	<thead>
+		<tr><td colspan="3"><hr size="0.5"></td></tr>
+		<tr>
+			<td>프로젝트</td>
+			<td>문의</td>
+			<td>정보관리</td>
+		</tr>
+		<tr><td colspan="3"><hr size="0.5"></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>후원프로젝트 내역</td>
+			<td>문의 내역</td>
+			<td>회원정보수정</td>
+		</tr>
+		<tr>
+			<td>창작프로젝트 내역</td>
+			<td></td>
+			<td>배송지 관리</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>회원 탈퇴</td>
+		</tr>
+	</tbody>
+</table>
 <div class="container">
 	<div class="item" onclick="location.href='${pageContext.request.contextPath}/mypage/mySupport.do'">
 	<b>후원 프로젝트</b>
