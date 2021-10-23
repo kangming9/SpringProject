@@ -176,11 +176,12 @@
 			</li>
 			<li>
 				<label>프로젝트 소개</label><br>
-				<form:textarea id="intro" path="intro"/>
+				<form:textarea id="intro" path="intro" value="${intro}"></form:textarea>
 				<br>
 				<label>프로젝트 정책</label>
-				<form:textarea id="policy" path="policy"/>
+				<form:textarea id="policy" path="policy" value="${policy}"></form:textarea>
 				<script>
+
 					function MyCustomUploadAdapterPlugin(editor){ //플러그인 설정
 						editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
 							return new UploadAdapter(loader);
@@ -191,6 +192,7 @@
 						extraPlugins:[MyCustomUploadAdapterPlugin] //플러그인 지정
 					}).then(editor => {
 						window.editor = editor;
+						editor.setData("${intro}");
 					}).catch(error => {
 						console.error(error);
 					});
@@ -199,12 +201,12 @@
 						extraPlugins:[MyCustomUploadAdapterPlugin] //플러그인 지정
 					}).then(editor => {
 						window.editor = editor;
+						editor.setData("${policy}}");
 					}).catch(error => {
 						console.error(error);
 					});
 					
-					CKEDITOR.instances.intro.setData('${intro}');
-					CKEDITOR.instances.policy.setData('${policy}');
+					
 				</script>
 			</li>
 		</ul>
