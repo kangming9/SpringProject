@@ -37,6 +37,7 @@ public class SupportVO {//후원 테이블
 	private int approval;	//프로젝트 진행상태
 	private int goal_amount; //후원목표 금액
 	private String summary; //프로젝트 요약
+	private int deadline; //프로젝트 남은 일자 카운트
 	
 	private String md_name; //후원자 이름
 	private String phone; //후원자 폰번호

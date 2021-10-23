@@ -397,6 +397,9 @@
 	padding-left: 120px;
 	font-size: 12px;
 }
+.gd_content{
+	padding-top: 33px;
+}
 /*========= 문의 게시판 =========*/
 .q_container{
 	margin:50px 100px;

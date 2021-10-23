@@ -25,8 +25,8 @@
 	<span class="top_supNum">후원번호 : ${support.num} 후원 날짜 : ${support.payment_date}</span>
 	<table class="supDetailtable">
 		<colgroup>
-			<col style="width:60%;">
-			<col style="width:10%;">
+			<col style="width:55%;">
+			<col style="width:15%;">
 			<col style="width:10%;">
 			<col style="width:10%;">
 			<col style="width:10%;">
@@ -78,9 +78,9 @@
 				</div>
 			</td>
 			<td class="align-center">
-					<p class="gd_content">${support.name_1}</p>
+					<p style="margin: 0; padding-bottom: 5px;">${support.name_1}</p>
 					<c:forEach var="gift" items="${gift}">
-						<p style="margin: 0; padding: 0; font-size: 10px;">${gift.name} x ${gift.gd_count}</p>
+						<p style="margin: 0 0 4px 0; padding: 0; font-size: 10px;">${gift.name} x ${gift.gd_count}</p>
 					</c:forEach>
 			</td>
 			<td class="align-center">
