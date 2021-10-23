@@ -18,24 +18,24 @@
 	</update>
 	
 	<select id="selectList" parameterType="map" resultType="projectVO">
-	  	   SELECT
-			  b.num, 
-			  name, 
-			  category, 
-			  summary, 
-			  photo, 
-			  intro, 
-			  policy, 
-			  goal_amount, 
-			  deadline, 
-			  nickname, 
-			  rnum, 
-			  NVL(amount,0) amount,  
-			  NVL(ROUND(amount/goal_amount*100,1),0) progress 
-			FROM (SELECT 
-			        a.*,
-			        rownum rnum
-			      FROM (SELECT 
+	 SELECT * 
+	 FROM (
+	  	   SELECT rownum rnum, d.*
+	  	   FROM(
+		  	   SELECT
+				  a.num, 
+				  name, 
+				  category, 
+				  summary, 
+				  photo, 
+				  intro, 
+				  policy, 
+				  goal_amount, 
+				  deadline, 
+				  nickname, 
+				  NVL(amount,0) amount,  
+				  NVL(ROUND(amount/goal_amount*100,1),0) progress 
+				FROM ((SELECT 
 	  	   				p.num, 
 	  	   				p.name, 
 	  	   				p.category, 
@@ -54,54 +54,58 @@
                         AND p.name LIKE '%' || #{keyword} || '%'
                      	</if>
 	  	   			  </where>
-	  	   			  ) a
-	  	   		 ) b 
-	  	   		 JOIN (SELECT 
-	  	   		 		 p.num, 
-	  	   		 		 sum(support_amount)+sum(donation) amount
-                  	   FROM project p LEFT OUTER JOIN support s ON p.num = s.p_num
-                  	   GROUP BY p.num) c
-        		ON b.num = c.num
-		  	   <where>
-	                 <![CDATA[
-	                 rnum >= #{start} AND rnum <= #{end} 
-	                 ]]>
-	            <if test="state != '' and state == 1">
-	                    AND b.deadline <![CDATA[>=]]> 0
-	            </if>
-	            <if test="state != '' and state == 2">
-	                  AND b.deadline <![CDATA[<]]> 0
-	            </if>
-	            <if test="state != '' and state == 3">
-	                  AND b.start_date <![CDATA[>]]> TRUNC(sysdate)
-	            </if>
-	            <if test="order != '' and order == 3">
-	            	  AND b.deadline <![CDATA[>=]]> 0
-	        	</if>
-	        	<if test="category != '' and category == 0">
-	            	  AND b.category=0
-	        	</if>
-	        	<if test="category != '' and category == 1">
-	            	  AND b.category=1
-	        	</if>
-	        	<if test="category != '' and category == 2">
-	            	  AND b.category=2
-	        	</if>
-	        	<if test="category != '' and category == 3">
-	            	  AND b.category=3
-	        	</if>
-	         </where>
-	  	  <trim prefix="ORDER BY"> 
-           	<if test="order == '' or order == 1">
-           		b.num DESC
-	        </if>
-	        <if test="order != '' and order == 2">
-	            progress DESC, b.num
-	        </if>
-	        <if test="order != '' and order == 3">
-	            b.deadline, b.num
-	        </if>
-	     </trim>
+	  	   			  ORDER BY p.num DESC
+	  	   			  ) a JOIN  (SELECT 
+				  	   		 		 p.num, 
+				  	   		 		 sum(support_amount)+sum(donation) amount
+			                  	   FROM project p LEFT OUTER JOIN support s ON p.num = s.p_num
+			                  	   GROUP BY p.num
+			                  	 ) c 
+			          ON a.num = c.num
+			       )
+			       <trim prefix="ORDER BY"> 
+			           	<if test="order != '' and order == 1">
+			           		a.num DESC
+				        </if>
+				        <if test="order == '' or order == 2">
+				            progress DESC, a.num DESC
+				        </if>
+				        <if test="order != '' and order == 3">
+				            a.deadline, a.num DESC
+				        </if>
+				     </trim>
+			)d
+	)
+	<where>
+		<![CDATA[
+			rnum >= #{start} AND rnum <= #{end} 
+	    ]]>
+	    <if test="state == '' or state == 1">
+	    AND deadline <![CDATA[>=]]> 0
+	    </if>
+	    <if test="state != '' and state == 2">
+	    AND deadline <![CDATA[<]]> 0
+	    </if>
+	    <if test="state != '' and state == 3">
+	    AND start_date <![CDATA[>]]> TRUNC(sysdate)
+	    </if>
+	    <if test="order != '' and order == 3">
+	    AND deadline <![CDATA[>=]]> 0
+	    </if>
+	    <if test="category != '' and category == 0">
+	    AND category=0
+	    </if>
+	    <if test="category != '' and category == 1">
+	    AND category=1
+	    </if>
+	    <if test="category != '' and category == 2">
+	    AND category=2
+	    </if>
+	    <if test="category != '' and category == 3">
+	    AND category=3
+	    </if>
+	</where>
+	  	  
 	</select>
 	
 	<select id="selectRowCount" parameterType="map" resultType="integer">
@@ -118,30 +122,30 @@
 	  	   	) p
 	  	<where>
 	  		p.approval = 1
-	  	   	<if test="keyword != ''">
-	  	   	AND p.name LIKE '%' || #{keyword} || '%'
-	  	   	</if>
-	  	   	<if test="state == ''">
+	  		<if test="keyword != ''">
+            AND p.name LIKE '%' || #{keyword} || '%'
+            </if>
+	  	   	<if test="state == '' or state == 1">
+	  	   	AND p.deadline <![CDATA[>=]]> 0
+	        </if>
+	        <if test="state != '' and state == 2">
+	        AND p.deadline <![CDATA[<]]> 0
+	        </if>
+	        <if test="state != '' and state == 3">
+	        AND p.start_date <![CDATA[>]]> TRUNC(sysdate)
+	        </if>
+	        <if test="order != '' and order == 3">
 	        AND p.deadline <![CDATA[>=]]> 0
 	        </if>
-		    <if test="state != '' and state == 1">
-		    AND p.deadline <![CDATA[>=]]> 0
-		    </if>
-		   	<if test="state != '' and state == 2">
-		    AND p.deadline <![CDATA[<]]> 0
-		   	</if>
-		    <if test="state != '' and state == 3">
-		    AND p.start_date <![CDATA[>]]> TRUNC(sysdate)
-		    </if>
-		    <if test="category != '' and category == 0">
-		    AND p.category=0
+	        <if test="category != '' and category == 0">
+	        AND p.category=0
 	        </if>
 	        <if test="category != '' and category == 1">
 	        AND p.category=1
-	       	</if>
+	        </if>
 	        <if test="category != '' and category == 2">
 	        AND p.category=2
-	       	</if>
+	        </if>
 	        <if test="category != '' and category == 3">
 	        AND p.category=3
 	        </if>
