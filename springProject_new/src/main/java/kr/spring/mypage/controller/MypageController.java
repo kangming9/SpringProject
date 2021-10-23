@@ -793,7 +793,9 @@ public class MypageController {
 	
 	@RequestMapping("/mypage/updateGiftDetail.do")
 	@ResponseBody
-	public Map<String, String> updateGiftArr(HttpSession session, GiftVO giftVO, HttpServletRequest request) throws Exception{
+	public Map<String, String> updateGiftArr(HttpSession session, GiftVO giftVO, Model model, HttpServletRequest request) throws Exception{
+		
+		model.addAttribute("projectVO", new ProjectVO());
 		
 		logger.debug("<<updateGift 호출>> : " + giftVO.getP_num());
 		
@@ -876,14 +878,41 @@ public class MypageController {
 	
 	@RequestMapping("/mypage/updateGift.do")
 	public ModelAndView submitUpdateGift(GiftVO giftVO,
-		HttpSession session, HttpServletRequest request, HttpServletResponse response, String p_name) throws IOException {
-				
+		HttpSession session, ProjectVO projectVO, HttpServletRequest request, HttpServletResponse response, String p_name) {
+		
 		ModelAndView mav = new ModelAndView();
 				
 		logger.debug("<<프로젝트 수정 폼 - GIFT 전송>>");
 			
 		Integer user_num = (Integer)session.getAttribute("user_num");
 			
+		if(user_num==null) {//로그인이 되지 않은 상태
+
+			logger.debug("<<에러>> : 로그인되지 않은 상태");
+			mav.setViewName("createGift");
+		}else {
+					
+			logger.debug("<<선물 정보>> : " + giftVO);
+			logger.debug("<<프로젝트 정보>> : " + projectVO);
+				
+			mav.addObject("num", giftVO.getP_num());
+			mav.addObject("name", p_name);
+			mav.setViewName("updateView"); //작성된 프로젝트 보기
+					
+			logger.debug("<<이동 경로>> : " + mav.getViewName());
+		}
+		return mav;
+	}
+	
+	@RequestMapping("mypage/updateApproval.do")
+	public ModelAndView updateApproval(HttpSession session, ProjectVO projectVO, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		logger.debug("<<프로젝트 수정 완료 - approval 수정>>");
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
 		if(user_num==null) {//로그인이 되지 않은 상태
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인을 한 후에 가능합니다.');</script>");
@@ -892,11 +921,14 @@ public class MypageController {
 			mav.setViewName("createGift");
 		}else {
 					
-			logger.debug("<<프로젝트 정보>> : " + giftVO);
-				
-			mav.addObject("num", giftVO.getP_num());
-			mav.addObject("name", p_name);
-			mav.setViewName("updateView"); //작성된 프로젝트 보기
+			logger.debug("<<프로젝트 정보>> : " + projectVO.getNum());
+			
+			projectService.updateApproval(projectVO.getNum());
+			
+			logger.debug("<<프로젝트 심사신청 완료>>");
+			
+			mav.addObject("num", projectVO.getNum());
+			mav.setViewName("ApprovalView"); //작성된 프로젝트 보기
 					
 			logger.debug("<<이동 경로>> : " + mav.getViewName());
 		}

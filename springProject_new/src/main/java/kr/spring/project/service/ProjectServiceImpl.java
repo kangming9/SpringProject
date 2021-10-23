@@ -75,4 +75,9 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectMapper.selectFinish(pnum);
 	}
 
+	@Override
+	public void updateApproval(int pnum) {
+		projectMapper.updateApproval(pnum);
+	}
+
 }

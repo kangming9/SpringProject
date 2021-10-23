@@ -201,7 +201,7 @@
 						extraPlugins:[MyCustomUploadAdapterPlugin] //플러그인 지정
 					}).then(editor => {
 						window.editor = editor;
-						editor.setData("${policy}}");
+						editor.setData("${policy}");
 					}).catch(error => {
 						console.error(error);
 					});

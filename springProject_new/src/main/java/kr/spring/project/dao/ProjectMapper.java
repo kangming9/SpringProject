@@ -29,6 +29,9 @@ public interface ProjectMapper {
 	@Select("SELECT finish_date FROM project WHERE num = #{pnum}")
 	public Date selectFinish(int pnum);
 	
+	@Update("UPDATE project SET approval=0 WHERE num = #{pnum}")
+	public void updateApproval(int pnum);
+	
 	public List<ProjectVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public ProjectVO selectProject(Integer num);

@@ -45,6 +45,10 @@
     	<put-attribute name="title" value="나의 프로젝트"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/updateView.jsp"/>
     </definition>
+    <definition name="ApprovalView" extends="main">
+    	<put-attribute name="title" value="나의 프로젝트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/ApprovalView.jsp"/>
+    </definition>
     <definition name="myProjectDetailLock" extends="main">
     	<put-attribute name="title" value="나의 프로젝트 - 프로젝트 정보"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myProjectDetailLock.jsp"/>

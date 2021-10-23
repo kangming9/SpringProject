@@ -24,5 +24,7 @@ public interface ProjectService {
 	public ProjectVO selectProject(Integer num);
 	public int selectProjectSupporter(Integer num);
 	public Date selectFinish(int pnum);
+	
+	public void updateApproval(int pnum);
 
 }
