@@ -14,12 +14,12 @@
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
+<c:if test="${count == 0}">
+	<div class="result-display">
+		등록된 프로젝트가 없습니다.
+	</div>
+</c:if>
 <div class="myPro_Container">
-	<c:if test="${count == 0}">
-		<div>
-			창작한 프로젝트가 존재하지 않습니다.
-		</div>
-	</c:if>
 	<c:if test="${count > 0}">
 		<c:forEach var="project" items="${list}">
 			<div class="myPro__item">
