@@ -16,12 +16,14 @@
 		    $(".change-donation").val(donation);
 		    
 		    $("body").append('<div class="backon"></div>');
+		    $(".menu").css("z-index",0);
 		});
 		
 		$(".updateDelivery").on("click", function(event) {
 		    $("#deliveryList").show();
 		    
 		    $("body").append('<div class="backon"></div>');
+		    $(".menu").css("z-index",0);
 		});
 		
 		$('.giftChangeBtn').on("click", function(event) {
