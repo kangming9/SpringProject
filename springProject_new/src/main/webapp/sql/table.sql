@@ -243,3 +243,5 @@ alter table gift add optional number default 0 not null;
 --21.10.23 notice 테이블에 작성자 번호 추가(0인 경우 전체 공지)
 ALTER TABLE notice add m_num NUMBER default 0 not null;
 ALTER TABLE notice ADD CONSTRAINT FK_notice_m_num_member_num FOREIGN KEY (m_num) REFERENCES member (num);
+ALTER TABLE notice MODIFY not_date default sysdate;
+ALTER TABLE notice MODIFY mod_date default sysdate;
