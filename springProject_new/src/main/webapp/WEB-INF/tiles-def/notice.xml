@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 충돌없이 사용하기 위해 definition name은 앞에 member나 board 등 unique한 이름을 붙이면서 작명해주세요 -->
+<!-- xml 파일의 이름을 변경하실 경우, servlet-context.xml와 root-context.xml에서도 변경해주세요 -->
+
+<tiles-definitions>
+    <definition name="noticeList" extends="main">
+    	<put-attribute name="title" value="공지 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp"/>
+    </definition>
+    <definition name="noticeRegister" extends="main">
+    	<put-attribute name="title" value="공지 등록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/notice/noticeRegister.jsp"/>
+    </definition>
+    <definition name="noticeView" extends="main">
+    	<put-attribute name="title" value="공지 상세 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/notice/noticeView.jsp"/>
+    </definition>
+    <definition name="noticeModify" extends="main">
+    	<put-attribute name="title" value="공지 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/notice/noticeModify.jsp"/>
+    </definition>
+    
+</tiles-definitions>
+
+
+

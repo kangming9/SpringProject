@@ -6,20 +6,17 @@ import java.sql.Date;
 import javax.validation.constraints.NotEmpty;
 
 public class NoticeVO {
-	@NotEmpty
 	private int num;//공지사항 번호
-	@NotEmpty
 	private int p_num; //프로젝트 번호(0:전체공지)
-	@NotEmpty
 	private int m_num; //작성자 번호
 	@NotEmpty
 	private String title; //공지사항 제목
 	@NotEmpty
-	private Clob content; //공지사항 내용
-	@NotEmpty
+	private String content; //공지사항 내용
 	private Date not_date; //공지 날짜
-	@NotEmpty
 	private Date mod_date; //수정 날짜
+	private String nickname; //작성자 닉네임
+	private String p_name; //프로젝트 이름
 	public int getNum() {
 		return num;
 	}
@@ -44,10 +41,10 @@ public class NoticeVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Clob getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(Clob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public Date getNot_date() {
@@ -61,6 +58,18 @@ public class NoticeVO {
 	}
 	public void setMod_date(Date mod_date) {
 		this.mod_date = mod_date;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
 	@Override
 	public String toString() {

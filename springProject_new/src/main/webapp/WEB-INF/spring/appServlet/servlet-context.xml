@@ -63,6 +63,7 @@
 				<beans:value>/WEB-INF/tiles-def/projectview.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/qanda.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/support.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/notice.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -100,6 +101,8 @@
 			<exclude-mapping path="/guide/termsOfUse.do"/>
 			<exclude-mapping path="/guide/privacyPolicy.do"/>
 			<exclude-mapping path="/question/list.do"/>
+			<!-- <exclude-mapping path="/notice/list.do"/>
+			<exclude-mapping path="/notice/detail.do"/> -->
 			<exclude-mapping path="/main/**"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
@@ -108,6 +111,12 @@
 			<mapping path="/question/update.do"/>
 			<mapping path="/question/delete.do"/>
 			<beans:bean class="kr.spring.interceptor.WriterCheckInterceptor"/>
+		</interceptor>
+		<!-- 프로젝트 공지 작성자 일치 여부 체크 -->
+		<interceptor>
+			<mapping path="/notice/modify.do"/>
+			<mapping path="/notice/delete.do"/>
+			<beans:bean class="kr.spring.interceptor.NoticeCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
