@@ -126,44 +126,44 @@ public class MypageController {
 		return mav;
 	}
 	//후원프로젝트 디테일
-		@RequestMapping("/mypage/mysupportdetail.do")
-		public ModelAndView mySupportView(HttpSession session,
-										 @RequestParam(value="p_num") int p_num,
-										 @RequestParam(value="g_num") int g_num,
-										 @RequestParam(value="num") int num) {
-			
-			Integer user_num = (Integer)session.getAttribute("user_num");
-			
+	@RequestMapping("/mypage/mysupportdetail.do")
+	public ModelAndView mySupportView(HttpSession session,
+									 @RequestParam(value="p_num") int p_num,
+									 @RequestParam(value="g_num") int g_num,
+									 @RequestParam(value="num") int num) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
 
-			logger.debug("<<후원프로젝트 상세페이지 호출>>");
-			
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("m_num", user_num);
-			map.put("p_num", p_num);
-			map.put("g_num", g_num);
-			map.put("num", num);
-			logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
-			
-			SupportVO support = mypageService.selectmySupport(map);
-			support.setP_num(p_num);
-			logger.debug("<<supportVO>> : " + support);
-			
-			Map<String,Object> map2 = new HashMap<String,Object>();
-			map2.put("gd_name", support.getname_1());
-			map2.put("gd_num", g_num);
-			
-			List<GiftVO> gift = null;
-			
-			gift = giftService.selectGiftDetail(map2);
-			logger.debug("<<GiftVO>> : " + gift);
-			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("mySupportDetailView");
-			mav.addObject("support", support);
-			mav.addObject("gift", gift);
-			
-			return mav;
-		}
+		logger.debug("<<후원프로젝트 상세페이지 호출>>");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("m_num", user_num);
+		map.put("p_num", p_num);
+		map.put("g_num", g_num);
+		map.put("num", num);
+		logger.debug("회원번호 : " + user_num + "프로젝트번호 : " + p_num + "선물번호 : " + g_num + "서포트번호 : " + num);
+		
+		SupportVO support = mypageService.selectmySupport(map);
+		support.setP_num(p_num);
+		logger.debug("<<supportVO>> : " + support);
+		
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("gd_name", support.getname_1());
+		map2.put("gd_num", g_num);
+		
+		List<GiftVO> gift = null;
+		
+		gift = giftService.selectGiftDetail(map2);
+		logger.debug("<<GiftVO>> : " + gift);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mySupportDetailView");
+		mav.addObject("support", support);
+		mav.addObject("gift", gift);
+		
+		return mav;
+	}
 	//나의프로젝트 호출
 	@RequestMapping("/mypage/myProject.do")
 	public ModelAndView myProjectView(HttpSession session,

@@ -135,12 +135,15 @@
 		s.payment, 
 		s.support_amount, 
 		s.donation, 
-		s.payment_date
-	FROM project p, gift g, support s
-	WHERE p.m_num=s.m_num 
-	AND s.p_num=g.p_num
-	AND g.p_num=p.num
-	AND s.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num} AND s.num=#{num}
+		s.payment_date,
+		md.name as md_name, 
+		md.phone, 
+		md.email
+	FROM project p, gift g, support s, member_detail md
+	WHERE p.num=s.p_num
+	AND g.num=s.g_num
+	AND s.m_num=md.m_num
+	AND md.m_num=#{m_num} AND s.p_num=#{p_num} AND g.num=#{g_num} AND s.num=#{num}
   </select>
   
   <!-- 문의 게시판 리스트 -->

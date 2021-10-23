@@ -38,6 +38,40 @@ public class SupportVO {//후원 테이블
 	private int goal_amount; //후원목표 금액
 	private String summary; //프로젝트 요약
 	
+	private String md_name; //후원자 이름
+	private String phone; //후원자 폰번호
+	private String email; //후원자 메일
+	
+	public String getMd_name() {
+		return md_name;
+	}
+
+
+	public void setMd_name(String md_name) {
+		this.md_name = md_name;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 	public String getSummary() {
 		return summary;
 	}
