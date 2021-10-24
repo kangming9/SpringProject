@@ -214,10 +214,8 @@
 									</c:if>
 								</c:forEach>
 								<c:if test="${gift.optional==1}">
-									<span class="info-con">
-										<span>선물 옵션</span>
-										<input type="text" class="optional-${gift.num}" name="optional" placeholder="선물 소개를 참고하여 작성해주세요."> 
-									</span>
+									<span>선물 옵션</span>
+									<input type="text" class="optional-${gift.num}" name="optional" placeholder="선물 소개를 참고하여 작성해주세요."> 
 								</c:if>
 								<span class="rest-${gift.num}">${gift.rest_cnt}개 남음
 									<c:if test="${gift.rest_cnt <= 0}">
