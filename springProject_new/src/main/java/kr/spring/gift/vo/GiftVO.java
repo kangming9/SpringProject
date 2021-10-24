@@ -17,6 +17,7 @@ public class GiftVO {
 	private int gd_count; //구성품 개수
 	private int com_cnt; //선물당 구성품 개수
 	private String price_str; //선물 총 후원금액 스트링
+	private int rest_cnt; //선물 남은 개수
 	
 	public int getNum() {
 		return num;
@@ -94,6 +95,12 @@ public class GiftVO {
 	}
 	public void setPrice_str(String price_str) {
 		this.price_str = price_str;
+	}
+	public int getRest_cnt() {
+		return rest_cnt;
+	}
+	public void setRest_cnt(int rest_cnt) {
+		this.rest_cnt = rest_cnt;
 	}
 	@Override
 	public String toString() {
