@@ -12,17 +12,21 @@
 		
 		$('#return').click(function(){
 	    	$('#reason').show();
+	    	$('#confirm_project_form').submit(function(){
+				if($('#reason').val().trim()==''){
+		    		alert('반려사유는 필수 기재 사항입니다.');
+		    		return false;
+		    	}
+    		});
+	    });
+		
+		$('#approval').click(function(){
+	    	$('#reason').hide();
 	    	
 	    });
 		
-		$('#confirm_project_form').submit(function(){
-			$('#return').click(function(){
-				if($('#reason').value().trim()==''){
-		    		alert('반려사유는 필수 기재 사항입니다.');
-		    		return;
-		    	}
-		    });
-    	});
+		
+		
 	});
 </script>
 <!-- 중앙 내용 시작 -->
@@ -72,7 +76,7 @@
 					</li>
 				</ul>
 				<div class="confirm-result-submit">
-					<input type="submit" value="심사결과 전송">
+					<input type="submit" value="심사결과 전송" class="confirm-result-submit">
 				</div>
 			</form>
 			</div>
