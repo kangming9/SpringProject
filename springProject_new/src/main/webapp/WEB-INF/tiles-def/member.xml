@@ -41,6 +41,10 @@
     	<put-attribute name="title" value="회원관리"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/memberList.jsp"/>
     </definition>
+    <definition name="detailUserFormView" extends="main">
+    	<put-attribute name="title" value="회원정보 변경"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/detailUserFromView.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

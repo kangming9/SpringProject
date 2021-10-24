@@ -11,7 +11,7 @@ body {
   height: 44px;
   background: #ffffff;
   width: auto;
-  align-items: center;
+
 
 }
 .menu ul {
@@ -53,6 +53,10 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
+  
+
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

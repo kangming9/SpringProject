@@ -355,5 +355,10 @@ public class MemberController {
 			return "memberList";
 		 
 		 }
+		 
+		 @RequestMapping("/member/detailUserForm")
+		 public String detailUserFormView() {
+			 return "detailUserFormView";
+		 }
 	} 
 	 
