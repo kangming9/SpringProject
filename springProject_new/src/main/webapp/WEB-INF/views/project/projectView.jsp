@@ -35,7 +35,7 @@
 			
 			$('.popup_box').css({
 				"top": offset.top+width+12,
-				"left": offset.left,
+				"left": offset.left-10,
 				"position": "absolute"
 			}).show();
 	   }); 
