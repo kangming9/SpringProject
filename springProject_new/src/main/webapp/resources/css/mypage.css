@@ -523,12 +523,14 @@ select {
 }
 .system-margin2{
 	margin-left: 405px;
+	font-size: 11px;
 }
 .system-margin3{
 	margin-left: 405px;
 }
 .system-margin4{
-	margin-left: 395px;
+	margin-left: 397px;
+	font-size: 11px;
 }
 .system-div-margin{
 	margin: 60px;

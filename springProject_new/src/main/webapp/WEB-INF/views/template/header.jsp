@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" type="text/css">  
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css" type="text/css"> 
 <!-- 상단 시작 -->
-<div class="align-center header-title"><a href="${pageContext.request.contextPath}/main/main.do" class="delete_line">Funding <i class="fas fa-gamepad"></i> Adventure</a></div>
+<div class="align-center header-title"><a href="${pageContext.request.contextPath}/main/main.do" class="delete_line">Funding Adventure</a></div>
 	<div class='menu'>
 			<ul class="header-page-menu">
 				<li>

@@ -10,7 +10,7 @@
 }
 
 .slide {
-	border:1px solid black;
+	border:1px solid #e3e3de;
 	width:800px;
 	position: relative;
 	overflow: hidden;
@@ -127,7 +127,9 @@
 .slide .slide-description .slide-description-title{
 	margin-top:80px;
 }
-
+.slide-description-title{
+	font-size: 20px;
+}
 
 .project{
 	width:800px;

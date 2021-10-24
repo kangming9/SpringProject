@@ -6,7 +6,7 @@
 
 
 
-<div class='menu'>
+<div class='menu22'>
 	<ul>
 			
 		<!-- if문 걸어서 현재 페이지에 따라 현재 링크 나오도록 -->

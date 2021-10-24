@@ -15,41 +15,41 @@
 		  <div class="slide-full" 
 		  	style="background-image:url(${pageContext.request.contextPath}/resources/images/slide05.png);
 		  	width:500px;">
-		  	<div class="slide-description">
+		  	<div class="slide-description" style="background-color: #bdb000">
 				<h3 class="slide-description-title">소개</h3>
 	      		<span class="slide-description-content">펀딩 어드벤처의 위대한 여정</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
+	      		<button style="background-color:#bdb000;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
 			</div>
 		  </div>
 		  <div class="slide-full"
 		  style="background-image:url(${pageContext.request.contextPath}/resources/images/slide03.png);
 		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/creatorGuide.do''">  
-		    <div class="slide-description">
+		    <div class="slide-description" style="background-color: #bdb000">
 				<h3 class="slide-description-title">창작자 가이드</h3>
 	      		<span class="slide-description-content">창작자라면 꼭 지켜주세요</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/creatorGuide.do'"></button>
+	      		<button style="background-color:#bdb000;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/creatorGuide.do'"></button>
 			</div>
 			</div>
 		 <div class="slide-full"
 		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide02.png);
 		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/supporterGuide.do''"> 
-		    <div class="slide-description">
+		    <div class="slide-description" style="background-color: #bdb000">
 				<h3 class="slide-description-title">후원자 가이드</h3>
 	      		<span class="slide-description-content">후원자라면 꼭 지켜주세요</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/supporterGuide.do'"></button>
+	      		<button style="background-color:#bdb000;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/supporterGuide.do'"></button>
 			</div>
 		</div>
 		 <div class="slide-full"
 		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide04.png);
 		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/projectStandard.do'">  
-			<div class="slide-description">
+			<div class="slide-description" style="background-color: #bdb000">
 				<h3 class="slide-description-title">펀딩 심사기준</h3>
 	      		<span class="slide-description-content">이것만 따르면 당신도 창작자!</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/projectStandard.do'"></button>
+	      		<button style="background-color:#bdb000;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/projectStandard.do'"></button>
 			</div>
 			</div>
 		  </div>
@@ -65,7 +65,7 @@
 	
 	<!-- 인기 프로젝트 시작 -->
 	<div class="project">
-		<h2>인기 프로젝트</h2>
+		<h3>인기 프로젝트</h3>
 		<c:if test="${count2 == 0}">
 			<div class="result-display">
 				현재 등록된 프로젝트가 없습니다.
@@ -127,7 +127,7 @@
 	
 	<!-- 최신 프로젝트 시작 -->
 	<div class="project">
-		<h2>최신 프로젝트</h2>
+		<h3>최신 프로젝트</h3>
 		<c:if test="${count == 0}">
 			<div class="result-display">
 				현재 등록된 프로젝트가 없습니다.
