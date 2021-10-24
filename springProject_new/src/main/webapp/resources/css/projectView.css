@@ -318,6 +318,11 @@ button:hover{
    	font-size: 18px;
 }
 
+.rest_cnt{
+	color: #FF7878;
+	float: right;
+}
+
 .gift-card .component{
    	font-size: 12px;
 }

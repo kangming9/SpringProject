@@ -212,7 +212,10 @@
 								<input type="hidden" value="${project.num}" name="p_num">
 								<input type="hidden" value="${gift.num}" name="g_num">
 								
-								<div class="price ginfo"><b>${gift.price_str}원</b></div>
+								<span class="ginfo">
+									<span class="price"><b>${gift.price_str}원</b></span>
+									<span class="rest_cnt">${gift.rest_cnt}개 남음</span>
+								</span>
 								<div class="name ginfo">${gift.name}</div>
 								<c:forEach var="component" items="${comList}">
 									<c:if test="${component.num == gift.num}">
