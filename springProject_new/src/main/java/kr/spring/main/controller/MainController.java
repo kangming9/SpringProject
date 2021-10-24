@@ -60,7 +60,7 @@ public class MainController {
 		logger.debug("======count=======: " + count2);
 		
 		
-		PagingUtil page = new PagingUtil("","",1,count,8,1,"");
+		PagingUtil page = new PagingUtil("","",1,count,4,1,"");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
 		map2.put("start", page.getStartCount());
