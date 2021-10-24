@@ -68,7 +68,7 @@ public class MemberController {
 		try {
 
 			MemberVO member = memberService.selectCheckMember(memberVO.getId());
-
+			logger.debug("<<회원 로그인2>> : " + member);
 			boolean check = false;
 
 			if (member != null) {// 아이디 일치 //비밀번호 일치 여부 체크 사용자가 입력한 비밀번호
@@ -84,7 +84,9 @@ public class MemberController {
 				
 				if(member.getNickname()==null) { //닉네임 널값이면 닉네임 익명으로 업데이트
 					memberService.updateNickname(member.getNum());
-					session.setAttribute("user_nickname", member.getNickname());
+					MemberVO mem = memberService.selectCheckMember(memberVO.getId());
+					session.setAttribute("user_nickname", mem.getNickname());
+					logger.debug("익명으로 닉네임생성 : " + mem.getNickname());
 				}
 				
 				return "redirect:/main/main.do";
