@@ -175,3 +175,13 @@ h2{
 #team-photo{
 	width : 50%;
 }
+
+a:link,  a:visited { 
+	color: black;
+	text-decoration: none;
+}
+
+a:hover { 
+	color: black;
+	text-decoration: none;
+}
