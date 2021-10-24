@@ -11,7 +11,7 @@ body {
   height: 44px;
   background: #ffffff;
   width: auto;
-
+  align-items: center;
 
 }
 .menu ul {
@@ -21,7 +21,7 @@ body {
   line-height: 1;
 }
 
-/* 메뉴 */
+/* 메뉴 백그라운드 */
 .menu > ul {
   position: relative;
   display: block;
@@ -53,10 +53,6 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  
-
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 
 
@@ -66,7 +62,7 @@ body {
   text-align:center;
   margin: 0;
   padding: 0;
-  float:right;
+  float: right;
 }
 .menu ul di a {
   display: block;
@@ -117,7 +113,7 @@ body {
 
 /* 마우스 포인터 */
 .menu > ul > li:hover > a {
-  color: #2b2f3a;
+  color: #FF7878;
 }
 .menu li.sub::after {
   display: block;
@@ -132,6 +128,7 @@ body {
   border: 5px solid transparent;
   border-top-color: #7a8189;
 }
+/* 드롭다운 삼각형 */
 .menu > ul > li:hover::after {
   border-top-color: #ffffff;
 }

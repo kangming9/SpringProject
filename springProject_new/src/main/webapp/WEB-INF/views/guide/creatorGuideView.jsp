@@ -11,7 +11,7 @@
 			
 		<!-- if문 걸어서 현재 페이지에 따라 현재 링크 나오도록 -->
 		<li>
-			<a href="${pageContext.request.contextPath}" class="delete_line">이용안내</a>
+			<a class="delete_line">이용안내</a>
 		</li>
 				
 		<li style="float: right">
