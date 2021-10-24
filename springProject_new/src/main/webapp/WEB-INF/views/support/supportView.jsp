@@ -42,6 +42,10 @@
 				var checkName = ".name-"+check;
 				$(".support_name").text($(checkName).text());
 				
+				var checkOption = ".optional-"+check;
+				$(".support_option").text($(checkOption).val());
+				$("#gift_option").val($(checkOption).val());
+				
 				var checkPrice = ".price-"+check;
 				var price = $(checkPrice).text().replace(/[^0-9]/g,''); 
 				$(".support_price").text($(checkPrice).text());
@@ -131,6 +135,7 @@
 					var g_num = $('#g_num').val();
 					var p_num = $('#p_num').val();
 					var d_num = $('#d_num').val();
+					var gift_option = $('#gift_option').val();
 					var support_amount = $('#support_amount').val();
 					var donation = $('#donation').val();
 					
@@ -142,6 +147,7 @@
 							"g_num" : g_num,
 							"p_num" : p_num,
 							"d_num" : d_num,
+							"gift_option" : gift_option,
 							"support_amount" : support_amount,
 							"donation" : donation
 						},
@@ -176,6 +182,7 @@
 	<div class="container-title"><span>후원하기</span></div>
 	<form:form id="payment_form" action="result.do" modelAttribute="supportVO">
 	<input type="hidden" id="num" value="${support.num}" name="num">
+	<input type="hidden" id="gift_option" value="${support.gift_option}" name="gift_option">
 	<input type="hidden" id="g_num" value="${gift.num}" name="g_num">
 	<input type="hidden" id="p_num" value="${gift.p_num}" name="p_num">
 	<%-- <input type="hidden" id="gift_option" value="${support.gift_option}" name="gift_option"> --%>
@@ -206,6 +213,12 @@
 										<span class="component">- ${component.gd_name} x ${component.gd_count}</span>
 									</c:if>
 								</c:forEach>
+								<c:if test="${gift.optional==1}">
+									<span class="info-con">
+										<span>선물 옵션</span>
+										<input type="text" class="optional-${gift.num}" name="optional" placeholder="선물 소개를 참고하여 작성해주세요."> 
+									</span>
+								</c:if>
 								<span class="rest-${gift.num}">${gift.rest_cnt}개 남음
 									<c:if test="${gift.rest_cnt <= 0}">
 								 	 <span class="color">(선택불가)</span>
@@ -231,6 +244,12 @@
 				<span class="info-name">선물 이름</span>
 				<span class="info-item support_name">${gift.name}</span>
 			</div>
+			<c:if test="${support.gift_option!=''}">
+				<div class="info-con">
+					<span class="info-name">선물 옵션</span>
+					<span class="info-item support_option">${support.gift_option}</span>
+				</div>
+			</c:if>
 			<div class="info-con">
 				<span class="info-name">선물 금액</span>
 				<span class="info-item support_price">${gift.price_str}원</span>

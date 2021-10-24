@@ -224,7 +224,13 @@
 									</c:if>
 								</c:forEach>
 								<c:if test="${gift.due_ship == 1}">
-									<div class="ship">선물 배송 예정일<br>${project.finish_date}</div>
+									<div class="ship">선물 배송 예정일: ${project.finish_date}</div>
+								</c:if>
+								<c:if test="${gift.optional == 1}">
+									<div class="option-wrap">
+										<div>옵션</div>
+										<input type="text" class="optional" name="optional" placeholder="선물 소개를 참고하여 작성해주세요."> 
+									</div>
 								</c:if>
 								<div class="donation-wrap">
 									<div>추가 후원금(선택)</div>

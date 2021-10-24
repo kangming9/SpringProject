@@ -10,6 +10,7 @@
  			g.price, 
  			g.name, 
  			g.due_ship, 
+ 			g.optional,
  			NVL(g.num_component,0) num_component, 
             NVL(g.num_component,0)-buy rest_cnt,
  			NVL(cnt,0) com_cnt

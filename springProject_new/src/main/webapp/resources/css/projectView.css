@@ -30,9 +30,9 @@ input:focus {
 	outline:none;
 }
 
-input::placeholder{color:#E6E6E6;}
-input::-webkit-input-placeholder {color:#E6E6E6;}
-input:-ms-input-placeholder {color: #E6E6E6;}
+input::placeholder{font-size: 12px;}
+input::-webkit-input-placeholder {font-size: 12px;}
+input:-ms-input-placeholder {font-size: 12px;}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -334,15 +334,15 @@ button:hover{
    	margin-bottom: 10px;
 }
 
-.donation-wrap{
+.donation-wrap, .option-wrap{
 	margin-bottom: 10px;
 }
 
-.donation-wrap>div{
+.donation-wrap>div, .option-wrap>div{
 	margin-bottom: 5px;
 }
 
-.donation{
+.donation, .optional{
 	width: 100%;
 	padding: 3px;
  	border: 1px solid #E6E6E6;

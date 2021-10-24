@@ -4,19 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,7 +50,7 @@ public class SupportController {
 	
 	//후원하기
 	@RequestMapping("/support/support.do")
-	public ModelAndView process(SupportVO supportVO, HttpSession session) {
+	public ModelAndView process(@RequestParam(value = "optional", defaultValue = "")String optional, SupportVO supportVO, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		MemberVO memberVO = null;
 		List<DeliveryVO> deliveryList = null;
@@ -82,6 +76,7 @@ public class SupportController {
 		supportVO.setNum(supportService.selectNum());
 		supportVO.setP_num(p_num);
 		supportVO.setSupport_amount(giftVO.getPrice()+supportVO.getDonation());
+		supportVO.setGift_option(optional);
 		
 		List<GiftVO> giftList = giftService.selectList(p_num);
 		List<GiftVO> comList = giftService.selectComList(p_num);
@@ -114,6 +109,7 @@ public class SupportController {
 			
 			map.put("result", "logout");
 		}else {
+			
 			supportVO.setM_num(user_num);
 			
 			if(supportVO.getGift_option() == null) {
