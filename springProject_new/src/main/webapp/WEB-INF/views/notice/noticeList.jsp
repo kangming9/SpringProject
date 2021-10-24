@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/question.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -20,6 +21,49 @@
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<div class="box">
+	<h2>프로젝트</h2>
+	<div class="category">
+		<c:if test="${project.category == 0}">온라인</c:if>
+		<c:if test="${project.category == 1}">모바일</c:if>
+		<c:if test="${project.category == 2}">보드</c:if>
+		<c:if test="${project.category == 3}">카드</c:if>
+	</div>
+	<div class="projectOutline">
+		<div class="outline-left">
+			<c:if test="${project.photo == 'default_team.jpg'}">
+				<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg">
+			</c:if>
+			<c:if test="${project.photo != 'default_team.jpg'}">
+				<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
+			</c:if>
+		</div>
+		<div class="outline-right">
+			<ul>
+				<li>
+					<div class="info-content"><b>${project.name}</b></div>
+				</li>
+				<li>
+					<div class="creator">
+						<div class="profile">
+						<c:if test="${empty creator.photo}">
+							<img class="my-photo" src="${pageContext.request.contextPath}/resources/images/userimage.png" width="25" height="25">
+						</c:if>
+						<c:if test="${!empty creator.photo}">
+							<img class="my-photo" src="${pageContext.request.contextPath}/mypage/mphotoView.do?num=${project.m_num}" width="25" height="25">
+						</c:if>
+						</div>
+						<div class="nickname">&nbsp;${project.nickname}</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div>${project.summary}</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr>
 	<div class="list-title">
 		<h2>공지 게시판</h2>
 		<span>프로젝트 공지사항을 확인하세요!</span>
@@ -34,11 +78,10 @@
 					<input type="search" name="keyword" id="keyword">
 					<input type="submit" value="찾기" class="btns">
 				</li>
-				
 			</ul>
 		</form>
 	</div>
-	<c:if test="${!empty user_num && user_num==creator}">
+	<c:if test="${!empty user_num && user_num==creator.num}">
 		<div class="question-btn">
 			<input type="button" value="공지 등록" onclick="location.href='register.do?p_num=${p_num}'" class="question-register-btn">
 		</div>

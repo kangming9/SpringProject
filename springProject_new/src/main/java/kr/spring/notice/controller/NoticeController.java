@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.notice.service.NoticeService;
 import kr.spring.notice.vo.NoticeVO;
 import kr.spring.project.service.ProjectService;
+import kr.spring.project.vo.ProjectVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
@@ -36,6 +39,8 @@ public class NoticeController {
 	private NoticeService noticeService;
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private MemberService memberService;
 	
 	//자바빈 초기화
 	@ModelAttribute
@@ -100,11 +105,13 @@ public class NoticeController {
 			list = noticeService.selectList(map);
 		}
 		
-		int creator = projectService.selectProject(p_num).getM_num();
+		ProjectVO project = projectService.selectProject(p_num);
+		MemberVO creator =  memberService.selectMember(project.getM_num());
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticeList"); // 타일스 식별자
 		mav.addObject("p_num", p_num);
+		mav.addObject("project", project);
 		mav.addObject("creator", creator);
 		mav.addObject("count", count);
 		mav.addObject("list", list);
