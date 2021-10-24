@@ -125,23 +125,33 @@ public class NoticeController {
 	public ModelAndView process(@RequestParam int num) {
 		
 		NoticeVO notice = noticeService.selectNotice(num);
+		MemberVO creator =  memberService.selectMember(notice.getM_num());
 		
 		logger.debug("<< 제목 >> : " + notice.getTitle());
 		
 		notice.setTitle(notice.getTitle());
 		notice.setContent(notice.getContent());
 		
-		return new ModelAndView("noticeView","notice",notice);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeView");
+		mav.addObject("notice", notice);
+		mav.addObject("creator", creator);
+		
+		return mav;
 	}
 	
 	//공지 수정 - 폼 호출
 	@GetMapping("/notice/modify.do")
-	public String formUpdate(@RequestParam int num,Model model, HttpServletRequest request) {
+	public ModelAndView formUpdate(@RequestParam int num, Model model, HttpServletRequest request) {
 		NoticeVO noticeVO = noticeService.selectNotice(num);
 		
-		model.addAttribute("noticeVO",noticeVO);
+		logger.debug("<< 공지 수정 폼 호출 >> : " + noticeVO);
 		
-		return "noticeModify";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeModify");
+		mav.addObject("noticeVO", noticeVO);
+		
+		return mav;
 	}
 	
 	//공지 수정 - 전송된 데이터 처리
@@ -151,12 +161,12 @@ public class NoticeController {
 		logger.debug("<< 공지 수정 >> : " + noticeVO);
 		
 		if(result.hasErrors()) {
-			return "questionModify";
+			return "noticeModify";
 		}
 		
 		noticeService.modifyNotice(noticeVO);
 		
-		return "redirect:/notice/list.do?p_num="+noticeVO.getP_num();
+		return "redirect:/notice/detail.do?num="+noticeVO.getNum();
 	}
 	
 	//공지 삭제

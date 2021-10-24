@@ -31,26 +31,34 @@
 	<div class="projectOutline">
 		<div class="outline-left">
 			<c:if test="${project.photo == 'default_team.jpg'}">
-				<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg">
+				<a href="${pageContext.request.contextPath}/project/detail.do?num=${project.num}">
+					<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg">
+				</a>
 			</c:if>
 			<c:if test="${project.photo != 'default_team.jpg'}">
-				<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
+				<a href="${pageContext.request.contextPath}/project/detail.do?num=${project.num}">
+					<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
+				</a>
 			</c:if>
 		</div>
 		<div class="outline-right">
 			<ul>
 				<li>
-					<div class="info-content"><b>${project.name}</b></div>
+					<div class="info-content">
+						<a href="${pageContext.request.contextPath}/project/detail.do?num=${project.num}">
+							<b>${project.name}</b>
+						</a>
+					</div>
 				</li>
 				<li>
 					<div class="creator">
 						<div class="profile">
-						<c:if test="${empty creator.photo}">
-							<img class="my-photo" src="${pageContext.request.contextPath}/resources/images/userimage.png" width="25" height="25">
-						</c:if>
-						<c:if test="${!empty creator.photo}">
-							<img class="my-photo" src="${pageContext.request.contextPath}/mypage/mphotoView.do?num=${project.m_num}" width="25" height="25">
-						</c:if>
+							<c:if test="${empty creator.photo}">
+								<img class="my-photo" src="${pageContext.request.contextPath}/resources/images/userimage.png" width="25" height="25">
+							</c:if>
+							<c:if test="${!empty creator.photo}">
+								<img class="my-photo" src="${pageContext.request.contextPath}/mypage/mphotoView.do?num=${project.m_num}" width="25" height="25">
+							</c:if>
 						</div>
 						<div class="nickname">&nbsp;${project.nickname}</div>
 					</div>
