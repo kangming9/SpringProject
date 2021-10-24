@@ -233,6 +233,9 @@ ALTER TABLE delivery MODIFY address varchar(100);
 ALTER TABLE gift DROP COLUMN intro;
 --21.10.18 문의하기에 프로젝트 넘버 fk 삭제
 ALTER TABLE question DROP CONSTRAINT FK_QUESTION_P_NUM_PROJECT_NUM;
+--21.10.18 question, project 컬럼 변경
+ALTER TABLE question MODIFY title varchar(50); 
+ALTER TABLE project MODIFY (photo DEFAULT 'default_team.jpg');
 --21.10.21 support테이블에 결제날짜 추가
 ALTER TABLE support ADD payment_date DATE DEFAULT sysdate NOT NULL;
 --21.10.22 support테이블에 배송지 넘버 fk 추가
@@ -240,6 +243,8 @@ ALTER TABLE support ADD d_num NUMBER NULL;
 ALTER TABLE support ADD CONSTRAINT FK_support_d_num_delivery_num FOREIGN KEY (d_num) REFERENCES delivery (num);
 --21.10.22 gift 테이블에 옵션 선택 추가
 alter table gift add optional number default 0 not null;
+--21.10.22 member_detail에 email varchar2(50)
+ALTER TABLE member_detail MODIFY email varchar(50);
 --21.10.23 notice 테이블에 작성자 번호 추가(0인 경우 전체 공지)
 ALTER TABLE notice add m_num NUMBER default 0 not null;
 ALTER TABLE notice ADD CONSTRAINT FK_notice_m_num_member_num FOREIGN KEY (m_num) REFERENCES member (num);
