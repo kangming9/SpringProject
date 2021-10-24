@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.service.KakaoAPI;
@@ -58,7 +59,7 @@ public class MemberController {
 
 	// 로그인 - 로그인 데이터 처리
 	@PostMapping("/member/login.do")
-	public String submitLogin(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
+	public String submitLogin(@Valid MemberVO memberVO, BindingResult result, HttpSession session, Model model) {
 
 		logger.debug("<<회원 로그인>> : " + memberVO);
 
@@ -93,7 +94,20 @@ public class MemberController {
 				}
 				
 				if(member.getGrade()== 0) {
-					return "redirect:/mypage/adminPage.do";
+					int allMem = memberService.allMemCount();
+					int realMem = memberService.realMemCount();
+					int sMem = memberService.sMemCount();
+					int pMem = memberService.pMemCount();
+					
+					logger.debug("all: " + allMem + "real: " + realMem + "sMem: " + sMem + "pMem: " + pMem);
+					
+					model.addAttribute("allMem", allMem);
+					model.addAttribute("realMem", realMem);
+					model.addAttribute("sMem", sMem);
+					model.addAttribute("pMem", pMem);
+					
+					return "adminPageView";
+					//return "redirect:/mypage/adminPage.do";
 				}
 				
 				

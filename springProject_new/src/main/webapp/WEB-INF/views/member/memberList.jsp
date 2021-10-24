@@ -56,16 +56,13 @@
 		</c:if>
 		<c:if test="${mem_count > 0}">
 		<div class="tb-container">
-		<div>
-			<div>
+			<%-- <div>
 			<p>총 회원수</p>
 			<p>총${allMem}</p>
 			<p>진짜${realMem}</p>
 			<p>후원자수${sMem}</p>
 			<p>프로젝트창작자수${pMem}</p>
-			</div>
-			
-		</div>
+			</div> --%>
 		<table class="manager_member_table">
 			<thead class="tb-header">
 				<tr>
@@ -80,22 +77,24 @@
 			<tbody class="tb-content">
 			<c:forEach var="member" items="${list}">
 			<tr class="manager_member_content">
-				<td>
-					${member.id}
-				</td>
-				<td>${member.name}</td>
-				<td>${member.phone}</td>
-				<td>${member.reg_date}</td>
-				<td>
-				<c:if test="${member.grade == 0}">관리자</c:if>
-				<c:if test="${member.grade == 1}">탈퇴</c:if>
-				<c:if test="${member.grade == 2}">일반회원</c:if>
-				<c:if test="${member.grade == 3}">카카오</c:if>
-				<c:if test="${member.grade == 4}">추방 회원</c:if>
-				</td>
-				<td>
-					<button class="btnCss" onclick="location.href='${pageContext.request.contextPath}/member/outMember.do?num=${member.num}'">추방</button>
-				</td>
+				<c:if test="${member.grade > 0}">
+					<td>
+						${member.id}
+					</td>
+					<td>${member.name}</td>
+					<td>${member.phone}</td>
+					<td>${member.reg_date}</td>
+					<td>
+					<c:if test="${member.grade == 0}">관리자</c:if>
+					<c:if test="${member.grade == 1}">탈퇴</c:if>
+					<c:if test="${member.grade == 2}">일반회원</c:if>
+					<c:if test="${member.grade == 3}">카카오</c:if>
+					<c:if test="${member.grade == 4}">추방 회원</c:if>
+					</td>
+					<td>
+						<button class="btnCss" onclick="location.href='${pageContext.request.contextPath}/member/outMember.do?num=${member.num}'">추방</button>
+					</td>
+				</c:if>
 			</tr>
 			</c:forEach>
 			</tbody>
