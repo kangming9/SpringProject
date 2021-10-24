@@ -7,6 +7,7 @@
 		등록된 프로젝트가 없습니다.
 	</div>
 </c:if>
+<div style="margin:0 180px;">
 <div class="myPro_Container">
 	<c:if test="${count > 0}">
 		<c:forEach var="project" items="${list}">
@@ -51,3 +52,4 @@
 	</c:if>
 </div>
 <div class="align-center">${pagingHtml}</div>
+</div>
