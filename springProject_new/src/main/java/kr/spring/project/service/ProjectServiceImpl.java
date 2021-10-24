@@ -80,4 +80,22 @@ public class ProjectServiceImpl implements ProjectService{
 		projectMapper.updateApproval(pnum);
 	}
 
+	@Override
+	public ProjectVO selectConfirmProject(int num) {
+		return projectMapper.selectConfirmProject(num);
+	}
+
+
+
+	@Override
+	public void confirmApproveResult(int approval, int num) {
+		projectMapper.confirmApproveResult(approval, num);
+		
+	}
+
+	@Override
+	public void confirmReturnResult(int approval, String reason, int num) {
+		projectMapper.confirmReturnResult(approval, reason, num);
+	}
+
 }

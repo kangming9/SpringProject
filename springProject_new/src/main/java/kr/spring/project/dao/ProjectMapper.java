@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -36,4 +37,15 @@ public interface ProjectMapper {
 	public int selectRowCount(Map<String, Object> map);
 	public ProjectVO selectProject(Integer num);
 	public int selectProjectSupporter(Integer num);
+	
+	//관리자가 컨펌할 프로젝트(parameter = p_num)
+	@Select("SELECT * FROM project p WHERE p.num = #{num}")
+	public ProjectVO selectConfirmProject(Integer num);
+	//관리자 프로젝트 컨펌 결과
+	@Update("UPDATE project SET approval=#{approval} WHERE num=#{num}")
+	public void confirmApproveResult(@Param("approval")int approval,@Param("num")int num);
+	@Update("UPDATE project SET approval=#{approval}, reason=#{reason} WHERE num=#{num}")
+	public void confirmReturnResult(@Param("approval")int approval,@Param("reason") String reason,@Param("num") int num);
+	
+	
 }

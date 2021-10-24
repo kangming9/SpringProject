@@ -48,7 +48,7 @@
 	</c:if>
 	<c:if test="${count==0}">
 		<div class="result-display">
-			등록된 게시물이 없습니다.
+			등록된 문의글이 없습니다.
 		</div>
 	</c:if>
 	<c:if test="${count > 0}">

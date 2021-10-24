@@ -21,7 +21,7 @@
 	<p>
 	회원 정보조회 | 회원 정보수정
 	</div>
-	<div class="item" onclick="location.href='${pageContext.request.contextPath}">
+	<div class="item" onclick="location.href='${pageContext.request.contextPath}/mypage/confirmProjectList.do'">
 	<b>프로젝트 관리</b>
 	<p>
 	프로젝트 조회 | 프로젝트 통과 여부 결정
