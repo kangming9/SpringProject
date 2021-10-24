@@ -26,6 +26,7 @@ import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.service.KakaoAPI;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.mypage.service.MypageService;
 import kr.spring.util.AuthCheckException;
 
 @Controller
@@ -35,6 +36,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MypageService mypageService;
 	
 	
 	 @Autowired 
@@ -238,7 +241,7 @@ public class MemberController {
 		if (result.hasErrors()) {
 			return "snsRegister";
 		}
-
+		memberVO.setGrade(3);
 		memberService.insertMember(memberVO);
 
 		int zipcode = Integer.parseInt(memberVO.getZipcode());
@@ -359,38 +362,62 @@ public class MemberController {
 		return "common/resultView";
 		}
 	
-	//회원관리 페이지
-		 @RequestMapping("/member/memberList.do")
-		 public String memberList(HttpSession session, Model model) {
-			 
-			//Integer user_num = (Integer)session.getAttribute("user_num");
-			//MemberVO member = memberService.selectMember(user_num);
+	 //회원관리 페이지
+	 @RequestMapping("/member/memberList.do")
+	 public String memberList(HttpSession session, Model model) {
 			
-			List<MemberVO> list = new ArrayList<MemberVO>();
-			if(memberService.countMember() > 0) {
-				int roop;
-				for(roop = 1; roop<=memberService.getMaxMemNum(); roop++) {
-				MemberVO member = memberService.selectMember(roop);
-				logger.debug(String.valueOf(roop));
-				if(member==null)
-					continue;
-				list.add(member);
-				}
-				
-				
-				
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		if(memberService.countMember() > 0) {
+			int roop;
+			for(roop = 1; roop<=memberService.getMaxMemNum(); roop++) {
+			MemberVO member = memberService.selectMember(roop);
+			logger.debug(String.valueOf(roop));
+			if(member==null)
+				continue;
+			list.add(member);
 			}
-			
-			session.setAttribute("mem_count", memberService.countMember());
-			session.setAttribute("list", list);
-			//session.setAttribute("member", member);
-			return "memberList";
+		}
+		
+		logger.debug("관리자회원목록 list" + list);
+		
+		int allMem = memberService.allMemCount();
+		int realMem = memberService.realMemCount();
+		int sMem = memberService.sMemCount();
+		int pMem = memberService.pMemCount();
+		
+		model.addAttribute("mem_count", memberService.countMember());
+		model.addAttribute("list", list);
+		model.addAttribute("allMem", allMem);
+		model.addAttribute("realMem", realMem);
+		model.addAttribute("sMem", sMem);
+		model.addAttribute("pMem", pMem);
+		
+		//session.setAttribute("member", member);8iu79kse
+		return "memberList";
+	 
+	 }
 		 
-		 }
-		 
-		 @RequestMapping("/member/detailUserForm.do")
-		 public String detailUserFormView() {
-			 return "detailUserFormView";
-		 }
-	} 
+	 @RequestMapping("/member/detailUserForm.do")
+	 public String detailUserFormView() {
+		 return "detailUserFormView";
+	 }
+	
+
+	//멤버 강퇴
+	@RequestMapping("/member/outMember.do")
+	public String outMember(HttpSession session, Model model,
+			 				@RequestParam(value = "num") int num) {
+	
+		logger.debug("탈퇴기능 멤버번호 : " + num);
+		
+		MemberVO member = new MemberVO();
+		member.setM_num(num);
+		
+		memberService.delteOutMember(num); //등급 4로 변경
+		
+		return "redirect:/member/memberList.do";
+	}
+	
+	//
+}
 	 

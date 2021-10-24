@@ -34,4 +34,11 @@ public interface MemberService {
 		
 	public int getMaxMemNum();
 	public int getMaxMemDetailNum();
+	
+	public void delteOutMember(Integer num);
+	
+	public int realMemCount();
+	public int pMemCount();
+	public int allMemCount();
+	public int sMemCount();
 }
