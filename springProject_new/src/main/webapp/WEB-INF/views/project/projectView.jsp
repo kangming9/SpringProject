@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
 <script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 
