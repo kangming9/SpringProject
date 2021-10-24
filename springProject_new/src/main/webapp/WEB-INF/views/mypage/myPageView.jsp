@@ -46,13 +46,13 @@
 	</thead>
 	<tbody>
 		<tr class="mypageContentWrap">
-			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/mySupport.do'">후원프로젝트 내역</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/mySupport.do'">후원프로젝트</td>
 			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myQuestion.do'">문의 내역</td>
 			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myInformation.do'">회원정보수정</td>
 			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">로그아웃</td>
 		</tr>
 		<tr class="mypageContentWrap">
-			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myProject.do'">창작프로젝트 내역</td>
+			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myProject.do'">창작프로젝트</td>
 			<td></td>
 			<td class="pointer" onclick="location.href='${pageContext.request.contextPath}/mypage/myDelivery.do'">배송지 관리</td>
 			<td></td>
@@ -73,8 +73,8 @@
 </div>
 <!-- 후원 프로젝트 목록 -->
 <div>
-	<p>
-	<span class="top_supNum">최신 후원 프로젝트 목록</span>
+	<span class="top_supNum">최근 후원 프로젝트</span>
+	<span class="top_supNum_more"><a href="${pageContext.request.contextPath}/mypage/mySupport.do">More +</a></span>
 	<hr class="slimHr">
 	<c:if test="${count == 0}">
 		<div class="result-display">
@@ -126,8 +126,8 @@
 </div>
 <!-- 창작 프로젝트 목록 -->
 <div>
-	<p>
-	<span class="top_supNum">최신 창작 프로젝트 목록</span>
+	<span class="top_supNum">최근 창작 프로젝트</span>
+	<span class="top_supNum_more"><a href="${pageContext.request.contextPath}/mypage/myProject.do">More +</a></span>
 	<hr class="slimHr">
 	<c:if test="${count2 == 0}">
 	<div class="result-display">
