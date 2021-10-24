@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css" type="text/css">
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content">후원 프로젝트</b>
+	<b class="miniTitle_content">후원프로젝트</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>

@@ -281,12 +281,12 @@ $(function(){
 </script>
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mySettings.do'">설정</b>
+	<b class="miniTitle_content">회원정보수정</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
 <div class="container-title">
-	<span>기본 정보</span>
+	<span>회원정보</span>
 </div>
 <div class="info_container">
 	<div class="info_item info_item_title">닉네임</div>

@@ -133,7 +133,7 @@ $(function(){
 </script>
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mySettings.do'">설정</b>
+	<b class="miniTitle_content">배송지 관리</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
