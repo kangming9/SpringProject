@@ -40,8 +40,8 @@ import kr.spring.util.StringUtil;
 public class ProjectController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-	private int rowCount = 9;
-	private int pageCount = 5;
+	private int rowCount = 6;
+	private int pageCount = 10;
 
 	@Autowired
 	private ProjectService projectService;
