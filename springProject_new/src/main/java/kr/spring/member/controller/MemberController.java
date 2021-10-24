@@ -92,6 +92,11 @@ public class MemberController {
 					logger.debug("익명으로 닉네임생성 : " + mem.getNickname());
 				}
 				
+				if(member.getGrade()== 0) {
+					return "redirect:/mypage/adminPage.do";
+				}
+				
+				
 				return "redirect:/main/main.do";
 
 			} else { // 인증 실패
