@@ -206,9 +206,11 @@ public class MypageController {
 	@RequestMapping("/mypage/myProjectDetail.do")
 	public ModelAndView myProjectDetail(HttpSession session, ProjectVO projectVO) {
 		
-		logger.debug("<<나의 프로젝트 - 상세 페이지 호출 : >> : " + projectVO.getName());
+		logger.debug("<<나의 프로젝트 - 상세 페이지 호출 >> : " + projectVO.getName());
 		
 		projectVO = projectService.selectCheckProject(projectVO.getName());
+		
+		logger.debug("<<현재 프로젝트 정보>> : " + projectVO.toString());
 		
 		ModelAndView mav = new ModelAndView();
 		
