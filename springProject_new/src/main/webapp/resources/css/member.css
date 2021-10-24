@@ -48,7 +48,7 @@ h2{
 	font-weight:900;
 }
 
-.form-li #confirmId{
+.form-li #confirmId, #address-btn{
 	font-size:10px;
 	width:70px;
 	height:33px;

@@ -10,8 +10,9 @@
  			g.price, 
  			g.name, 
  			g.due_ship, 
+ 			g.optional,
  			NVL(g.num_component,0) num_component, 
- 			NVL(g.num_component,0)-buy rest_cnt, 
+            NVL(g.num_component,0)-buy rest_cnt,
  			NVL(cnt,0) com_cnt
 		FROM gift g LEFT OUTER JOIN
 		    (
@@ -19,12 +20,12 @@
 		    FROM gift g LEFT OUTER JOIN gift_detail d ON g.num = d.g_num
 		    GROUP BY d.g_num
 		    ) a ON g.num=a.g_num LEFT OUTER JOIN 
-		    (
-		    SELECT g.num, count(*) buy
-            FROM gift g JOIN support s ON g.num=s.g_num
-            WHERE g.p_num=#{p_num}
-            GROUP BY g.num
-		    )b ON g.num=b.num
+            (
+            select g.num, count(s.num) buy
+            from gift g LEFT OUTER JOIN support s ON g.num=s.g_num
+            where g.p_num = #{p_num}
+            group by g.num
+            )b ON g.num=b.num
 		WHERE g.p_num=#{p_num}
 		ORDER BY g.num
  	</select>

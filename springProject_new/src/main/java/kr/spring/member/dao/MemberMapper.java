@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 
 public interface MemberMapper {
@@ -19,6 +20,12 @@ public interface MemberMapper {
 	
 	@Insert("INSERT INTO member_detail (num,m_num,name,pass,phone,email,zipcode,address,address_detail) VALUES (member_detail_seq.nextval,#{num},#{name},#{pass},#{phone},#{email},#{zipcode},#{address},#{address_detail})")
 	public void insertMember_detail(MemberVO member);
+	
+	@Select("SELECT delivery_seq.nextval FROM dual")
+	public int select_deliverynum();
+	
+	@Insert("INSERT INTO delivery (num,m_num,name,zipcode,address,address_detail,address_check,phone) VALUES (delivery_seq.nextval,#{m_num},#{name},#{zipcode},#{address},#{address_detail},1,#{phone})")
+	public void insertDelivery(DeliveryVO delivery);
 	
 	@Update("UPDATE member_detail SET nickname='익명'||m_num WHERE m_num=#{num}")
 	public void updateNickname(Integer m_num);
