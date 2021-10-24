@@ -330,9 +330,7 @@
 		</div>
 		
 		<form:form id="create_gift_form" action="createGift.do" modelAttribute="giftVO">
-		<input type="hidden" value="${num}" id="p_num">
-		<input type="hidden" value="${name}" id="p_name">
-			
+			<form:input type="hidden" value="${num}" path="p_num" />
 		<div class="align-center">
 			<form:button>다음</form:button>
 			<input type="button" id="home" value="홈으로" >

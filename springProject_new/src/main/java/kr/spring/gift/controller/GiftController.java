@@ -45,7 +45,7 @@ public class GiftController {
 	
 	@RequestMapping("/create/addGift.do")
 	@ResponseBody
-	public Map<String, String> addGiftArr(HttpSession session, GiftVO giftVO, HttpServletRequest request) throws Exception{
+	public Map<String, String> addGiftArr(HttpSession session, ProjectVO projectVO, GiftVO giftVO, HttpServletRequest request) throws Exception{
 		
 		logger.debug("<<addGift 호출>>");
 		
@@ -119,7 +119,7 @@ public class GiftController {
 	
 	//프로젝트 창작 - ADD 전송
 	@RequestMapping("/create/createGift.do")
-	public ModelAndView submitCreateGift(GiftVO giftVO,
+	public ModelAndView submitCreateGift(GiftVO giftVO, ProjectVO projectVO,
 		HttpSession session, HttpServletRequest request, HttpServletResponse response, String p_name) throws IOException {
 				
 		ModelAndView mav = new ModelAndView();
@@ -136,7 +136,8 @@ public class GiftController {
 			mav.setViewName("createGift");
 		}else {
 					
-			logger.debug("<<프로젝트 정보>> : " + giftVO);
+			logger.debug("<<선물 정보>> : " + giftVO);
+			logger.debug("<<프로젝트 정보>> : " + projectVO);
 				
 			mav.addObject("num", giftVO.getP_num());
 			mav.addObject("name", p_name);
