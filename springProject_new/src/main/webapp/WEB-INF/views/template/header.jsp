@@ -4,21 +4,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" type="text/css">  
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css" type="text/css"> 
 <!-- 상단 시작 -->
-<h2 class="align-center"><a href="${pageContext.request.contextPath}/main/main.do" class="delete_line">Funding Adventure</a></h2>
-
-<!doctype html>
-<html lang='en'>
-	<head>
-		<meta charset="utf-8"/>
-		<title>Header</title>
-<style>
-
-
-</style>
-	</head>
-	<body>
-
-		<div class='menu'>
+<div class="align-center header-title"><a href="${pageContext.request.contextPath}/main/main.do" class="delete_line">Funding <i class="fas fa-gamepad"></i> Adventure</a></div>
+	<div class='menu'>
 			<ul>
 				<li>
 					<a href="${pageContext.request.contextPath}" class="delete_line">소개</a>
@@ -88,5 +75,3 @@
 					</c:if>
 			</ul>
 		</div>
-	</body>
-</html>

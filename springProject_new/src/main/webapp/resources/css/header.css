@@ -5,6 +5,13 @@ body {
   margin: 0px;
   padding: 50px;
 }
+
+.header-title{
+	font-weight: bold;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
 /* 메뉴 하단 라인 */
 .menu {				
   position: relative;
