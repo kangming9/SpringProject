@@ -133,8 +133,11 @@
 						<div class="progressper">${project.progress}% &nbsp;</div>
 						<div class="amount">${project.amount}원</div>
 					</div>
-					<c:if test="${project.deadline >= 0}">
+					<c:if test="${project.deadline >= 0 and project.during <= 0}">
 						<div class="deadline">${project.deadline}일 남음</div>
+					</c:if>
+					<c:if test="${project.during > 0}">
+						<div class="deadline">${project.during}일 후 공개</div>
 					</c:if>
 					<c:if test="${project.deadline < 0}">
 						<div class="deadline">마감</div>

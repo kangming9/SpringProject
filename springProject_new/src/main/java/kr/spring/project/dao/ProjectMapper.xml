@@ -30,7 +30,9 @@
 				  photo, 
 				  intro, 
 				  policy, 
+				  start_date, 
 				  goal_amount, 
+				  during,
 				  deadline, 
 				  nickname, 
 				  NVL(amount,0) amount,  
@@ -45,7 +47,8 @@
 	  	   				p.policy,
 	  	   				p.start_date,
 	  	   				p.goal_amount,
-	  	   				TRUNC(p.finish_date)-TRUNC(sysdate) deadline, 
+	  	   				TRUNC(p.start_date)-TRUNC(sysdate) during, 
+	  	   				TRUNC(p.finish_date)-TRUNC(sysdate) deadline,
 	  	   				m.nickname 
 	  	   			  FROM project p JOIN member_detail m ON p.m_num = m.m_num 
 	  	   			  <where>
@@ -165,6 +168,7 @@
            goal_amount, 
            start_date, 
            finish_date,
+           during, 
            deadline, 
            nickname, 
            NVL(amount,0) amount,  
@@ -183,6 +187,7 @@
                        p.goal_amount,
                        p.start_date,
                        p.finish_date,
+                       TRUNC(p.start_date)-TRUNC(sysdate) during, 
                        TRUNC(p.finish_date)-TRUNC(sysdate) deadline, 
                        m.nickname 
                       FROM project p JOIN member_detail m ON p.m_num = m.m_num 

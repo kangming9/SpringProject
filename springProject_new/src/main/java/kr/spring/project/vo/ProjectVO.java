@@ -34,6 +34,7 @@ public class ProjectVO {
 	private int progress; //현황 퍼센티지
 	private String goal_amount_str; //프로젝트 총 후원액-스트링
 	private String amount; //프로젝트 총 후원액
+	private int during; //현재 날찌 기준 진행 기간
 	private int deadline; //프로젝트 남은 기간
 	
 	public int getNum() {
@@ -142,6 +143,12 @@ public class ProjectVO {
 		DecimalFormat df = new DecimalFormat("###,###");
 		String money = df.format(amount);
 		this.amount = money;
+	}
+	public int getDuring() {
+		return during;
+	}
+	public void setDuring(int during) {
+		this.during = during;
 	}
 	public int getDeadline() {
 		return deadline;

@@ -116,6 +116,7 @@
 			</c:if>
 		</div>
 		<div class="outline-right">
+			<c:if test="${project.during <= 0}">
 			<ul class="infomations">
 				<li>
 					<div>
@@ -151,14 +152,34 @@
 				목표 금액이 100% 이상 모이면 펀딩이 성공되며<br>
 				결제는 펀딩마감일에 일괄적으로 진행됩니다.</p>
 			</div>
+			</c:if>
+			<c:if test="${project.during > 0}">
+			<ul class="infomations">
+				<li>
+					<div>
+						<div class="info-title">프로젝트 소개</div>
+						<div  class="info-content">${project.summary}</div>
+					</div>
+				</li>
+			</ul>
+			<div class="explanation">
+				<p><i class="far fa-flag icon"></i> 목표 금액 ${project.goal_amount_str} 원<br>
+				<i class="far fa-flag icon"></i> 펀딩 기간 ${project.start_date} ~ ${project.finish_date}<br><br>
+				목표 금액이 100% 이상 모이면 펀딩이 성공되며<br>
+				결제는 펀딩마감일에 일괄적으로 진행됩니다.</p>
+			</div>
+			</c:if>
 			<div class="btn-wrapper">
 				<ul class="outline-btns">
-					<c:if test="${project.deadline >= 0}">
+					<c:if test="${project.deadline >= 0 and project.during <= 0}">
 						<li><button class="support-btn">프로젝트 후원하기</button></li>
 						<li><button class="share-btn" data-name="open_tooltip"><i class="fas fa-share-alt"></i></button></li>
 					</c:if>
 					<c:if test="${project.deadline < 0}">
 						<li><button class="deadline-btn" disabled='disabled' >펀딩이 마감되었습니다.</button></li>
+					</c:if>
+					<c:if test="${project.during > 0}">
+						<li><button class="during-btn" disabled='disabled' >${project.start_date}일 공개</button></li>
 					</c:if>
 				</ul>
 			</div>
@@ -175,6 +196,7 @@
 		</div>
 	</div>
 	<hr>
+	<c:if test="${project.during <= 0}">
 	<div class="nav_wrap">
 		<ul>
 			<li class="btn_project"><a>프로젝트 계획</a></li>
@@ -274,5 +296,6 @@
 			</div>
 		</div>
 	</div>
+	</c:if>
 </div>
 <!-- 중앙 내용 끝 -->
