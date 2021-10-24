@@ -28,6 +28,7 @@ public class SupportVO {//후원 테이블
 	private int donation; //추가후원금액
 	private String donation_str; //추가후원금액 스트링
 	private String support_amount_str; //전체 후원금액 스트링 
+	private String amount; //프로젝트 총 후원액
 	
 	private String name; //프로젝트 명
 	private int category;	//프로젝트 카테고리
@@ -42,6 +43,21 @@ public class SupportVO {//후원 테이블
 	private String md_name; //후원자 이름
 	private String phone; //후원자 폰번호
 	private String email; //후원자 메일
+	
+	private String name_1;	//선물 명
+	private int price;	//선물 가격
+	private int due_ship;	//선물 배송여부 체크
+	private int num_component;	//선물 한정수량
+	
+	public String getAmount() {
+		return amount;
+	}
+
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
 	
 	public String getMd_name() {
 		return md_name;
@@ -82,12 +98,6 @@ public class SupportVO {//후원 테이블
 		this.summary = summary;
 	}
 
-	private String name_1;	//선물 명
-	private int price;	//선물 가격
-	private int due_ship;	//선물 배송여부 체크
-	private int num_component;	//선물 한정수량
-	
-	
 	public int getGoal_amount() {
 		return goal_amount;
 	}

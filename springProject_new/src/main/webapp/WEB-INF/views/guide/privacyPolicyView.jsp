@@ -11,18 +11,16 @@
 			
 		<!-- if문 걸어서 현재 페이지에 따라 현재 링크 나오도록 -->
 		<li>
-			<a href="${pageContext.request.contextPath}" class="delete_line">이용안내</a>
+			<a class="delete_line">정책</a>
 		</li>
-				
+
 		<li style="float: right">
-		<a href="${pageContext.request.contextPath}/guide/projectStandard.do" class="delete_line">프로젝트 심사 기준</a>
+		<a href="${pageContext.request.contextPath}/guide/privacyPolicy.do" class="delete_line">개인정보 처리방침</a>
+		</li>					
+		<li style="float: right">
+		<a href="${pageContext.request.contextPath}/guide/termsOfUse.do" class="delete_line">이용 약관</a>
 		</li>	
-		<li style="float: right">
-		<a href="${pageContext.request.contextPath}/guide/supporterGuide.do" class="delete_line">후원자 가이드</a>
-		</li>	
-		<li style="float: right">
-		<a href="${pageContext.request.contextPath}/guide/creatorGuide.do" class="delete_line">창작자 가이드</a>
-		</li>
+
 	</ul>
 </div>
 

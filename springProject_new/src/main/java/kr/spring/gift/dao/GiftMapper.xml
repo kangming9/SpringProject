@@ -11,14 +11,20 @@
  			g.name, 
  			g.due_ship, 
  			NVL(g.num_component,0) num_component, 
+ 			NVL(g.num_component,0)-buy rest_cnt, 
  			NVL(cnt,0) com_cnt
 		FROM gift g LEFT OUTER JOIN
 		    (
 		    SELECT d.g_num, count(*) cnt
 		    FROM gift g LEFT OUTER JOIN gift_detail d ON g.num = d.g_num
 		    GROUP BY d.g_num
-		    ) a
-		ON g.num=a.g_num
+		    ) a ON g.num=a.g_num LEFT OUTER JOIN 
+		    (
+		    SELECT g.num, count(*) buy
+            FROM gift g JOIN support s ON g.num=s.g_num
+            WHERE g.p_num=#{p_num}
+            GROUP BY g.num
+		    )b ON g.num=b.num
 		WHERE g.p_num=#{p_num}
 		ORDER BY g.num
  	</select>

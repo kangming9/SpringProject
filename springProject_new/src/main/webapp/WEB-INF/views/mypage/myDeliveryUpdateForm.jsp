@@ -133,12 +133,7 @@ $(function(){
 </script>
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mySettings.do'">설정</b>
-	</div>
-	<div class="miniTitle_right">
-		<br>
-		<i class="fas fa-bell xs" id="notice_alarm"></i>
-		나의 프로젝트 크레이지 아케이드 목표금액 달성
+	<b class="miniTitle_content">배송지 관리</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>

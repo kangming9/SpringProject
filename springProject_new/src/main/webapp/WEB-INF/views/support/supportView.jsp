@@ -75,7 +75,7 @@
 				var checkZipcode = ".dzipcode-"+check;
 				$(".dzipcode").text($(checkZipcode).text());
 				
-				var checkAddress = ".dAddress-"+check;
+				var checkAddress = ".daddress-"+check;
 				$(".daddress").text($(checkAddress).text());
 				
 				var checkAddrDetail = ".daddress_detail-"+check;

@@ -24,7 +24,7 @@
 		  </div>
 		  <div class="slide-full"
 		  style="background-image:url(${pageContext.request.contextPath}/resources/images/slide03.png);
-		  	width:500px;">  
+		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/creatorGuide.do''">  
 		    <div class="slide-description">
 				<h3 class="slide-description-title">창작자 가이드</h3>
 	      		<span class="slide-description-content">창작자라면 꼭 지켜주세요</span>
@@ -34,22 +34,22 @@
 			</div>
 		 <div class="slide-full"
 		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide02.png);
-		  	width:500px;" onclick="location.href='#'"> 
+		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/supporterGuide.do''"> 
 		    <div class="slide-description">
 				<h3 class="slide-description-title">후원자 가이드</h3>
 	      		<span class="slide-description-content">후원자라면 꼭 지켜주세요</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/supporterGuide.do'"></button>
 			</div>
 		</div>
 		 <div class="slide-full"
 		 style="background-image:url(${pageContext.request.contextPath}/resources/images/slide04.png);
-		  	width:500px;" onclick="location.href='#'">  
+		  	width:500px;" onclick="location.href='${pageContext.request.contextPath}/guide/projectStandard.do'">  
 			<div class="slide-description">
 				<h3 class="slide-description-title">펀딩 심사기준</h3>
 	      		<span class="slide-description-content">이것만 따르면 당신도 창작자!</span>
 	      		<br>
-	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='#'"></button>
+	      		<button style="background-color:black;border:none;width:200px;height:75px;" onclick="location.href='${pageContext.request.contextPath}/guide/projectStandard.do'"></button>
 			</div>
 			</div>
 		  </div>

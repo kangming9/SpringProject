@@ -74,17 +74,11 @@ $(function(){
 </script>
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mySettings.do'">설정</b>
-	</div>
-	<div class="miniTitle_right">
-		<br>
-		<i class="fas fa-bell xs" id="notice_alarm"></i>
-		나의 프로젝트 크레이지 아케이드 목표금액 달성
+	<b class="miniTitle_content">회원 탈퇴</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
 <div class="delete_margin">
-		<p class="setthing_title">회원 탈퇴</p>
 	<div>
 		<p class="delete_title">탈퇴 관련 유의사항 안내</p>
 		<span class="delete_content">후원한 프로젝트 또는 나의 펀딩이 아직 진행중인 경우 탈퇴할 수 없습니다.</span>

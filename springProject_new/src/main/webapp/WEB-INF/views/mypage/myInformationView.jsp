@@ -281,17 +281,12 @@ $(function(){
 </script>
 <div>
 	<div class="miniTitle_left">
-	<b class="miniTitle_content" onclick="location.href='${pageContext.request.contextPath}/mypage/mySettings.do'">설정</b>
-	</div>
-	<div class="miniTitle_right">
-		<br>
-		<i class="fas fa-bell xs" id="notice_alarm"></i>
-		나의 프로젝트 크레이지 아케이드 목표금액 달성
+	<b class="miniTitle_content">회원정보수정</b>
 	</div>
 	<hr noshade="noshade" class="line">
 </div>
 <div class="container-title">
-	<span>기본 정보</span>
+	<span>회원정보</span>
 </div>
 <div class="info_container">
 	<div class="info_item info_item_title">닉네임</div>

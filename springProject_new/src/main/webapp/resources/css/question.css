@@ -25,6 +25,11 @@
 	margin:10px 40px;
 }
 
+.question-line a{
+	text-decoration:none;
+	color:black;
+}
+
 .question-btn{
 	margin:20px;
 	text-align:right;
