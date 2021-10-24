@@ -21,7 +21,7 @@
 		var num = "${num}";
 		
 		$("#project_info_form").submit(function(){
-			return false;
+			return true;
 		});
 		
 		$("#support_info_form").submit(function(){
