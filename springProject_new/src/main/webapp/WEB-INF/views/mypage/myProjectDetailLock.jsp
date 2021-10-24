@@ -6,6 +6,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myProject.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -41,34 +42,45 @@
 
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<h2>테스트 페이지</h2>
-	<div>
-		작성된 프로젝트를 기반으로 구성된 테스트 페이지입니다.<br>
-		실제 프로젝트 펀딩 페이지와는 다소 차이가 있습니다.
+	<div id="btndiv" class="info">
+		<div class="btnform">
+			<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="project" />
+				<form:button>프로젝트 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="support" />
+				<form:button>후원자 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="state" />
+				<form:button>후원자 통계</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="money" />
+				<form:button>후원금 정보</form:button>
+			</form:form>
+		</div>
+	</div>
+	<div id="test" class="info">
+		<div>
+			<h2>테스트 페이지</h2>
+			작성된 프로젝트를 기반으로 구성된 테스트 페이지입니다.<br>
+			실제 프로젝트 펀딩 페이지와는 다소 차이가 있습니다.
+		</div>
 	</div>
 	<hr>
-	<div>
-		<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="project" />
-			<form:button>프로젝트 정보</form:button>
-		</form:form>
-		<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="support" />
-			<form:button>후원자 정보</form:button>
-		</form:form>
-		<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="state" />
-			<form:button>후원자 통계</form:button>
-		</form:form>
-		<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="money" />
-			<form:button>후원금 정보</form:button>
-		</form:form>
-	</div>
+	<br>
 	<div class="projectTop">
 		<div class="category">
 			<c:if test="${category == '0'}">온라인</c:if>
@@ -122,7 +134,6 @@
 			<div class="btn-wrapper">
 				<ul class="outline-btns">
 					<li><button class="support-btn">프로젝트 후원하기</button></li>
-					<li><button class="share-btn" data-name="open_tooltip"><i class="fas fa-share-alt"></i></button></li>
 				</ul>
 			</div>
 		</div>
@@ -153,7 +164,6 @@
 				<c:if test="${giftCnt > 0}">
 					<c:forEach var="gift" items="${giftList}">
 						<div class="gift-card">
-							<form id="gift-form" action="${pageContext.request.contextPath}/support/support.do" method="get">
 								<input type="hidden" value="${project.num}" name="p_num">
 								<input type="hidden" value="${gift.num}" name="g_num">
 								
@@ -171,8 +181,7 @@
 									<div>추가 후원금(선택)</div>
 									<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
 								</div>
-								<button type="submit" class="supportButton">후원하기</button>
-							</form>
+								<button class="supportButton">후원하기</button>
 						</div>
 						
 					</c:forEach>

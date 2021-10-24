@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myProject.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -47,7 +48,8 @@
 		garr.push("${item.name}");
 	</c:forEach>
 	for(var i = 0; i < arr.length; i++){
-		arr[1][0] = garr[i];
+		if(typeof garr[i] != "undefined")
+			arr[i + 1][0] = garr[i];
 	}
 	
 	var arr2 = [["선물", "후원 금액"]];
@@ -68,7 +70,7 @@
       var data1 = google.visualization.arrayToDataTable(arr);
 
       var options = {
-        title: '선물별 후원자 수'
+        title: ''
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('supportChart'));
@@ -84,10 +86,10 @@
     	          width: 800,
     	          legend: { position: 'none' },
     	          chart: {
-    	            title: '선물별 후원 금액' },
+    	            title: '' },
     	          axes: {
     	            x: {
-    	              0: { side: 'top', label: '후원 금액'} // Top x-axis.
+    	              0: { side: 'bottom', label: '후원 금액'} // x-axis.
     	            }
     	          },
     	          bar: { groupWidth: "90%" }
@@ -107,28 +109,42 @@
 
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<div>
-		<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="project" />
-			<form:button>프로젝트 정보</form:button>
-		</form:form>
-		<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="support" />
-			<form:button>후원자 정보</form:button>
-		</form:form>
-		<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="state" />
-			<form:button>후원자 통계</form:button>
-		</form:form>
-		<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="money" />
-			<form:button>후원금 정보</form:button>
-		</form:form>
+	<div id="btndiv" class="info">
+		<div class="btnform">
+			<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="project" />
+				<form:button>프로젝트 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="support" />
+				<form:button>후원자 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="state" />
+				<form:button>후원자 통계</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="money" />
+				<form:button>후원금 정보</form:button>
+			</form:form>
+		</div>
 	</div>
-	<div id="supportChart" style="width: 900px; height: 500px;"></div>
-	<div id="giftChart" style="width: 900px; height: 500px;"></div>
+	<h2>후원자 통계</h2>
+	<hr>
+	<div id="chart">
+		<h3>선물별 후원자 수</h3>
+		<div id="supportChart" style="width: 900px; height: 400px;"></div>
+		<h3>선물별 후원 금액</h3>
+		<div id="giftChart" style="width: 900px; height: 500px;"></div>
+	</div>
 </div>

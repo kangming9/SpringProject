@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myProject.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -40,32 +41,41 @@
 
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<h2>후원자 정보</h2>
-	<div>
-		<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="project" />
-			<form:button>프로젝트 정보</form:button>
-		</form:form>
-		<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="support" />
-			<form:button>후원자 정보</form:button>
-		</form:form>
-		<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="state" />
-			<form:button>후원자 통계</form:button>
-		</form:form>
-		<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="money" />
-			<form:button>후원금 정보</form:button>
-		</form:form>
+	<div id="btndiv" class="info">
+		<div class="btnform">
+			<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="project" />
+				<form:button>프로젝트 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="support" />
+				<form:button>후원자 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="state" />
+				<form:button>후원자 통계</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="money" />
+				<form:button>후원금 정보</form:button>
+			</form:form>
+		</div>
 	</div>
-	
+	<h2>후원자 정보</h2>
+	<hr>
 	<div class="content">
-		<table>
+		
+		<table id="supporter">
 			<tr>
 				<th>번호</th>
 				<th>후원자</th>

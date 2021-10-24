@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+/* 프로젝트 정보 버튼 */
+.info{
+	display:flex;
+}
+
+#btndiv{
+	width:100%;
+	text-align:center;
+	margin : 20px;
+}
+.btnform{
+	width:25%;
+}
+.btnform button{
+	width:200px;
+	height:50px;
+	font-size:20px;
+	background-color:transparent;
+	border:0;
+	border-bottom: 5px solid #FF7878;
+	margin : 20px;
+}
+
+/* 후원자 목록 */
+#supporter{
+	width : 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+#supporter th{
+	text-align: center;
+	border-bottom: 3px solid #FF7878;
+	padding: 10px;
+}
+
+#supporter td{
+	padding: 10px;
+}
+
+/* 통계 목록 */
+#chart{
+	text-align: center;
+	margin:20px;
+}
+#chart div{
+	display:inline-block;
+}
+
+/* 후원금 목록*/
+.content{
+	margin : 20px;
+}
+
+#btn{
+	text-align: center;
+}
+
+#sendEmail {
+	width:100px;
+	height:50px;
+	background:#FF7878;
+	color:white;
+	border:0;
+	border-radius:4px;
+	margin : 20px;
+}
+.name{
+	text-align: center;
+}
+#supporterNum, #date{
+	text-align: center;
+}

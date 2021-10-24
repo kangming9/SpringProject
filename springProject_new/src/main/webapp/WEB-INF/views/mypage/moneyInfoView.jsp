@@ -5,11 +5,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myProject.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
 	}
 </style>
+
 <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
@@ -77,61 +79,69 @@
 
 <!-- 중앙 내용 시작 -->
 <div class="container">
-	<h2>후원자 정보</h2>
-	<div>
-		<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="project" />
-			<form:button>프로젝트 정보</form:button>
-		</form:form>
-		<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="support" />
-			<form:button>후원자 정보</form:button>
-		</form:form>
-		<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="state" />
-			<form:button>후원자 통계</form:button>
-		</form:form>
-		<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
-			<form:input type="hidden" path="name" value="${name}" />
-			<form:input type="hidden" path="goal_amount_str" value="money" />
-			<form:button>후원금 정보</form:button>
-		</form:form>
+	<h2>후원금 정보</h2>
+	<div id="btndiv" class="info">
+		<div class="btnform">
+			<form:form id="project_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="project" />
+				<form:button>프로젝트 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="support_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="support" />
+				<form:button>후원자 정보</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="state_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="state" />
+				<form:button>후원자 통계</form:button>
+			</form:form>
+		</div>
+		<div class="btnform">
+			<form:form id="money_info_form" action="projectInfo.do" modelAttribute="projectVO">
+				<form:input type="hidden" path="name" value="${name}" />
+				<form:input type="hidden" path="goal_amount_str" value="money" />
+				<form:button>후원금 정보</form:button>
+			</form:form>
+		</div>
 	</div>
 	
 	<div class="content">
 		<div>
-			<p>총 후원자 수</p>
-			<p id = "supporter">${supportSum.m_num} 명</p>
+			<p class="name"><b>총 후원자 수</b></p>
+			<p id = "supporterNum">${supportSum.m_num} 명</p>
 		</div>
 		<div>
-			<p>총 후원 금액</p>
+			<p class="name"><b>총 후원 금액</b></p>
 			<p id = "support">${supportSum.support_amount} 원</p>
 		</div>
 		<div>
-			<p>총 추가 후원 금액</p>
+			<p class="name"><b>총 추가 후원 금액</b></p>
 			<p id = "donation">${supportSum.donation} 원</p>
 		</div>
 		<div>
-			<p>수수료 내역</p>
+			<p class="name"><b>수수료 내역</b></p>
 			<p id = "tax"><fmt:formatNumber type="number"  pattern="0" value="${supportSum.donation * 0.085}" /> 원</p>
-			<p>Funding Adventure</p>
-			<p id = "tax_sizte"><fmt:formatNumber type="number"  pattern="0" value="${supportSum.donation * 0.05}" /> 원</p>
-			<p>결제 수수료</p>
+			<p>- Funding Adventure</p>
+			<p id = "tax_site"><fmt:formatNumber type="number"  pattern="0" value="${supportSum.donation * 0.05}" /> 원</p>
+			<p>- 결제 수수료</p>
 			<p id = "tax_pay"><fmt:formatNumber type="number"  pattern="0" value="${supportSum.donation * 0.035}" /> 원</p>
 		</div>
 		<div>
-			<p>최종 수령액</p>
+			<p class="name"><b>최종 수령액</b></p>
 			<p id = "money"><fmt:formatNumber type="number"  pattern="0" value="${supportSum.donation * 0.915}" /> 원</p>
 		</div>
 		<div>
-			<p>예상 정산 날짜</p>
+			<p class="name"><b>예상 정산 날짜</b></p>
 			<p id = "date">${finish}</p>
 		</div>
 	</div>
-	<div>
+	<div id="btn">
 		<button id="sendEmail">메일로 전송</button>
 	</div>
 	
