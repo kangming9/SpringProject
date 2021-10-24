@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.MemberVO;
 
@@ -90,6 +91,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int getMaxMemDetailNum() {
 		return memberMapper.getMaxMemDetailNum();
+	}
+
+	@Override
+	public void insertDelivery(DeliveryVO delivery) {
+		memberMapper.select_deliverynum();
+		memberMapper.insertDelivery(delivery);
 	}
  
 

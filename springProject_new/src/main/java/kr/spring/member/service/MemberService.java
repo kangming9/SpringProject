@@ -5,10 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.vo.MemberVO;
 
 public interface MemberService {
 	public void insertMember(MemberVO member);
+	public void insertDelivery(DeliveryVO delivery);
+	
 	public void updateNickname(Integer mem_num);
 	public MemberVO selectCheckMember(String id);
 	public MemberVO selectMember(Integer mem_num);

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.delivery.vo.DeliveryVO;
 import kr.spring.member.service.KakaoAPI;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
@@ -149,7 +150,22 @@ public class MemberController {
 		}
 
 		memberService.insertMember(memberVO);
-
+		
+		int zipcode = Integer.parseInt(memberVO.getZipcode());
+		
+		DeliveryVO delivery = new DeliveryVO();
+		
+		delivery.setM_num(memberVO.getNum());
+		delivery.setName(memberVO.getName());
+		delivery.setZipcode(zipcode);
+		delivery.setAddress(memberVO.getAddress());
+		delivery.setAddress_detail(memberVO.getAddress_detail());
+		delivery.setAddress_check(1);
+		delivery.setPhone(memberVO.getPhone());
+		
+		memberService.insertDelivery(delivery);
+		
+		
 		return "redirect:/main/main.do";
 	}
 
@@ -223,6 +239,20 @@ public class MemberController {
 
 		memberService.insertMember(memberVO);
 
+		int zipcode = Integer.parseInt(memberVO.getZipcode());
+		
+		DeliveryVO delivery = new DeliveryVO();
+		
+		delivery.setM_num(memberVO.getNum());
+		delivery.setName(memberVO.getName());
+		delivery.setZipcode(zipcode);
+		delivery.setAddress(memberVO.getAddress());
+		delivery.setAddress_detail(memberVO.getAddress_detail());
+		delivery.setAddress_check(1);
+		delivery.setPhone(memberVO.getPhone());
+		
+		memberService.insertDelivery(delivery);
+		
 		return "redirect:/main/main.do";
 	}
 	 
