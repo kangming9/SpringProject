@@ -360,6 +360,10 @@ button:hover{
 	font-weight: bold;
 }
 
+.disButton{
+	background-color: #E6E6E6;
+}
+
 .deadline-card{
 	opacity:0.8; 
 }

@@ -227,9 +227,19 @@
 								</c:if>
 								<div class="donation-wrap">
 									<div>추가 후원금(선택)</div>
-									<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
+									<c:if test="${gift.rest_cnt > 0}">
+										<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
+									</c:if>
+									<c:if test="${gift.rest_cnt <= 0}">
+										<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0" disabled> 
+									</c:if>
 								</div>
-								<button type="submit" class="supportButton">후원하기</button>
+								<c:if test="${gift.rest_cnt > 0}">
+									<button type="submit" class="supportButton">후원하기</button>
+								</c:if>
+								<c:if test="${gift.rest_cnt <= 0}">
+									<button type="submit" class="supportButton disButton" disabled>후원하기</button>
+								</c:if>
 							</form>
 						</div>
 						</c:if>
