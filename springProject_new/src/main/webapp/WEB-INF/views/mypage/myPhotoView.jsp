@@ -3,6 +3,9 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -103,7 +106,7 @@
 
 		$("#update_Add_form").submit(function(){
 			if(uploadphoto == 0) {
-				var answer = confirm("대표 이미지가 등록되지 않았습니다.\n그래도 다음 페이지로 이동하시겠습니까?");
+				var answer = confirm("대표 이미지가 변경되지 않았습니다.\n그래도 다음 페이지로 이동하시겠습니까?");
 			}
 			return answer;
 		});
@@ -125,18 +128,18 @@
 			<li>
 				<div>
 				<label>프로젝트 대표 이미지</label>
-				<c:if test="${project.photo == 'default_team.jpg'}">
+				<c:if test="${photo == 'default_team.jpg'}">
 					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" id="team-photo">
 				</c:if>
-				<c:if test="${project.photo != 'default_team.jpg'}">
-					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/upload/${project.photo}" id="team-photo">
+				<c:if test="${photo != 'default_team.jpg'}">
+					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/upload/${photo}" id="team-photo">
 				</c:if>
 				</div>
 				<br>
 				<div>
-					<input id="upload" type="file" name="team_upload" accept="image/gif,image/png,image/jpeg,image/jpg" />
-					<input type="button" value="등록" id="photo_submit"/>
-					<input type="button" value="취소" id="photo_reset"/>
+					<input class="up" id="upload" type="file" name="team_upload" accept="image/gif,image/png,image/jpeg,image/jpg" />
+					<input class="up" type="button" value="등록" id="photo_submit"/>
+					<input class="up" type="button" value="취소" id="photo_reset"/>
 				</div>
 			</li>
 		</ul>
@@ -147,8 +150,8 @@
 			<form:input type="hidden" value="${project.name}" path="name" id="name"/>
 			
 			<div class="align-center">
-				<form:button>다음</form:button>
-				<input type="button" id="home" value="홈으로" >
+				<form:button class="next">다음</form:button>
+				<input type="button" class="next" id="home" value="홈으로" >
 			</div>
 		</form:form>
 	</div>

@@ -28,6 +28,7 @@ public interface ProjectService {
 	public Date selectFinish(int pnum);
 	
 	public void updateApproval(int pnum);
+	public ProjectVO selectCheckNumProject(int num);
 	
 	//관리자 프로젝트 확인
 	public ProjectVO selectConfirmProject(int num);

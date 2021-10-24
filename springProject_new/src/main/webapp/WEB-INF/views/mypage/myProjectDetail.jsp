@@ -5,6 +5,8 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
+
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -81,6 +83,7 @@
 				if($("#name").val().trim() == ""){
 					$("#name").val("").focus();
 				}
+				document.location.href="#name";
 				return false;
 			}
 			
@@ -171,8 +174,12 @@
 			</li>
 			<li>
 				<label for="ship">배송 여부</label><br>
-				<form:radiobutton path="ship" value="0" name="0" label="온라인 상품"/>
-				<form:radiobutton path="ship" value="1" name="1" label="배송 상품"/>
+				<label class="pick">
+				<form:radiobutton path="ship" value="0" label="온라인 상품"/><span class="mark"></span>
+				</label>
+				<label class="pick">
+				<form:radiobutton path="ship" value="1" label="배송 상품"/><span class="mark"></span>
+				</label>
 			</li>
 			<li>
 				<label>프로젝트 소개</label><br>
@@ -212,8 +219,8 @@
 		</ul>
 		<div class="align-center">
 			<form:input type="hidden" path="num" value="${num}"/>
-			<form:button>다음</form:button>
-			<input type="button" id="home" value="홈으로" >
+			<form:button class="next">다음</form:button>
+			<input type="button" class="next" id="home" value="홈으로" >
 		</div>
 	</form:form>
 	</div>

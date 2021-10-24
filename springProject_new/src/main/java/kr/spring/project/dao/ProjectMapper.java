@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.project.vo.ProjectVO;
 
 public interface ProjectMapper {
+	@Select("SELECT * FROM project WHERE num=#{num}")
+	public ProjectVO selectCheckNumProject(int num);
 	@Select("SELECT * FROM project WHERE name=#{name}")
 	public ProjectVO selectCheckProject(String name);
 	@Select("SELECT project_seq.nextval FROM dual")

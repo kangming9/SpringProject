@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.spring.gift.service.GiftService;
 import kr.spring.gift.vo.GiftVO;
+import kr.spring.project.service.ProjectService;
 import kr.spring.project.vo.ProjectVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -36,6 +37,8 @@ public class GiftController {
 	
 	@Autowired
 	private GiftService giftService;
+	@Autowired
+	private ProjectService projectService;
 	
 	//자바빈(VO) 초기화
 	@ModelAttribute
@@ -120,7 +123,7 @@ public class GiftController {
 	//프로젝트 창작 - ADD 전송
 	@RequestMapping("/create/createGift.do")
 	public ModelAndView submitCreateGift(GiftVO giftVO, ProjectVO projectVO,
-		HttpSession session, HttpServletRequest request, HttpServletResponse response, String p_name) throws IOException {
+		HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
 				
 		ModelAndView mav = new ModelAndView();
 				
@@ -137,10 +140,12 @@ public class GiftController {
 		}else {
 					
 			logger.debug("<<선물 정보>> : " + giftVO);
+			
+			projectVO = projectService.selectCheckNumProject(giftVO.getP_num());
 			logger.debug("<<프로젝트 정보>> : " + projectVO);
 				
 			mav.addObject("num", giftVO.getP_num());
-			mav.addObject("name", p_name);
+			mav.addObject("name", projectVO.getName());
 			mav.setViewName("createView"); //작성된 프로젝트 보기
 					
 			logger.debug("<<이동 경로>> : " + mav.getViewName());
