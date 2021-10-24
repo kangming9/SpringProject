@@ -356,7 +356,7 @@ public class MemberController {
 		 
 		 }
 		 
-		 @RequestMapping("/member/detailUserForm")
+		 @RequestMapping("/member/detailUserForm.do")
 		 public String detailUserFormView() {
 			 return "detailUserFormView";
 		 }
