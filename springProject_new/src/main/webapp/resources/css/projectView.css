@@ -384,3 +384,17 @@ button:hover{
 .notice-wrap{
 	display: none;
 }
+
+/* confirmResult */
+.confirm-return-reason textarea{
+	resize:none;
+	width:340px;
+}
+
+.confirm-result-submit {
+	background: #FF7878;
+    color: white;
+    border: none;
+    width: 340px;
+    padding: 5px;
+}
