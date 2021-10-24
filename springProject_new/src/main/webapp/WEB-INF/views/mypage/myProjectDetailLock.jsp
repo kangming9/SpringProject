@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -80,11 +81,11 @@
 	
 	<div class="projectOutline">
 		<div class="outline-left">
-			<c:if test="${project.photo == 'default_team.jpg'}">
+			<c:if test="${photo == 'default_team.jpg'}">
 				<img class="photo" src="${pageContext.request.contextPath}/resources/images/default_team.jpg">
 			</c:if>
-			<c:if test="${project.photo != 'default_team.jpg'}">
-				<img class="photo" src="${pageContext.request.contextPath}/upload/${project.photo}">
+			<c:if test="${photo != 'default_team.jpg'}">
+				<img class="photo" src="${pageContext.request.contextPath}/upload/${photo}">
 			</c:if>
 		</div>
 		<div class="outline-right">
