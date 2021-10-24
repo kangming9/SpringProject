@@ -3,17 +3,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/question.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <div class="container">
 	<div class="box">
 		<div class="question-register-form">
 		<div class="question-form-title">
-		<h2>공지 등록</h2>
-		<span>후원자에게 공지할 내용을 작성해주세요!</span>
+			<h2>공지 등록</h2>
+			<span>후원자에게 공지할 내용을 작성해주세요!</span>
 		</div>
 		<form:form id="register_form" action="register.do" modelAttribute="noticeVO">
-		<form:hidden path="m_num" value="${user_num}"/>
-		<form:hidden path="p_num" value="${p_num}"/>
+			<form:hidden path="m_num" value="${user_num}"/>
+			<form:hidden path="p_num" value="${p_num}"/>
 			<ul>
 				<li>
 					<label for="title">공지 제목</label>

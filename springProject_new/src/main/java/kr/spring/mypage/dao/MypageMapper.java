@@ -61,6 +61,12 @@ public interface MypageMapper {
 	  
 	  public List<QuestionVO> questionSelectList(Map<String, Object> map);
 	  public int questionselectCount(Map<String,Object> map);
+	  
+	  
+	//관리자 - 프로젝트 컨펌
+	@Select("SELECT count(*) FROM project p WHERE p.approval = 0")
+	public int getConfirmProCount();
+	public List<ProjectVO> confirmProjectList(Map<String, Object> map);
 }
 
 

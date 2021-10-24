@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.notice.service.NoticeService;
 import kr.spring.notice.vo.NoticeVO;
 import kr.spring.project.service.ProjectService;
+import kr.spring.project.vo.ProjectVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
@@ -36,6 +39,8 @@ public class NoticeController {
 	private NoticeService noticeService;
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private MemberService memberService;
 	
 	//자바빈 초기화
 	@ModelAttribute
@@ -100,11 +105,13 @@ public class NoticeController {
 			list = noticeService.selectList(map);
 		}
 		
-		int creator = projectService.selectProject(p_num).getM_num();
+		ProjectVO project = projectService.selectProject(p_num);
+		MemberVO creator =  memberService.selectMember(project.getM_num());
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticeList"); // 타일스 식별자
 		mav.addObject("p_num", p_num);
+		mav.addObject("project", project);
 		mav.addObject("creator", creator);
 		mav.addObject("count", count);
 		mav.addObject("list", list);
@@ -118,23 +125,33 @@ public class NoticeController {
 	public ModelAndView process(@RequestParam int num) {
 		
 		NoticeVO notice = noticeService.selectNotice(num);
+		MemberVO creator =  memberService.selectMember(notice.getM_num());
 		
 		logger.debug("<< 제목 >> : " + notice.getTitle());
 		
 		notice.setTitle(notice.getTitle());
 		notice.setContent(notice.getContent());
 		
-		return new ModelAndView("noticeView","notice",notice);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeView");
+		mav.addObject("notice", notice);
+		mav.addObject("creator", creator);
+		
+		return mav;
 	}
 	
 	//공지 수정 - 폼 호출
 	@GetMapping("/notice/modify.do")
-	public String formUpdate(@RequestParam int num,Model model, HttpServletRequest request) {
+	public ModelAndView formUpdate(@RequestParam int num, Model model, HttpServletRequest request) {
 		NoticeVO noticeVO = noticeService.selectNotice(num);
 		
-		model.addAttribute("noticeVO",noticeVO);
+		logger.debug("<< 공지 수정 폼 호출 >> : " + noticeVO);
 		
-		return "noticeModify";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeModify");
+		mav.addObject("noticeVO", noticeVO);
+		
+		return mav;
 	}
 	
 	//공지 수정 - 전송된 데이터 처리
@@ -144,12 +161,12 @@ public class NoticeController {
 		logger.debug("<< 공지 수정 >> : " + noticeVO);
 		
 		if(result.hasErrors()) {
-			return "questionModify";
+			return "noticeModify";
 		}
 		
 		noticeService.modifyNotice(noticeVO);
 		
-		return "redirect:/notice/list.do?p_num="+noticeVO.getP_num();
+		return "redirect:/notice/detail.do?num="+noticeVO.getNum();
 	}
 	
 	//공지 삭제

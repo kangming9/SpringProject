@@ -156,5 +156,16 @@ public class MypageServiceImpl implements MypageService{
 		return delivery;
 	}
 
+	@Override
+	public int getConfirmProCount() {
+		return mypageMapper.getConfirmProCount();
+	}
+
+	@Override
+	public List<ProjectVO> confirmProjectList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mypageMapper.confirmProjectList(map);
+	}
+
 	
 }

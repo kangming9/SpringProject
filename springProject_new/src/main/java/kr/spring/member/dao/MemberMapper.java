@@ -77,4 +77,23 @@ public interface MemberMapper {
 	//member_detail테이블에서 가장 큰 m_num값 가져오기
 	@Select("SELECT MAX(m_num) AS alias FROM member_detail")
 	public int getMaxMemDetailNum();
+	
+	//관리자
+	//강퇴 멤버
+	@Delete("DELETE FROM member_detail WHERE m_num=#{num}")
+	public void delteOutMember(Integer num);
+	@Update("UPDATE member SET grade=4 WHERE num=#{num}")
+	public void OutMember(Integer num);
+	
+	//회원 수 카운트
+	@Select("select count(*) from member where grade=2 or grade=3")
+	public int realMemCount();
+	@Select("select count(*) from (select DISTINCT p.m_num from member m, project p where m.num=p.m_num)")
+	public int pMemCount();
+	@Select("select count(*) from member where grade > 1")
+	public int allMemCount();
+	@Select("select count(*) from (select DISTINCT s.m_num from member m, support s where m.num=s.m_num)")
+	public int sMemCount();
+	
 }
+

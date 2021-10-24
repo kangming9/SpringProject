@@ -98,6 +98,39 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.select_deliverynum();
 		memberMapper.insertDelivery(delivery);
 	}
+
+	@Override
+	public void delteOutMember(Integer num) {
+		memberMapper.delteOutMember(num);
+		memberMapper.OutMember(num);
+		
+	}
+
+	@Override
+	public int realMemCount() {
+		int mem = memberMapper.realMemCount();
+		return mem;
+	}
+
+	@Override
+	public int pMemCount() {
+		int mem = memberMapper.pMemCount();
+		return mem;
+	}
+
+	@Override
+	public int allMemCount() {
+		int mem = memberMapper.allMemCount();
+		return mem;
+	}
+
+	@Override
+	public int sMemCount() {
+		int mem = memberMapper.sMemCount();
+		return mem;
+	}
+
+	
  
 
 }

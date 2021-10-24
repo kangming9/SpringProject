@@ -13,6 +13,14 @@
     	<put-attribute name="title" value="관리자 페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/adminPageView.jsp"/>
     </definition>
+    <definition name="confirmProjectList" extends="main">
+    	<put-attribute name="title" value="관리자) 프로젝트 체크 리스트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/confirmProjectList.jsp"/>
+    </definition>
+    <definition name="confirmProjectView" extends="main">
+    	<put-attribute name="title" value="관리자) 프로젝트 체크 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/confirmProjectView.jsp"/>
+    </definition>
     <definition name="mypageView" extends="main">
     	<put-attribute name="title" value="마이페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/mypage/myPageView.jsp"/>

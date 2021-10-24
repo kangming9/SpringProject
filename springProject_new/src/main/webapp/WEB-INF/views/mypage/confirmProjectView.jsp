@@ -1,87 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
-<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projectView.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		
-	    $(".support-btn").click(function(){
-	    	var offset = $('#gift').offset();
-        	$('html').animate({scrollTop : offset.top}, 1000);
-        	$(".gift-card:first").css('border','2px solid #FF7878');
+		$('#reason').hide();
+		
+		$('#return').click(function(){
+	    	$('#reason').show();
+	    	
 	    });
-	    
-	    $('.gift-card').mouseover(function(){
-	    	$(".gift-card:first").css('border','1px solid #E6E6E6');
-	    	$(this).css('border' ,'2px solid #FF7878');
-	    });
-	    
-	    $('.gift-card').mouseout(function(){
-	    	$(this).css('border' ,'1px solid #E6E6E6');
-	    });
-	    
-	    $('.share-btn').click(function(e){
-	    	var offset = $('.share-btn').offset();
-	    	var width = $('.share-btn').width();
-	    	var height = $('.share-btn').height();
-	    	var pwidth = $('.popup_box').width();
-			var pheight = $('.popup_box').height();
-			
-			$('.popup_box').css({
-				"top": offset.top+width+12,
-				"left": offset.left-10,
-				"position": "absolute"
-			}).show();
-	   }); 
-	    
-	    $(".btn_close").click(function() {
-	    	$(".popup_box").hide();
-	   	});
-
-	    $(".intro-btn").click(function(){
-	    	var offset = $('#intro').offset();
-        	$('html').animate({scrollTop : offset.top}, 1000);
-	    });
-	    
-	    $(".policy-btn").click(function(){
-	    	var offset = $('#policy').offset();
-        	$('html').animate({scrollTop : offset.top}, 1000);
-	    });
-	    
-	    var name = document.getElementById('name').innerText;
-	    Kakao.init('270eccb7a827787cdc99e45e3c8037a5'); // JS key
-	    $("#kakao-link-btn").click(function () {
-	    	var path = window.location.pathname + window.location.search;
-	        Kakao.Link.sendCustom({
-	        	templateId: 63125,   // 템플릿 ID
-	        	templateArgs: {
-	        		title: name,
-	        		description: "펀딩어드벤처에서 펀딩하고 선물받자!!",
-	        		url : path,
-	        	},
-	        });
-	    });
-	    
-	    $("#clip-link-btn").click(function () {
-	    	var url = '';
-	    	var textarea = document.createElement("textarea");
-	    	document.body.appendChild(textarea);
-	    	url = window.document.location.href;
-	    	textarea.value = url;
-	    	textarea.select();
-	    	document.execCommand("copy");
-	    	document.body.removeChild(textarea);
-	    	alert("클립보드에 URL이 복사되었습니다.")
-	   	});
-
+		
+		$('#confirm_project_form').submit(function(){
+			$('#return').click(function(){
+				if($('#reason').value().trim()==''){
+		    		alert('반려사유는 필수 기재 사항입니다.');
+		    		return;
+		    	}
+		    });
+    	});
 	});
-
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="container">
@@ -116,43 +58,30 @@
 			</c:if>
 		</div>
 		<div class="outline-right">
-			<c:if test="${project.during <= 0}">
-			<ul class="infomations">
-				<li>
-					<div>
-						<div class="info-title">모인금액</div>
-						<div class="info-content"><b>${project.amount}</b> 원 / <b>${project.goal_amount_str}</b> 원</div>
-						<div class="progress-wrapper">
-							<progress value="${project.progress}" max="100"></progress>
-							<div class="progressper info-content">&nbsp;<b>${project.progress}%</b></div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div>
-						<div class="info-title">남은기간</div>
-						<c:if test="${project.deadline < 0}">
-							<div class="info-content">마감</div>
-						</c:if>
-						<c:if test="${project.deadline >= 0}">
-							<div class="info-content"><b>${project.deadline}</b> 일</div>
-						</c:if>
-					</div>
-				</li>
-				<li>
-					<div>
-						<div class="info-title">후원자</div>
-						<div  class="info-content"><b>${supporter}</b> 명</div>
-					</div>
-				</li>
-			</ul>
+			<div class="confirm-type">
+			<h2>승인 여부 채택</h2>
+			<form action="confirmResult.do" method="get" id="confirm_project_form">
+				<ul class="confirm-type-radio">
+					<li>
+						<input type="hidden" value="${project.num}" name="num">
+						<label><input type="radio" name="approval" id="approval" value="1">승인</label>
+			  	  		<label><input type="radio" name="approval" id="return" value="2">반려</label>
+			  	  	</li>
+					<li class="confirm-return-reason">
+			  	  		<textarea cols="30" rows="5" name="reason" id="reason" placeholder="프로젝트 반려 이유를 구체적으로 작성해주세요."></textarea>
+					</li>
+				</ul>
+				<div class="confirm-result-submit">
+					<input type="submit" value="심사결과 전송">
+				</div>
+			</form>
+			</div>
 			<div class="explanation">
 				<p><i class="far fa-flag icon"></i> 목표 금액 ${project.goal_amount_str} 원<br>
 				<i class="far fa-flag icon"></i> 펀딩 기간 ${project.start_date} ~ ${project.finish_date}<br><br>
 				목표 금액이 100% 이상 모이면 펀딩이 성공되며<br>
 				결제는 펀딩마감일에 일괄적으로 진행됩니다.</p>
 			</div>
-			</c:if>
 			<c:if test="${project.during > 0}">
 			<ul class="infomations">
 				<li>
@@ -171,46 +100,20 @@
 			</c:if>
 			<div class="btn-wrapper">
 				<ul class="outline-btns">
-					<c:if test="${project.deadline >= 0 and project.during <= 0}">
-						<li><button class="support-btn">프로젝트 후원하기</button></li>
-						<li><button class="share-btn" data-name="open_tooltip"><i class="fas fa-share-alt"></i></button></li>
-					</c:if>
-					<c:if test="${project.deadline < 0}">
-						<li><button class="deadline-btn" disabled='disabled' >펀딩이 마감되었습니다.</button></li>
-					</c:if>
 					<c:if test="${project.during > 0}">
-						<li><button class="during-btn" disabled='disabled' >${project.start_date}일 공개</button></li>
+						<li><button class="during-btn" disabled='disabled' >${project.start_date}일 공개 예정</button></li>
 					</c:if>
 				</ul>
 			</div>
-			<div class="popup_box"> 
-	            <button type="button" class="btn_close">X</button> 
-	            <div class="popup_cont"> 
-	               <div>공유하기</div>
-	               <button id="kakao-link-btn" class="s-btn" type="button">
-	                     <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" height="30" width="30"/>
-	               </button>
-	               <button id="clip-link-btn" class="s-btn" type="button"><i class="far fa-clipboard"></i></button>
-	            </div> 
-            </div>
 		</div>
 	</div>
 	<hr>
-	<c:if test="${project.during <= 0}">
 	<div class="nav_wrap">
 		<ul>
 			<li class="btn_project"><a>프로젝트 계획</a></li>
-			<li class="btn_notice"><a href="${pageContext.request.contextPath}/notice/list.do?p_num=${project.num}">공지사항</a></li>
-			<li class="btn_qna"><a href="${pageContext.request.contextPath}/question/register.do?p_num=${project.num}">문의하기</a></li>
 		</ul>
 	</div>
 	<hr>
-	<div class="nav_project">
-		<ul>
-			<li><button class="intro-btn">소개</button></li>
-			<li><button class="policy-btn">정책</button></li>
-		</ul>
-	</div>
 	<div class="content">
 		<div class="content-right">
 			<div id="intro" class="con-title">&nbsp;&nbsp;소개</div>
@@ -231,7 +134,7 @@
 					<c:forEach var="gift" items="${giftList}">
 						<c:if test="${project.deadline >= 0}">
 						<div class="gift-card">
-							<form id="gift-form" action="${pageContext.request.contextPath}/support/support.do" method="get">
+							<form id="gift-form">
 								<input type="hidden" value="${project.num}" name="p_num">
 								<input type="hidden" value="${gift.num}" name="g_num">
 								
@@ -274,7 +177,7 @@
 						</c:if>
 						<c:if test="${project.deadline < 0}">
 						<div class="gift-card deadline-card">
-							<form id="gift-form" action="${pageContext.request.contextPath}/support/support.do" method="get">
+							<form id="gift-form">
 								<input type="hidden" value="${project.num}" name="p_num">
 								<input type="hidden" value="${gift.num}" name="g_num">
 								
@@ -296,6 +199,7 @@
 			</div>
 		</div>
 	</div>
-	</c:if>
+	
+	
 </div>
 <!-- 중앙 내용 끝 -->

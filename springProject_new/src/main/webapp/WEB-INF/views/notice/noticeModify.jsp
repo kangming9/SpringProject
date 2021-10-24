@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/question.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
 <div class="container">
 	<div class="box">
 	<div class="question-register-form">

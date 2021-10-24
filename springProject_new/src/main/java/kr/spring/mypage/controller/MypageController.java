@@ -48,6 +48,7 @@ import kr.spring.support.service.SupportService;
 import kr.spring.support.vo.SupportVO;
 import kr.spring.support.vo.SupporterVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import net.sf.json.JSONArray;
 
 @Controller
@@ -122,10 +123,11 @@ public class MypageController {
 		List<ProjectVO> list2 = null;
 		if(count2 > 0) {
 			map2.put("m_num", user_num);
-			list2 = mypageService.proSelectList(map);
+			list2 = mypageService.proSelectList(map2);
 		}
 		logger.debug("마이페이지 창작list2" + list2);
-		//***********************
+		//***********************                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+		
 		
 		
 		ModelAndView mav = new ModelAndView();
@@ -995,6 +997,103 @@ public class MypageController {
 	public String adminPageView() {
 		return "adminPageView";
 	}
+	
+	
+	//프로젝트 컨펌 리스트(매니저)
+	@RequestMapping("/mypage/confirmProjectList.do")
+	public ModelAndView confirmProjectList(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+			@RequestParam(value="keyword", defaultValue="") String keyword) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		logger.debug("<<관리자 페이지 / 프로젝트 컨펌 리스트 호출>>");
+		
+		//후원 리스트
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		int count = mypageService.getConfirmProCount();
+		
+		
+		PagingUtil page = new PagingUtil(currentPage, count, 10, pageCount, "confirmProjectList.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<ProjectVO> list = null;
+		
+		if(count > 0) {
+			list = mypageService.confirmProjectList(map);
+		}
+		
+		logger.debug("=============컨펌 리스트 " + list);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("confirmProjectList");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
+	
+	//프로젝트 컨펌 디테일
+	@RequestMapping("/mypage/confirmProjectView.do")
+	public ModelAndView confirmProjectList(@RequestParam int num) {
+		
+		logger.debug("<<관리자 페이지 / 프로젝트 컨펌 페이지 호출>>");
+		
+		ProjectVO project = projectService.selectConfirmProject(num);
+		logger.debug("<<관리자 페이지 / 프로젝트VO>>" + project.toString());
+		
+		int m_num = project.getM_num();
+		
+		int supporter = projectService.selectProjectSupporter(m_num);
+		logger.debug("<<관리자 페이지 / supporter>>" + supporter);
+		MemberVO member = memberService.selectMember(m_num);
+		int giftCnt = giftService.selectRowCount(num);
+		List<GiftVO> giftList = giftService.selectList(num);
+		List<GiftVO> comList = giftService.selectComList(num);
+		
+		// HTML 태그 불허
+		project.setName(StringUtil.useNoHtml(project.getName()));
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("confirmProjectView");
+		mav.addObject("project", project);
+		mav.addObject("supporter", supporter);
+		mav.addObject("creator", member);
+		mav.addObject("giftCnt", giftCnt);
+		mav.addObject("giftList", giftList);
+		mav.addObject("comList", comList);
+		
+		
+		return mav;
+	}
+	
+	@GetMapping("/mypage/confirmResult.do")
+	public String confirmResult(@RequestParam int approval,@RequestParam String reason,@RequestParam int num, Model model,HttpServletRequest request) {
+		
+		logger.debug("============= 심사 결과 값 : " + approval);
+		logger.debug("============= 프로젝트 넘버 : " + num);
+		
+		ProjectVO project = projectService.selectConfirmProject(num);
+		String p_name = project.getName();
+		
+		if(approval=='1') {
+			projectService.confirmApproveResult(approval, num);
+		}else {
+			projectService.confirmReturnResult(approval, reason, num);
+		}
+		
+		model.addAttribute("check", "confirm");
+		model.addAttribute("message", p_name + "의 심사 결과가 반영되었습니다.");
+		model.addAttribute("url", request.getContextPath()+"/mypage/confirmProjectList.do");
+		
+		
+		return "common/resultView";
+	}
+	
 }
 
 

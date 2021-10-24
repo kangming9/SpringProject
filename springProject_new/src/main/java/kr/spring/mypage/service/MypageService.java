@@ -44,4 +44,8 @@ public interface MypageService {
 	public int questionselectCount(Map<String,Object> map);
 	
 	public DeliveryVO selectPaymentAddress(Integer s_num);
+	
+	//관리자 - 프로젝트 컨펌
+	public int getConfirmProCount();
+	public List<ProjectVO> confirmProjectList(Map<String, Object> map);
 }
