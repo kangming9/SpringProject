@@ -31,7 +31,7 @@ $(document).ready(function(){
 		<div class="align-center">
 			<form:form id="update_approval_form" action="updateApproval.do" modelAttribute="projectVO">
 				<form:input type="hidden" value="${num}" path="num" />
-				<form:button>다음</form:button>
+				<form:button>심사 신청</form:button>
 			</form:form>
 			<input type="button" id="home" value="홈으로" >
 		</div>
