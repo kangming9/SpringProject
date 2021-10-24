@@ -77,16 +77,70 @@ public class MypageController {
 	
 	//마이페이지 호출
 	@RequestMapping("/mypage/myPage.do")
-	public String view(HttpSession session, Model model) {
+	public ModelAndView view(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		MemberVO member = memberService.selectMember(user_num); //레코드 하나 읽어옴
 		
 		logger.debug("<<마이페이지 호출>>");
 		
-		model.addAttribute("member", member);
+		//후원 리스트
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		int count = mypageService.getSupportCount(user_num);
+		logger.debug("<<마이페이지 호출-count>> : " + count);
 		
-		return "mypageView";
+		
+		PagingUtil page = new PagingUtil(currentPage, count, 3, pageCount, "myPage.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<SupportVO> list = null;
+		
+		if(count > 0) {
+			map.put("m_num", user_num);
+			list = mypageService.supportSelectList(map);
+		}
+		
+		logger.debug("마이페이지 후원list"+list);
+		
+		//창작 리스트
+		//********************
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("keyword", keyword);
+		
+		int count2 = mypageService.getProCount(user_num);
+
+		PagingUtil page2 = new PagingUtil(currentPage, count, 3, pageCount, "myPage.do");
+		
+		map2.put("start", page.getStartCount());
+		map2.put("end", page.getEndCount());
+		
+		List<ProjectVO> list2 = null;
+		if(count2 > 0) {
+			map2.put("m_num", user_num);
+			list2 = mypageService.proSelectList(map);
+		}
+		logger.debug("마이페이지 창작list2" + list2);
+		//***********************
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypageView");
+		mav.addObject("member", member);
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		mav.addObject("count2", count2);
+		mav.addObject("list2", list2);
+		mav.addObject("pagingHtml2", page.getPagingHtml());
+		
+		return mav;
+		
 	}
 	//후원프로젝트 호출
 	@RequestMapping("/mypage/mySupport.do")
