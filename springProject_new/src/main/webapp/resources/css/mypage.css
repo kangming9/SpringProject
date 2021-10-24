@@ -238,6 +238,7 @@
 .del_item_css{
 	list-style: none;
 	padding-left: 17px;	
+	margin: 20px 0;
 }
 .delChoice_btn{
 	float:right;
@@ -523,7 +524,8 @@ select {
 }
 .system-margin2{
 	margin-left: 405px;
-	font-size: 11px;
+	font-size: 12px;
+	margin-top: 5px;
 }
 .system-margin3{
 	margin-left: 405px;
