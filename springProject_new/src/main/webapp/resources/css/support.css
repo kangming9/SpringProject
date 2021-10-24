@@ -165,6 +165,10 @@ hr{
 	margin: 0;
 }
 
+.card-wrap .color{
+	color: #FF7878;
+}
+
 .donation-wrap{
 	margin-top: 20px;
 }

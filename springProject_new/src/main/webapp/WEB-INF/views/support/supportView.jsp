@@ -17,6 +17,8 @@
 		    
 		    $("body").append('<div class="backon"></div>');
 		    $(".menu").css("z-index",0);
+		    
+		    $(".disGift").attr('disabled', 'true');
 		});
 		
 		$(".updateDelivery").on("click", function(event) {
@@ -190,7 +192,12 @@
 				<c:forEach var="gift" items="${giftList}">
 					<div class="gift-card">
 						<label>
-							<input type="radio" name="g_num" value="${gift.num}"/>
+							<c:if test="${gift.rest_cnt > 0}">
+								<input type="radio" name="g_num" value="${gift.num}"/>
+							</c:if>
+							<c:if test="${gift.rest_cnt <= 0}">
+								<input type="radio" name="g_num" class="disGift" value="${gift.num} "/>
+							</c:if>
 							<span class="name-${gift.num}">${gift.name}</span>
 							<span class="card-wrap">
 								<span class="price-${gift.num}">${gift.price_str}원</span>
@@ -199,6 +206,11 @@
 										<span class="component">- ${component.gd_name} x ${component.gd_count}</span>
 									</c:if>
 								</c:forEach>
+								<span class="rest-${gift.num}">${gift.rest_cnt}개 남음
+									<c:if test="${gift.rest_cnt <= 0}">
+								 	 <span class="color">(선택불가)</span>
+									</c:if>
+								</span>
 							</span>
 						</label>
 					</div>
