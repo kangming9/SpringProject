@@ -171,3 +171,7 @@ h2{
 	display: inline-block;
 	vertical-align: top;
 }
+
+#team-photo{
+	width : 50%;
+}

@@ -266,8 +266,6 @@ public class MypageController {
 		
 		projectVO = projectService.selectCheckProject(projectVO.getName());
 		
-		logger.debug("<<현재 프로젝트 정보>> : " + projectVO.toString());
-		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("num", projectVO.getNum());
@@ -283,6 +281,8 @@ public class MypageController {
 		mav.addObject("ship", projectVO.getShip() + "");
 		mav.addObject("intro", projectVO.getIntro());
 		mav.addObject("policy", projectVO.getPolicy());
+		
+		logger.debug("<<현재 프로젝트 정보>> : " + projectVO.toString());
 		
 		if(projectVO.getApproval() == -1 || projectVO.getApproval() == 2) mav.setViewName("myProjectDetailView");
 		else mav.setViewName("myProjectDetailLock");
@@ -742,6 +742,8 @@ public class MypageController {
 				return mav;
 			}
 
+			projectVO = projectService.selectCheckProject(projectVO.getName());
+			
 			logger.debug("<<프로젝트 정보>> : " + projectVO);
 
 			// 프로젝트 전송

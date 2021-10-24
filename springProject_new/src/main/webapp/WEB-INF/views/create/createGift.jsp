@@ -38,7 +38,7 @@
 			
 			$('#detail').children('option').remove(); //현재 보여지고 있는 구성품 목록 삭제
 			
-			$("#gname").text("현재 선택된 선물 : <b>" + $("#gift option:selected").text() +"</b>");
+			$("#gname").text("현재 선택된 선물 : " + $("#gift option:selected").text());
 			
 			for(var i = 0; i < details; i++){
 				if(detail[i].gname == $("#gift option:selected").text()){
@@ -322,7 +322,7 @@
 		</div>
 		<div class="addlist">
 			<label for="gift_detail" class="list">구성품 목록</label><br>
-			<p id="gname">현재 선택된 선물 : <b>없음</b></p>
+			<p id="gname">현재 선택된 선물 : 없음</p>
 			<p>
 			선물 목록에서 선물을 선택하지 않으면 구성품을 추가할 수 없습니다.<br>
 			선물을 선택하면 해당 선물의 구성품 목록을 불러올 수 있습니다.<br>

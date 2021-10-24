@@ -127,12 +127,11 @@
 		<ul>
 			<li>
 				<div>
-				<label>프로젝트 대표 이미지</label>
-				<c:if test="${photo == 'default_team.jpg'}">
+				<c:if test="${project.photo == 'default_team.jpg'}">
 					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" id="team-photo">
 				</c:if>
-				<c:if test="${photo != 'default_team.jpg'}">
-					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/upload/${photo}" id="team-photo">
+				<c:if test="${project.photo != 'default_team.jpg'}">
+					<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/upload/${project.photo}" id="team-photo">
 				</c:if>
 				</div>
 				<br>
