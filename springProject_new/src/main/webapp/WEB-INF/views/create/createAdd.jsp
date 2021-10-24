@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -120,19 +121,19 @@
 <div class="container">
 	<h2>프로젝트 창작 - 추가 정보</h2>
 	<h3 id="projectname">${name}</h3>
+	<hr>
 	<div class="box">
 		<ul>
 			<li>
 				<div>
-				<label>프로젝트 대표 이미지</label>
 				<img alt="프로젝트 대표 이미지" src="${pageContext.request.contextPath}/resources/images/default_team.jpg" id="team-photo">
 
 				</div>
 				<br>
 				<div>
-					<input id="upload" type="file" name="team_upload" accept="image/gif,image/png,image/jpeg,image/jpg" />
-					<input type="button" value="등록" id="photo_submit"/>
-					<input type="button" value="취소" id="photo_reset"/>
+					<input class="up" id="upload" type="file" name="team_upload" accept="image/gif,image/png,image/jpeg,image/jpg" />
+					<input class="up" type="button" value="등록" id="photo_submit"/>
+					<input class="up" type="button" value="취소" id="photo_reset"/>
 				</div>
 			</li>
 		</ul>
@@ -143,8 +144,8 @@
 			<form:input type="hidden" value="${name}" path="name" id="name"/>
 			
 			<div class="align-center">
-				<form:button>다음</form:button>
-				<input type="button" id="home" value="홈으로" >
+				<form:button class="next">다음</form:button>
+				<input type="button" class="next" id="home" value="홈으로" >
 			</div>
 		</form:form>
 	</div>

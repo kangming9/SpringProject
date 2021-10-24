@@ -80,4 +80,9 @@ public class ProjectServiceImpl implements ProjectService{
 		projectMapper.updateApproval(pnum);
 	}
 
+	@Override
+	public ProjectVO selectCheckNumProject(int num) {
+		return projectMapper.selectCheckNumProject(num);
+	}
+
 }

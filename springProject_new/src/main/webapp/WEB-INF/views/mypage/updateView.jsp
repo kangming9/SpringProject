@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -19,7 +21,7 @@ $(document).ready(function(){
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<div class="align-center">
-		<div>
+		<div id="information">
 			프로젝트 수정 완료!<br>
 			심사를 신청한 프로젝트는 더이상 수정하실 수 없으며<br>
 			승인 과정을 거친 후, 설정하신 기간 동안 펀딩 페이지에 올라갑니다.<br>
@@ -31,9 +33,9 @@ $(document).ready(function(){
 		<div class="align-center">
 			<form:form id="update_approval_form" action="updateApproval.do" modelAttribute="projectVO">
 				<form:input type="hidden" value="${num}" path="num" />
-				<form:button>심사 신청</form:button>
+				<form:button class="next">심사 신청</form:button>
 			</form:form>
-			<input type="button" id="home" value="홈으로" >
+			<input type="button" class="next" id="home" value="홈으로" >
 		</div>
 		
 	</div>

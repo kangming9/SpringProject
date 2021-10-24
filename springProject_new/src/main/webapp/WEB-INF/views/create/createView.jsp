@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -10,15 +11,19 @@ $(document).ready(function(){
 		return check;
 	});
 	
+	$("#modify").click(function(){
+		document.location.href='${pageContext.request.contextPath}/mypage/myProjectDetail.do?name=${name}';
+	});
+	
 	$("#home").click(function(){
-		document.location.href='${pageContext.request.contextPath}/mypage/main.do';
+		document.location.href='${pageContext.request.contextPath}/main/main.do';
 	});
 });
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<div class="align-center">
-		<div>
+		<div id="information">
 			프로젝트 창작 완료!<br>
 			<br>
 			심사를 신청한 프로젝트는 더이상 수정하실 수 없으며<br>
@@ -29,11 +34,12 @@ $(document).ready(function(){
 		</div>
 		
 		<div class="align-center">
+			<button class="next" id="modify">프로젝트 수정</button>
 			<form:form id="update_approval_form" action="updateApproval.do" modelAttribute="projectVO">
 				<form:input type="hidden" value="${num}" path="num" />
-				<form:button>심사 신청</form:button>
+				<form:button class="next">심사 신청</form:button>
 			</form:form>
-			<input type="button" id="home" value="홈으로" >
+			<input type="button" class="next" id="home" value="홈으로" >
 		</div>
 	</div>
 </div>

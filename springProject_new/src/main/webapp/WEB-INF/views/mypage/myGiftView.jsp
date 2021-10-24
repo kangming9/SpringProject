@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -286,10 +288,10 @@
 <div class="container">
 	<h2>프로젝트 창작 - 선물</h2>
 	<h3 id="projectname">${name}</h3>
-	<div class="box">
+	<div class="box" id="gifts">
 	
-		<div>
-			<label for="gift">선물 목록</label><br>
+		<div class="addlist">
+			<label for="gift" class="list">선물 목록</label><br>
 			<select id="gift" size="10">
 				<c:forEach var="gift" items="${giftList}">
 					<option>${gift.name}</option>
@@ -306,18 +308,30 @@
 			<br>
 			<label for="giftship">배송 여부</label><br>
 			<p id="checkship" style="display:none">unshipped</p>
-			<input type="radio" name="giftship" id="unshipped" value="0" checked="checked" onclick='getShip(event);'/>배송 없음
-			<input type="radio" name="giftship" id="shipped" value="1" onclick='getShip(event);'/>배송 있음
+			<label class="pick">
+			<input type="radio" name="giftship" id="unshipped" value="0" checked="checked" onclick='getShip(event);'/>배송 없음<span class="mark"></span>
+			</label>
+			<label class="pick">
+			<input type="radio" name="giftship" id="shipped" value="1" onclick='getShip(event);'/>배송 있음<span class="mark"></span>
+			</label>
 			<br>
 			<label for="giftoption">한정 여부</label><br>
 			<p>옵션은 색상, 각인 등 서포터가 추가적으로 작성해야 하는 사항을 의미합니다.</p><br>
-			<input type="radio" name="giftoption" id="none" value="0" checked="checked"/>옵션 없음
-			<input type="radio" name="giftoption" id="option" value="1" />옵션 있음
+			<label class="pick">
+			<input type="radio" name="giftoption" id="none" value="0" checked="checked"/>옵션 없음<span class="mark"></span>
+			</label>
+			<label class="pick">
+			<input type="radio" name="giftoption" id="option" value="1" />옵션 있음<span class="mark"></span>
+			</label>
 			<br>
 			<label for="giftlimit">한정 여부</label><br>
 			<p id="checklimit" style="display:none">unlimited</p>
-			<input type="radio" name="giftlimit" id="unlimited" value="0" checked="checked" onclick='getLimit(event);'/>제한 없음
-			<input type="radio" name="giftlimit" id="limited" value="1" onclick='getLimit(event);'/>한정 상품
+			<label class="pick">
+			<input type="radio" name="giftlimit" id="unlimited" value="0" checked="checked" onclick='getLimit(event);'/>제한 없음<span class="mark"></span>
+			</label>
+			<label class="pick">
+			<input type="radio" name="giftlimit" id="limited" value="1" onclick='getLimit(event);'/>한정 상품<span class="mark"></span>
+			</label>
 			<br>
 			<div id="limitcount" style="display:none">
 				<label for="giftcount">후원 가능 수량</label><br>
@@ -325,11 +339,11 @@
 				<span id="message_count"></span>
 			</div>
 			<br>
-			<input type="button" value="선물 추가" id="add_gift">
-			<input type="button" value="선물 삭제" id="delete_gift">
+			<input type="button" class="up" value="선물 추가" id="add_gift">
+			<input type="button" class="up" value="선물 삭제" id="delete_gift">
 		</div>
-		<div>
-			<label for="gift_detail">구성품 목록</label><br>
+		<div class="addlist">
+			<label for="gift_detail" class="list">구성품 목록</label><br>
 			<span id="gname">현재 선택된 선물 : 없음</span>
 			<p>
 			선물 목록에서 선물을 선택하지 않으면 구성품을 추가할 수 없습니다.<br>
@@ -348,15 +362,15 @@
 			<input type="number" min="1" max="1000" name="detailcount" id="detailcount">
 			<span id="message_dcount"></span>
 			<br>
-			<input type="button" value="구성품 추가" id="add_detail">
-			<input type="button" value="구성품 삭제" id="delete_detail">
+			<input type="button" class="up" value="구성품 추가" id="add_detail">
+			<input type="button" class="up" value="구성품 삭제" id="delete_detail">
 		</div>
 		
 		<form:form id="update_gift_form" action="updateGift.do" modelAttribute="giftVO">
 		<form:input type="hidden" value="${num}" path="p_num" />
 		<div class="align-center">
-			<form:button>다음</form:button>
-			<input type="button" id="home" value="홈으로" >
+			<form:button class="next">다음</form:button>
+			<input type="button" class="next" id="home" value="홈으로" >
 		</div>
 		</form:form>
 	</div>

@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+ul{
+   list-style:none;
+}
+li{
+	margin : 10px;
+}
+
+h2{
+	 padding: 4px 0;
+      color: #FF7878;
+      font-size: 24px;
+      font-weight: bold;
+}
+
+#name{
+	outline: none;
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+}
+
+#category{
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+}
+
+#summary{
+	resize : none;
+	outline: none;
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+}
+
+#goal_amount{
+	outline: none;
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+}
+#start_date, #finish_date{
+	outline: none;
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+}
+
+.pick {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ededed;
+  border-radius: 50%;
+}
+
+.pick input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.pick:hover input ~ .mark {
+  background-color: #ccc;
+}
+
+.pick input:checked ~ .mark {
+  background-color: #FF7878;
+}
+
+.mark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.pick input:checked ~ .mark:after {
+  display: block;
+}
+
+.pick .mark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+#confirmName{
+	padding: 10px;
+	background-color: #ededed;
+	border: none;
+	border-radius: 10px;
+}
+
+.next{
+	padding: 10px;
+	background-color: #FF7878;
+	color: white;
+	border: none;
+	width : 50%;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+#home{
+	background-color: #ededed;
+	color: black;
+}
+
+#box div{
+	text-align: center;
+}
+
+.up{
+	padding: 10px;
+	background-color: #ededed;
+	border: none;
+	border-radius: 10px;
+}
+
+#photo_submit, #add_gift, #add_detail{
+	background-color: #ccc;
+}
+
+#gift, #detail{
+	width: 300px;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin: 10px;
+}
+
+.list{
+	margin: 10px;
+	font-size : 15px;
+}
+
+#giftname, #giftprice, #giftcount, #detailname, #detailcount{
+	width: 200px;
+	border-radius: 10px;
+	outline: none;
+	background-color: #ededed;
+	border: none;
+	padding: 10px;
+	margin: 5px;
+}
+
+#information{
+	margin : 50px;
+}
+
+.addlist{
+	margin : 10px;
+	display: inline-block;
+	vertical-align: top;
+}

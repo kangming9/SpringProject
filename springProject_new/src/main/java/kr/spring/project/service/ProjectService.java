@@ -26,5 +26,5 @@ public interface ProjectService {
 	public Date selectFinish(int pnum);
 	
 	public void updateApproval(int pnum);
-
+	public ProjectVO selectCheckNumProject(int num);
 }

@@ -5,6 +5,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/create.css">
 <style>
 	.ck-editor__editable_inline{
 		min-height:500px;
@@ -71,6 +72,7 @@
 				if($("#name").val().trim() == ""){
 					$("#name").val("").focus();
 				}
+				document.location.href="#name";
 				return false;
 			}
 			
@@ -110,19 +112,20 @@
 <!-- 중앙 내용 시작 -->
 <div class="container">
 	<h2>프로젝트 창작</h2>
+	<hr>
 	<div class="box">
 		
 	<form:form id="create_project_form" action="createProject.do" modelAttribute="projectVO" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="name">프로젝트명</label><br>
+				<label for="name" id="for">프로젝트명</label><br>
 				<form:input path="name" placeholder="한글, 영문, 숫자만 허용"/>
 				<input type="button" id="confirmName" value="중복체크">
 				<span id="message_name"></span>
 				<form:errors path="name" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="category">카테고리</label><br>
+				<label for="category" id="for">카테고리</label><br>
 				<form:select path="category">
 					<form:option value="0">온라인게임</form:option>
 					<form:option value="1">모바일게임</form:option>
@@ -131,29 +134,33 @@
 				</form:select>
 			</li>
 			<li>
-				<label for="summary">프로젝트 요약</label><br>
-				<form:textarea path="summary"/>
+				<label for="summary" id="for">프로젝트 요약</label><br>
+				<form:textarea path="summary" cols="50" rows=""/>
 				<form:errors path="summary" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="goal_amount">목표 금액</label><br>
+				<label for="goal_amount" id="for">목표 금액</label><br>
 				<form:input type="number" min="100000" max="2000000000" step="1000" path="goal_amount"/>
 				<form:errors path="goal_amount" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="start_date">펀딩 날짜</label><br>
-				<form:input type="date" path="start_date" id="start_date"/>
-				<form:input type="date" path="finish_date" id="finish_date"/>
+				<label for="start_date" id="for">펀딩 날짜</label><br>
+				<form:input type="date" path="start_date" id="start_date"/>부터
+				<form:input type="date" path="finish_date" id="finish_date"/>까지
 				<form:errors path="start_date" cssClass="error-color"/>
 				<form:errors path="finish_date" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="ship">배송 여부</label><br>
-				<form:radiobutton path="ship" value="0" label="온라인 상품"/>
-				<form:radiobutton path="ship" value="1" label="배송 상품"/>
+				<label for="ship" id="for">배송 여부</label><br>
+				<label class="pick">
+				<form:radiobutton path="ship" value="0" label="온라인 상품"/><span class="mark"></span>
+				</label>
+				<label class="pick">
+				<form:radiobutton path="ship" value="1" label="배송 상품"/><span class="mark"></span>
+				</label>
 			</li>
 			<li>
-				<label>프로젝트 소개</label><br>
+				<label>프로젝트 소개</label>
 				<form:textarea id="intro" path="intro"/>
 				<br>
 				<label>프로젝트 정책</label>
@@ -186,8 +193,8 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>다음</form:button>
-			<input type="button" id="home" value="홈으로" >
+			<form:button class="next">다음</form:button>
+			<input type="button" class="next" id="home" value="홈으로" >
 		</div>
 	</form:form>
 	</div>
