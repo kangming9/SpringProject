@@ -4,7 +4,6 @@ ul{
 	padding: 0;
 	margin: 0;
 	list-style-type:none;
-	overflow:hidden;
 	height:auto;
 }
 
@@ -21,7 +20,7 @@ a:link,  a:visited {
 
 a:hover { 
 	color: black;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .container{
