@@ -76,6 +76,7 @@
 		<h2>공지 게시판</h2>
 		<span>프로젝트 공지사항을 확인하세요!</span>
 		<form id="search_form" action="list.do" method="get">
+			<input type="hidden" name="p_num" value="${p_num}">
 			<ul class="search">
 				<li>
 					<select name="keyfield" id="keyfield">
