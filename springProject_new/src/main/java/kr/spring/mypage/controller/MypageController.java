@@ -742,7 +742,6 @@ public class MypageController {
 				return mav;
 			}
 
-			projectVO = projectService.selectCheckProject(projectVO.getName());
 			
 			logger.debug("<<프로젝트 정보>> : " + projectVO);
 
