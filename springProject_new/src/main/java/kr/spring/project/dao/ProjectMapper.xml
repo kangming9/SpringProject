@@ -56,6 +56,18 @@
 	  	   			  	<if test="keyword != ''">
                         AND p.name LIKE '%' || #{keyword} || '%'
                      	</if>
+						    <if test="category != '' and category == 0">
+						    AND p.category=0
+						    </if>
+						    <if test="category != '' and category == 1">
+						    AND p.category=1
+						    </if>
+						    <if test="category != '' and category == 2">
+						    AND p.category=2
+						    </if>
+						    <if test="category != '' and category == 3">
+						    AND p.category=3
+						    </if>
 	  	   			  </where>
 	  	   			  ORDER BY p.num DESC
 	  	   			  ) a JOIN  (SELECT 
@@ -78,35 +90,25 @@
 				        </if>
 				     </trim>
 			)d
+			<where>
+				<if test="state == '' or state == 1">
+				AND deadline <![CDATA[>=]]> 0
+				</if>
+				<if test="state != '' and state == 2">
+				AND deadline <![CDATA[<]]> 0
+				</if>
+				<if test="state != '' and state == 3">
+				AND start_date <![CDATA[>]]> TRUNC(sysdate)
+				</if>
+				<if test="order != '' and order == 3">
+				AND deadline <![CDATA[>=]]> 0
+				</if>
+			</where>
 	)
 	<where>
 		<![CDATA[
 			rnum >= #{start} AND rnum <= #{end} 
 	    ]]>
-	    <if test="state == '' or state == 1">
-	    AND deadline <![CDATA[>=]]> 0
-	    </if>
-	    <if test="state != '' and state == 2">
-	    AND deadline <![CDATA[<]]> 0
-	    </if>
-	    <if test="state != '' and state == 3">
-	    AND start_date <![CDATA[>]]> TRUNC(sysdate)
-	    </if>
-	    <if test="order != '' and order == 3">
-	    AND deadline <![CDATA[>=]]> 0
-	    </if>
-	    <if test="category != '' and category == 0">
-	    AND category=0
-	    </if>
-	    <if test="category != '' and category == 1">
-	    AND category=1
-	    </if>
-	    <if test="category != '' and category == 2">
-	    AND category=2
-	    </if>
-	    <if test="category != '' and category == 3">
-	    AND category=3
-	    </if>
 	</where>
 	  	  
 	</select>
