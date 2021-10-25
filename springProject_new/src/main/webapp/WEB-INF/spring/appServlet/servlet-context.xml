@@ -103,6 +103,7 @@
 			<exclude-mapping path="/question/list.do"/>
 			<exclude-mapping path="/notice/list.do"/>
 			<exclude-mapping path="/notice/detail.do"/>
+			<exclude-mapping path="/guide/introMain.do"/>
 			<exclude-mapping path="/main/**"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
