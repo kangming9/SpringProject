@@ -46,7 +46,7 @@
 			$.ajax({
 				data: formData,
 				type: "post",
-				url:'updatePhoto.do',
+				url:'updateTeamPhoto.do',
 				dataType:'json',
 				cache:false,
 				contentType:false,
