@@ -123,7 +123,7 @@
 				pay_method: 'card',
 				merchant_uid: 'merchant_' + new Date().getTime(),
 				name: title,
-				amount: 100, //amount
+				amount: amount,
 				buyer_email: email,
 				buyer_name: name,
 				buyer_tel: tel,
