@@ -8,7 +8,7 @@
 	<div class='menu'>
 			<ul class="header-page-menu">
 				<li>
-					<a href="${pageContext.request.contextPath}" class="delete_line">소개</a>
+					<a href="${pageContext.request.contextPath}/guide/introMain.do" class="delete_line">소개</a>
 				</li>
 				<li class="dropdown">
 					<a href='#'>가이드</a>

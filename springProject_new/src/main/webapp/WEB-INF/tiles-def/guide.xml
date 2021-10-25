@@ -30,6 +30,10 @@
     	<put-attribute name="title" value="개인정보 처리방침"/>
     	<put-attribute name="body" value="/WEB-INF/views/guide/privacyPolicyView.jsp"/>
     </definition>
+    <definition name="introMainView" extends="main">
+    	<put-attribute name="title" value="펀딩어드벤처 소개"/>
+    	<put-attribute name="body" value="/WEB-INF/views/guide/introMainView.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

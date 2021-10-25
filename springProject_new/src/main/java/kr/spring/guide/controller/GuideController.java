@@ -38,4 +38,8 @@ public class GuideController {
 	public String privacyPolicyView() {
 		return "privacyPolicyView";
 	}
+@RequestMapping("/guide/introMain.do")
+	public String introMainView() {
+		return "introMainView";
+	}
 }
