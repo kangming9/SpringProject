@@ -1017,7 +1017,7 @@ public class MypageController {
 		int count = mypageService.getConfirmProCount();
 		
 		
-		PagingUtil page = new PagingUtil(currentPage, count, 10, pageCount, "confirmProjectList.do");
+		PagingUtil page = new PagingUtil(currentPage, count, 10, 10, "confirmProjectList.do");
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
