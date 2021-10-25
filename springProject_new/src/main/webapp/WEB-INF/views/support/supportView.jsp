@@ -199,10 +199,10 @@
 				<c:forEach var="gift" items="${giftList}">
 					<div class="gift-card">
 						<label>
-							<c:if test="${gift.rest_cnt > 0}">
+							<c:if test="${gift.num_component == 0 or gift.rest_cnt > 0}">
 								<input type="radio" name="g_num" value="${gift.num}"/>
 							</c:if>
-							<c:if test="${gift.rest_cnt <= 0}">
+							<c:if test="${gift.num_component > 0 and gift.rest_cnt <= 0}">
 								<input type="radio" name="g_num" class="disGift" value="${gift.num} "/>
 							</c:if>
 							<span class="name-${gift.num}">${gift.name}</span>
@@ -218,7 +218,7 @@
 									<input type="text" class="optional-${gift.num}" name="optional" placeholder="선물 소개를 참고하여 작성해주세요."> 
 								</c:if>
 								<span class="rest-${gift.num}">${gift.rest_cnt}개 남음
-									<c:if test="${gift.rest_cnt <= 0}">
+									<c:if test="${gift.num_component > 0 and gift.rest_cnt <= 0}">
 								 	 <span class="color">(선택불가)</span>
 									</c:if>
 								</span>

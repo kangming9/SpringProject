@@ -237,7 +237,9 @@
 								
 								<span class="ginfo">
 									<span class="price"><b>${gift.price_str}원</b></span>
-									<span class="rest_cnt">${gift.rest_cnt}개 남음</span>
+									<c:if test="${gift.num_component > 0}">
+										<span class="rest_cnt">${gift.rest_cnt}개 남음</span>
+									</c:if>
 								</span>
 								<div class="name ginfo">${gift.name}</div>
 								<c:forEach var="component" items="${comList}">
@@ -256,17 +258,17 @@
 								</c:if>
 								<div class="donation-wrap">
 									<div>추가 후원금(선택)</div>
-									<c:if test="${gift.rest_cnt > 0}">
+									<c:if test="${gift.num_component == 0 or gift.rest_cnt > 0}">
 										<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0"> 
 									</c:if>
-									<c:if test="${gift.rest_cnt <= 0}">
+									<c:if test="${gift.num_component > 0 and gift.rest_cnt <= 0}">
 										<input type="number" class="donation" name="donation" value="0" min=0 max=200000000 placeholder="0" disabled> 
 									</c:if>
 								</div>
-								<c:if test="${gift.rest_cnt > 0}">
+								<c:if test="${gift.num_component == 0 or gift.rest_cnt > 0}">
 									<button type="submit" class="supportButton">후원하기</button>
 								</c:if>
-								<c:if test="${gift.rest_cnt <= 0}">
+								<c:if test="${gift.num_component > 0 and gift.rest_cnt <= 0}">
 									<button type="submit" class="supportButton disButton" disabled>후원하기</button>
 								</c:if>
 							</form>
