@@ -42,11 +42,8 @@ Funding Adventure💫
 💎문의 내역 #5
 ![그림7-문의](https://user-images.githubusercontent.com/90167498/147259554-79cd1f50-dc07-4e13-8fa4-ea87826db5ac.PNG)
 
-💎회원
-
-https://user-images.githubusercontent.com/90167498/147259740-c94a5be9-7968-4115-9304-ffd1ef49e195.mp4
-
-정보 수정 #6
+💎회원정보 수정 #6
+![회원정보수정](https://user-images.githubusercontent.com/90167498/147260563-d6cf169d-3443-4e42-bb1e-559ecd17ea91.gif)
 
 💎배송지 관리 #7
 💎회원 탈퇴 #8
