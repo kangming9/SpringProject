@@ -25,7 +25,7 @@ Funding Adventure💫
 ## + 담당 기능
 #### 마이 페이지
 
-💎메인 마이페이지 #1
+🎃메인 마이페이지 #1
 ![그림1](https://user-images.githubusercontent.com/90167498/147258102-b7e216aa-36fa-4156-b68c-b3bd681957a2.png)
 ![그림2](https://user-images.githubusercontent.com/90167498/147258115-f920ceaa-c11b-47fc-b152-fc7301e50e7c.png)
 
@@ -39,15 +39,15 @@ Funding Adventure💫
 ![그림5-후원상세1](https://user-images.githubusercontent.com/90167498/147258922-8a2c93cc-15fd-4b24-9969-543c1ed6baa4.png)
 ![그림6-후원상세2](https://user-images.githubusercontent.com/90167498/147258938-99b23157-bf21-4e88-9905-e47843af5182.png)
 
-⭐문의 내역 #5
+📜문의 내역 #5
 ![그림7-문의](https://user-images.githubusercontent.com/90167498/147259554-79cd1f50-dc07-4e13-8fa4-ea87826db5ac.PNG)
 <p>
  
-💕회원정보 수정 #6
+🎅회원정보 수정 #6
 ![회원정보수정](https://user-images.githubusercontent.com/90167498/147267709-2ef1683f-054e-4883-8815-417298674f59.gif)
 
-💎배송지 관리 #7
- 
-💎회원 탈퇴 #8
-💎로그아웃 #9
+📦배송지 관리 #7
+![배송지관리](https://user-images.githubusercontent.com/90167498/147268545-6a4d47a1-9c74-448d-995f-bc2f47902e0c.gif)
 
+💎회원 탈퇴 #8
+![회원탈퇴](https://user-images.githubusercontent.com/90167498/147269074-b7ecb182-58cf-412d-9397-5b3857025fed.gif)
