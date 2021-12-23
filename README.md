@@ -7,13 +7,17 @@ Funding Adventure💫
 ## + 소개
 > 후원 받아 나만의 게임을 만들고,   
 > 원하는 프로젝트를 펀딩하여 소망하는 게임을 쟁취할 수 있는 웹사이트.
-<p>
+
+<p></p>
+
 ## + 개발환경
 * OS : windows 10 Home
 * Server : Apache Tomcat v9.0
 * DBMS : Oracle 11 Release2
 * Language : Java / HTML / CSS / Javascript / JSP / SQL
-<p>
+
+<p></p>
+
 ## + 화면구성
 * 로그인 / 회원가입
 * 메인 페이지 / 관리자 페이지 / 마이 페이지
@@ -21,7 +25,9 @@ Funding Adventure💫
 * 프로젝트 창작 페이지 / 프로젝트 통계 페이지
 * 헤더 / 푸터
 * 문의 게시판
-<p>
+
+<p></p>
+
 ------------
 ## + 담당 기능
 
