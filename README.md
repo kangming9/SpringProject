@@ -28,6 +28,9 @@ Funding Adventure💫
 #### 마이 페이지
 
 💎메인 마이페이지 #1
+![그림1](https://user-images.githubusercontent.com/90167498/147258102-b7e216aa-36fa-4156-b68c-b3bd681957a2.png)
+![그림2](https://user-images.githubusercontent.com/90167498/147258115-f920ceaa-c11b-47fc-b152-fc7301e50e7c.png)
+
 💎후원한 프로젝트 #2
 💎창작한 프로젝트 #1
 💎문의 내역 #1
