@@ -43,7 +43,7 @@ Funding Adventure💫
 ![그림7-문의](https://user-images.githubusercontent.com/90167498/147259554-79cd1f50-dc07-4e13-8fa4-ea87826db5ac.PNG)
 
 💎회원정보 수정 #6
-![회원정보수정](https://user-images.githubusercontent.com/90167498/147265401-84d153d8-42b5-4d77-8202-66852f9504ee.gif)
+
 
 
 💎배송지 관리 #7
