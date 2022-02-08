@@ -32,21 +32,21 @@ Funding Adventure💫
 ## + 담당 기능
 
 #### 🎃메인 마이페이지 #1
-![그림1](https://user-images.githubusercontent.com/90167498/147258102-b7e216aa-36fa-4156-b68c-b3bd681957a2.png)
-![그림2](https://user-images.githubusercontent.com/90167498/147258115-f920ceaa-c11b-47fc-b152-fc7301e50e7c.png)
+<img width="639" alt="메인-1" src="https://user-images.githubusercontent.com/90167498/153020226-908b460f-1a89-499c-a681-f067b330d367.PNG">
+<img width="631" alt="메인-2" src="https://user-images.githubusercontent.com/90167498/153020242-10020d61-c2c0-4c7f-a490-5aee0a876b09.PNG">
 
 #### ⚡창작한 프로젝트 #2
-![그림3-창작목록](https://user-images.githubusercontent.com/90167498/147258657-1172b5cb-6cfb-450f-b843-b307a5f89895.png)
+<img width="631" alt="창작목록-1" src="https://user-images.githubusercontent.com/90167498/153021198-96c98072-012b-4e2b-9cbc-3ea05aa3c3ed.png">
 
 #### 🎈후원한 프로젝트 #3
-![그림4 후원목록](https://user-images.githubusercontent.com/90167498/147258680-9b36dcdb-a91c-47ba-9686-c2464119f45c.png)
+<img width="627" alt="후원목록-1" src="https://user-images.githubusercontent.com/90167498/153021243-e70a3c1a-516c-4f2e-878a-eb045c7e7e27.PNG">
 
 #### 🎈🎈후원한 프로젝트 상세 #4
-![그림5-후원상세1](https://user-images.githubusercontent.com/90167498/147258922-8a2c93cc-15fd-4b24-9969-543c1ed6baa4.png)
-![그림6-후원상세2](https://user-images.githubusercontent.com/90167498/147258938-99b23157-bf21-4e88-9905-e47843af5182.png)
+<img width="585" alt="후원-1" src="https://user-images.githubusercontent.com/90167498/153021298-fc73de51-2e81-435c-8940-f1745988fa70.PNG">
+<img width="585" alt="후원-2" src="https://user-images.githubusercontent.com/90167498/153021332-54ce4220-15d9-4f98-b345-3501a4272d5c.PNG">
 
 #### 📜문의 내역 #5
-![그림7-문의](https://user-images.githubusercontent.com/90167498/147259554-79cd1f50-dc07-4e13-8fa4-ea87826db5ac.PNG)
+<img width="625" alt="문의-1" src="https://user-images.githubusercontent.com/90167498/153021618-30c0d934-6401-4473-9afc-9442fbee3fae.png">
 
 #### 🎅회원정보 수정 #6
 ![회원정보수정](https://user-images.githubusercontent.com/90167498/147267709-2ef1683f-054e-4883-8815-417298674f59.gif)
