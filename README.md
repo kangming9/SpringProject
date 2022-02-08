@@ -47,6 +47,7 @@ Funding Adventure💫
 
 ![후원취소](https://user-images.githubusercontent.com/90167498/153024060-ea85f824-a23e-44d1-b5b6-85a26d3ef2d6.gif)
 ![배송지변경](https://user-images.githubusercontent.com/90167498/153024078-e4d40a18-20e6-405b-bbfe-904c798d50c8.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/90167498/153024384-ff7ef1c4-4dea-4167-9673-d9e65b9f469c.gif)
 
 
 #### 📜문의 내역 #5
