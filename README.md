@@ -45,8 +45,8 @@ Funding Adventure💫
 <img width="585" alt="후원-1" src="https://user-images.githubusercontent.com/90167498/153021298-fc73de51-2e81-435c-8940-f1745988fa70.PNG">
 <img width="585" alt="후원-2" src="https://user-images.githubusercontent.com/90167498/153021332-54ce4220-15d9-4f98-b345-3501a4272d5c.PNG">
 <img width="625" alt="후원-3" src="https://user-images.githubusercontent.com/90167498/153028967-c9699d58-88c4-4493-ab7b-eab55054be4f.PNG">
-![후원취소](https://user-images.githubusercontent.com/90167498/153027630-df23fb07-206b-4fca-8d07-5c43cf5d1bbd.gif)
 
+![후원취소](https://user-images.githubusercontent.com/90167498/153029106-f3a48592-19d1-4bd3-9eca-aba62162c9f2.gif)
 
 #### 📜문의 내역 #5
 <img width="625" alt="문의-1" src="https://user-images.githubusercontent.com/90167498/153021618-30c0d934-6401-4473-9afc-9442fbee3fae.png">
