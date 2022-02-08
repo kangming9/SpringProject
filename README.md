@@ -41,9 +41,13 @@ Funding Adventure💫
 #### 🎈후원한 프로젝트 #3
 <img width="627" alt="후원목록-1" src="https://user-images.githubusercontent.com/90167498/153021243-e70a3c1a-516c-4f2e-878a-eb045c7e7e27.PNG">
 
-#### 🎈🎈후원한 프로젝트 상세 #4
+#### ✌후원한 프로젝트 상세 #4
 <img width="585" alt="후원-1" src="https://user-images.githubusercontent.com/90167498/153021298-fc73de51-2e81-435c-8940-f1745988fa70.PNG">
 <img width="585" alt="후원-2" src="https://user-images.githubusercontent.com/90167498/153021332-54ce4220-15d9-4f98-b345-3501a4272d5c.PNG">
+
+![후원취소](https://user-images.githubusercontent.com/90167498/153024060-ea85f824-a23e-44d1-b5b6-85a26d3ef2d6.gif)
+![배송지변경](https://user-images.githubusercontent.com/90167498/153024078-e4d40a18-20e6-405b-bbfe-904c798d50c8.gif)
+
 
 #### 📜문의 내역 #5
 <img width="625" alt="문의-1" src="https://user-images.githubusercontent.com/90167498/153021618-30c0d934-6401-4473-9afc-9442fbee3fae.png">
