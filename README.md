@@ -44,8 +44,7 @@ Funding Adventure💫
 #### ✌후원한 프로젝트 상세 #4
 <img width="585" alt="후원-1" src="https://user-images.githubusercontent.com/90167498/153021298-fc73de51-2e81-435c-8940-f1745988fa70.PNG">
 <img width="585" alt="후원-2" src="https://user-images.githubusercontent.com/90167498/153021332-54ce4220-15d9-4f98-b345-3501a4272d5c.PNG">
-
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/90167498/153026451-734bab5c-1f82-4009-b14e-77cb3af377b1.gif)
+<img width="625" alt="후원-3" src="https://user-images.githubusercontent.com/90167498/153028967-c9699d58-88c4-4493-ab7b-eab55054be4f.PNG">
 ![후원취소](https://user-images.githubusercontent.com/90167498/153027630-df23fb07-206b-4fca-8d07-5c43cf5d1bbd.gif)
 
 
